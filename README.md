@@ -1,7 +1,7 @@
 # GrowthMath - free marketing tools site (AdSense)
 
 **Started:** 2026-09-26 - CEO call from Adam: "turn the tools into free tools on a site with AdSense".
-**Status:** BUILT + verified locally. NOT deployed - waiting on domain + Adam's go.
+**Status:** LIVE on temp URL https://mobizombi.github.io/growthmath/ (noindex, 2026-09-26). Repo: github.com/mobizombi/growthmath (main = source, gh-pages = build). Waiting on Adam's domain.
 
 ## The play
 - A standalone free-tools site (not traffic-goat.com - ads on a $1,950 consulting site kill trust).
@@ -37,7 +37,7 @@ AdSense publisher: `ca-pub-5619164579775107` (same account as SolarCostLab). Aut
 
 ## To go live (Adam-gated)
 1. **Buy the domain** (default in build: growthmath.io - check availability; alternatives: growthmath.com, marketermath.com). ~$10-35/yr.
-2. Say go -> I create repo `mobizombi/growthmath`, push `dist/` to Pages, set CNAME + DNS.
+2. DONE: repo + Pages live on temp URL. On domain: `./deploy.sh https://<domain>`, set Pages custom domain, DNS = 4 GitHub A records (185.199.108-111.153) + `www` CNAME mobizombi.github.io.
 3. **AdSense -> Sites -> Add site** with the domain, wait for approval (days-weeks).
 4. **AdSense -> Privacy & messaging -> enable the GDPR consent message** (required for EEA/UK traffic; privacy page already promises it).
 5. Add to GSC, submit sitemap.
