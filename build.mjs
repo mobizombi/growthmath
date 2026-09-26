@@ -1,0 +1,154 @@
+// Static build for GrowthMath: node build.mjs  ->  dist/
+// Config via env: SITE_URL (canonical origin), CONTACT_EMAIL, ADSENSE (ca-pub id, empty = no ads).
+import { mkdirSync, writeFileSync, readFileSync, rmSync, copyFileSync } from 'node:fs';
+import { tools, categories } from './src/tools.mjs';
+
+const SITE = (process.env.SITE_URL || 'https://growthmath.io').replace(/\/$/, '');
+const HOST = new URL(SITE).hostname;
+const BASE = new URL(SITE).pathname.replace(/\/$/, ''); // e.g. /growthmath on a temp github.io URL
+const TEMP = HOST.endsWith('github.io'); // temp host: noindex, no CNAME, no ads.txt
+const NAME = 'GrowthMath';
+const EMAIL = process.env.CONTACT_EMAIL || `hello@${TEMP ? 'growthmath.io' : HOST}`;
+const ADSENSE = process.env.ADSENSE ?? 'ca-pub-5619164579775107';
+const AUDIT_URL = 'https://traffic-goat.com/?utm_source=growthmath&utm_medium=referral&utm_campaign=tool_cta';
+const YEAR = new Date().getFullYear();
+const OUT = 'dist';
+
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const bySlug = Object.fromEntries(tools.map((t) => [t.slug, t]));
+
+// Auto ads place themselves once the site is approved. Set AD_SLOT (a display unit id from AdSense)
+// to also reserve fixed in-content slots under the tool and above the footer.
+const AD_SLOT = process.env.AD_SLOT || '';
+const adUnit = () => (ADSENSE && AD_SLOT
+  ? `<div class="ad"><ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="${ADSENSE}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>`
+  : '');
+
+function layout({ title, desc, path, body, schema = [], scripts = '' }) {
+  const url = SITE + path;
+  return `<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<link rel="canonical" href="${url}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="${NAME}">
+<meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+${TEMP ? '<meta name="robots" content="noindex">' : ''}
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+${ADSENSE ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>` : ''}
+${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>${NAME}</a>
+<nav><a href="/#tools">All tools</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">${body}</main>
+<footer class="site-foot"><div class="wrap"><div><b>${NAME}</b> - free calculators for marketers, affiliates and store owners. &copy; ${YEAR}</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+${scripts}
+</body></html>`;
+}
+
+function card(t) {
+  return `<a class="card" href="/${t.slug}/"><span class="tag">${categories[t.cat]}</span><b>${esc(t.name)}</b><span>${esc(t.short)}</span></a>`;
+}
+
+function toolPage(t) {
+  const path = `/${t.slug}/`;
+  const faqHtml = t.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('');
+  const related = t.related.map((s) => bySlug[s]).filter(Boolean).map(card).join('');
+  const cta = t.cta
+    ? `<div class="cta"><div><strong>Run an affiliate program that is not growing?</strong><p>Traffic Goat audits affiliate programs and shows exactly where partners and revenue are leaking - with a fix plan.</p></div><a class="btn" href="${AUDIT_URL}" rel="noopener">See the audit</a></div>`
+    : '';
+  const body = `
+<div class="crumbs"><a href="/">Home</a> / <a href="/#${t.cat}">${categories[t.cat]}</a> / ${esc(t.name)}</div>
+<h1>${esc(t.h1)}</h1>
+<p class="lede">${esc(t.lede)}</p>
+<section class="tool${t.single ? ' single' : ''}">${t.tool}</section>
+${adUnit()}
+<article class="content narrow">${t.content}
+<h2>Frequently asked questions</h2><div class="faq">${faqHtml}</div></article>
+${cta}
+<h2>Related tools</h2><div class="grid">${related}</div>
+${adUnit()}`;
+  const schema = [
+    { '@context': 'https://schema.org', '@type': 'WebApplication', name: t.name, url: SITE + path, description: t.desc, applicationCategory: 'BusinessApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: t.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE + '/' },
+      { '@type': 'ListItem', position: 2, name: t.name, item: SITE + path } ] },
+  ];
+  return layout({ title: t.title, desc: t.desc, path, body, schema, scripts: `<script src="/app.js"></script>\n<script>${t.js}</script>` });
+}
+
+function home() {
+  const sections = Object.entries(categories).map(([k, label]) => {
+    const list = tools.filter((t) => t.cat === k);
+    return list.length ? `<h3 class="cat-h" id="${k}">${label}</h3><div class="grid">${list.map(card).join('')}</div>` : '';
+  }).join('');
+  const body = `
+<section class="hero"><h1>The numbers behind your marketing, calculated in seconds.</h1>
+<p class="lede">Free, no-signup calculators for ROAS, CPA, affiliate earnings, LTV, margins, UTM links and A/B tests. Everything runs in your browser - your data never leaves your device.</p></section>
+<div id="tools">${sections}</div>
+${adUnit()}
+<article class="content narrow">
+<h2>Why GrowthMath?</h2>
+<p>Most marketing decisions come down to a handful of formulas: what a click is worth, what a customer is worth, and how much you can afford to pay for either. These tools put those formulas in one place, explain the math behind each one, and tell you what the result means - not just the number.</p>
+<ul><li><b>Free and no signup.</b> Open a tool and use it.</li><li><b>Private.</b> Calculations run locally in your browser. Uploaded files are never sent to a server.</li><li><b>Explained.</b> Every tool shows its formula, benchmarks and common mistakes.</li></ul>
+</article>`;
+  const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: NAME, url: SITE + '/' }];
+  return layout({ title: `${NAME} - Free Marketing, Ads & Affiliate Calculators`, desc: 'Free calculators for marketers: ROAS, CPM/CPC/CPA, break-even CPA, affiliate EPC, LTV, profit margin, UTM builder, SERP preview and A/B test significance.', path: '/', body, schema });
+}
+
+const staticPage = (path, title, desc, html) => layout({ title: `${title} - ${NAME}`, desc, path, body: `<article class="content narrow"><h1>${title}</h1>${html}</article>` });
+
+const pages = {
+  '/about/': staticPage('/about/', 'About GrowthMath', 'About GrowthMath, a collection of free calculators for marketers, affiliates and online store owners.', `
+<p>GrowthMath is a small collection of free calculators for people who buy traffic, run affiliate programs or sell online. It is built and maintained by a team with more than a decade of hands-on experience in affiliate marketing, paid acquisition and conversion optimisation.</p>
+<p>Every tool follows three rules: it is free with no signup, it runs entirely in your browser, and it explains the formula and what the result means for your business.</p>
+<p>The site is supported by display advertising. We also run <a href="${AUDIT_URL}">Traffic Goat</a>, an affiliate program audit service - some tools link to it where it is relevant.</p>
+<p>Spotted a bug or want a tool we do not have? <a href="/contact/">Get in touch</a>.</p>`),
+  '/contact/': staticPage('/contact/', 'Contact', 'Contact the GrowthMath team.', `
+<p>Questions, bug reports, tool requests or partnership ideas - email us at <a href="mailto:${EMAIL}">${EMAIL}</a>. We read everything and usually reply within two business days.</p>`),
+  '/privacy/': staticPage('/privacy/', 'Privacy Policy', 'GrowthMath privacy policy: what data is collected, cookies, and Google AdSense advertising.', `
+<p><i>Last updated: ${new Date().toISOString().slice(0, 10)}</i></p>
+<h2>Calculations and uploaded files</h2>
+<p>All calculators run locally in your browser. The numbers you type and any files you upload (for example a CSV in the Dormant Affiliate Finder) are processed on your device and are never sent to or stored on our servers.</p>
+<h2>Advertising and cookies</h2>
+<p>We use Google AdSense to show ads. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.</p>
+<p>You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" rel="nofollow noopener">Google Ads Settings</a>, or opt out of some third-party vendors' use of cookies at <a href="https://www.aboutads.info/choices/" rel="nofollow noopener">aboutads.info</a>. Learn more about <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener">how Google uses information from sites that use its services</a>.</p>
+<p>Visitors in the EEA, UK and Switzerland are shown a consent message before personalised ads or non-essential cookies are used.</p>
+<h2>Server logs</h2>
+<p>Our hosting provider may record standard technical logs (IP address, browser type, pages requested) for security and reliability. We do not use these to identify individuals.</p>
+<h2>Contact</h2>
+<p>Privacy questions: <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>`),
+  '/terms/': staticPage('/terms/', 'Terms of Use', 'GrowthMath terms of use.', `
+<p>The tools on GrowthMath are provided free of charge, as-is, for general information and planning. Results are estimates based on the numbers you enter and standard formulas; they are not financial, legal or tax advice. Always verify important decisions with your own data and, where appropriate, a qualified professional.</p>
+<p>We may change or remove tools at any time. By using the site you agree not to misuse it, attempt to disrupt it, or scrape it at scale.</p>`),
+};
+
+// ---- write
+rmSync(OUT, { recursive: true, force: true });
+const rebase = (s) => (BASE ? s.replace(/(href|src)="\/(?!\/)/g, `$1="${BASE}/`) : s);
+const write = (p, s) => { s = rebase(s); const file = OUT + (p.endsWith('/') ? p + 'index.html' : p); mkdirSync(file.replace(/\/[^/]*$/, ''), { recursive: true }); writeFileSync(file, s); };
+
+write('/', home());
+for (const t of tools) write(`/${t.slug}/`, toolPage(t));
+for (const [p, html] of Object.entries(pages)) write(p, html);
+write('/404.html', staticPage('/404.html', 'Page not found', 'Page not found.', `<p>That page does not exist. <a href="/">Browse all tools</a>.</p>`));
+
+copyFileSync('src/style.css', OUT + '/style.css');
+copyFileSync('src/app.js', OUT + '/app.js');
+writeFileSync(OUT + '/favicon.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#15171a"/><text x="32" y="42" font-family="monospace" font-size="26" font-weight="700" fill="#fff" text-anchor="middle">g/m</text></svg>`);
+if (ADSENSE && !TEMP) writeFileSync(OUT + '/ads.txt', `google.com, ${ADSENSE.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n`);
+writeFileSync(OUT + '/robots.txt', TEMP ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
+const today = new Date().toISOString().slice(0, 10);
+const urls = ['/', ...tools.map((t) => `/${t.slug}/`), ...Object.keys(pages)];
+writeFileSync(OUT + '/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+if (!TEMP) writeFileSync(OUT + '/CNAME', HOST + '\n');
+writeFileSync(OUT + '/.nojekyll', '');
+console.log(`Built ${urls.length} pages for ${SITE} -> ${OUT}/ (ads: ${ADSENSE || 'off'})`);
