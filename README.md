@@ -43,8 +43,8 @@ AdSense publisher: `ca-pub-5619164579775107` (same account as SolarCostLab). Aut
 ## To go live (Adam-gated)
 1. DONE - growthmath.io bought on Cloudflare ($32 yr1 / $50 renew).
 2. DONE - DNS (4 A records + www CNAME, DNS-only) + Pages custom domain + HTTPS.
-3. **AdSense -> Sites -> Add site** with the domain, wait for approval (days-weeks).
-4. **AdSense -> Privacy & messaging -> enable the GDPR consent message** (required for EEA/UK traffic; privacy page already promises it).
+3. DONE 2 Oct - AdSense site added, ownership verified, review requested (status: Getting ready). Approval takes days-weeks.
+4. DONE 2 Oct - GDPR (European regulations) message for growthmath.io published.
 5. DONE - GSC + sitemap + GA4.
 6. Set up a mailbox or forward for the contact email.
 
