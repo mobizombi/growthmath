@@ -34,3 +34,9 @@ Rule for every community: lead with the answer, link the ONE relevant tool, neve
 2. After each new tool: `./deploy.sh https://growthmath.io && node indexnow.mjs`.
 3. Answer 3 Reddit/Quora questions a week with the matching tool.
 4. Pitch "free tools" roundup posts (search: "best free marketing calculators", "free ROAS calculator") - ask to be added.
+
+## Status (2 Oct 2026)
+- Accounts (Adam-created, trafficgoathq Chrome profile): Product Hunt + Indie Hackers, both `adams_growth`, display name "Adam S.".
+- Indie Hackers: profile done; product page LIVE at indiehackers.com/product/growthmath (listed in directory). New accounts cannot create posts yet -> earn it with comments first.
+- Product Hunt: profile done; launch DRAFT ready at producthunt.com/products/growthmath (tagline "Free marketing calculators that explain the math", 5 gallery shots in brand/ph/, first comment, tags Marketing/Affiliate marketing/Analytics, pricing Free). NOT scheduled - waits for Adam's date.
+- Reddit: blocked for the Chrome extension; adams_hut ("CosplayFan") NOT to be used for GrowthMath. Plan = new clean account, 2-3 weeks of link-free comments first.
