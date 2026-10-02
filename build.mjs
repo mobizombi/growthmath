@@ -10,6 +10,9 @@ const TEMP = HOST.endsWith('github.io'); // temp host: noindex, no CNAME, no ads
 const NAME = 'GrowthMath';
 const EMAIL = process.env.CONTACT_EMAIL || `hello@${TEMP ? 'growthmath.io' : HOST}`;
 const ADSENSE = process.env.ADSENSE ?? 'ca-pub-5619164579775107';
+const GA4 = process.env.GA4 ?? 'G-NNNSG3D7ML'; // GA4 property growthmath.io (traffic-goat account)
+// Consent Mode v2: deny storage by default for EEA/UK/CH until the AdSense (Google) CMP updates it.
+const EEA = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'];
 const AUDIT_URL = 'https://traffic-goat.com/?utm_source=growthmath&utm_medium=referral&utm_campaign=tool_cta';
 const YEAR = new Date().getFullYear();
 const OUT = 'dist';
@@ -41,6 +44,10 @@ ${TEMP ? '<meta name="robots" content="noindex">' : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+${GA4 && !TEMP ? `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:${JSON.stringify(EEA)},wait_for_update:500});
+gtag('js',new Date());gtag('config','${GA4}');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=${GA4}"></script>` : ''}
 ${ADSENSE ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>` : ''}
 ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
 </head><body>
@@ -108,7 +115,7 @@ const staticPage = (path, title, desc, html) => layout({ title: `${title} - ${NA
 
 const pages = {
   '/about/': staticPage('/about/', 'About GrowthMath', 'About GrowthMath, a collection of free calculators for marketers, affiliates and online store owners.', `
-<p>GrowthMath is a small collection of free calculators for people who buy traffic, run affiliate programs or sell online. It is built and maintained by a team with more than a decade of hands-on experience in affiliate marketing, paid acquisition and conversion optimisation.</p>
+<p>GrowthMath is a small collection of free calculators for people who buy traffic, run affiliate programs or sell online. It is built by people who work hands-on in affiliate marketing, paid acquisition and conversion optimisation.</p>
 <p>Every tool follows three rules: it is free with no signup, it runs entirely in your browser, and it explains the formula and what the result means for your business.</p>
 <p>The site is supported by display advertising. We also run <a href="${AUDIT_URL}">Traffic Goat</a>, an affiliate program audit service - some tools link to it where it is relevant.</p>
 <p>Spotted a bug or want a tool we do not have? <a href="/contact/">Get in touch</a>.</p>`),
@@ -121,7 +128,9 @@ const pages = {
 <h2>Advertising and cookies</h2>
 <p>We use Google AdSense to show ads. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.</p>
 <p>You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" rel="nofollow noopener">Google Ads Settings</a>, or opt out of some third-party vendors' use of cookies at <a href="https://www.aboutads.info/choices/" rel="nofollow noopener">aboutads.info</a>. Learn more about <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener">how Google uses information from sites that use its services</a>.</p>
-<p>Visitors in the EEA, UK and Switzerland are shown a consent message before personalised ads or non-essential cookies are used.</p>
+<p>Where the law requires it (for example in the EEA, UK and Switzerland), we ask for your consent before personalised ads or non-essential cookies are used. Until you choose, Google's Consent Mode keeps advertising and analytics storage switched off.</p>
+<h2>Analytics</h2>
+<p>We use Google Analytics 4 to understand which tools are used and how visitors find the site (pages viewed, approximate location, device and browser). It does not receive the numbers you type or the files you upload. You can opt out with the <a href="https://tools.google.com/dlpage/gaoptout" rel="nofollow noopener">Google Analytics opt-out browser add-on</a>.</p>
 <h2>Server logs</h2>
 <p>Our hosting provider may record standard technical logs (IP address, browser type, pages requested) for security and reliability. We do not use these to identify individuals.</p>
 <h2>Contact</h2>

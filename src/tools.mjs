@@ -37,15 +37,15 @@ ${f('margin', 'Gross margin', '40', { suf: '%', hint: 'Revenue left after produc
 <div class="stats">${stat('o_be', 'Break-even ROAS')}${stat('o_profit', 'Profit after ads')}${stat('o_pct', 'ROAS as %')}${stat('o_maxcpa', 'Max ad spend at break-even')}</div>
 <div class="verdict" id="o_v"></div></div>`,
     js: `live(() => {
-  const s = num('spend'), r = num('rev'), m = num('margin') / 100;
+  const s = num('spend'), r = num('rev'), m0 = num('margin') / 100, m = m0 > 0 && m0 <= 1 ? m0 : NaN;
   if (!ok(s, r) || s <= 0) return;
   const roas = r / s, be = m > 0 ? 1 / m : NaN, profit = r * m - s;
   set('o_roas', fnum(roas) + 'x'); set('o_pct', pct(roas * 100, 0));
   set('o_be', ok(be) ? fnum(be) + 'x' : '-'); set('o_profit', ok(profit) ? money(profit) : '-');
   set('o_maxcpa', ok(m) ? money(r * m) : '-');
   $('o_roas').classList.toggle('bad', ok(be) && roas < be);
-  set('o_v', !ok(be) ? 'Add your margin to see if this campaign is profitable.' :
-    roas >= be ? 'Profitable: you are ' + fnum(roas - be) + 'x above break-even.' :
+  set('o_v', !ok(be) ? 'Enter a gross margin between 1% and 100% to see if this campaign is profitable.' :
+    roas >= be ? 'Profitable: your ' + fnum(roas) + 'x ROAS beats the ' + fnum(be) + 'x you need to break even.' :
     'Losing money: you need ' + fnum(be) + 'x ROAS at a ' + pct(m * 100, 0) + ' margin. Cut spend or raise margin.');
 });`,
     content: `
@@ -139,7 +139,7 @@ ${f('conv', 'Conversions', '45', { hint: 'Sales, leads or sign-ups - whatever yo
 ${f('aov', 'Average order value', '80', { pre: '$' })}
 ${f('cogs', 'Cost per order (product + shipping + fees)', '35', { pre: '$' })}
 ${f('orders', 'Orders per customer (lifetime)', '1', { hint: 'Leave at 1 to judge on the first purchase only.' })}
-<div class="row2">${f('tprofit', 'Target profit', '20', { suf: '%' })}${f('cvr', 'Landing page conv. rate', '2.5', { suf: '%' })}</div>
+<div class="row2">${f('tprofit', 'Target profit (% of revenue)', '20', { suf: '%' })}${f('cvr', 'Landing page conv. rate', '2.5', { suf: '%' })}</div>
 </div>
 <div class="out">
 <div class="big-label">Break-even CPA</div><div class="big" id="o_be">-</div>
@@ -247,7 +247,7 @@ ${f('rate', 'Realistic reactivation rate', '15', { suf: '%', hint: 'A structured
 });`,
     content: `
 <h2>The dormant affiliate problem</h2>
-<p>Affiliate programs follow a steep power law: a handful of partners drive most of the revenue, and the majority sign up, grab a link and never promote. Industry surveys regularly put the share of inactive affiliates at 80-90%.</p>
+<p>Affiliate programs follow a steep power law: a handful of partners drive most of the revenue, and the majority sign up, grab a link and never promote. It is widely reported across the industry that most approved affiliates - often 80% or more - never drive a single sale.</p>
 <p>Each of those partners already passed your approval process. They know your brand and they have an audience. Waking up even a small share of them is usually far cheaper than recruiting new ones.</p>
 <div class="formula">Monthly leak = (Approved - Active) x Reactivation rate x Revenue per active affiliate</div>
 <h2>How to recover the leak</h2>
@@ -275,12 +275,13 @@ ${f('rate', 'Realistic reactivation rate', '15', { suf: '%', hint: 'A structured
 <div class="drop" id="drop"><b>Click to upload</b> or drag a CSV here<br><span class="small muted">Columns needed: <code>name</code>, <code>last_active_date</code> (YYYY-MM-DD). Optional: <code>email</code></span><input type="file" id="file" accept=".csv,text/csv" hidden></div>
 <p class="small muted" style="margin:10px 0 0">No file handy? <a href="#" id="sample">Try it with sample data</a>. Your name for signatures: <input type="text" id="sig" value="" placeholder="Your name" style="width:180px;padding:5px 8px;font-size:14px"></p>
 <div id="res" hidden>
+<p class="small muted" id="skip"></p>
 <div class="stats" id="sum" style="grid-template-columns:repeat(4,1fr)"></div>
 <div style="margin:14px 0"><button class="btn" id="dl">Download all emails (.txt)</button> <button class="btn ghost" id="dlcsv">Download CSV</button></div>
 <div class="tscroll"><table class="res-table"><thead><tr><th>Name</th><th>Last active</th><th>Days dark</th><th>Tier</th><th>Email</th></tr></thead><tbody id="rows"></tbody></table></div>
 </div></div>`,
     js: `
-let results = [];
+let results = [], skipped = 0;
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 function splitCSV(line) {
   const out = []; let cur = '', q = false;
@@ -292,7 +293,9 @@ function splitCSV(line) {
   out.push(cur); return out.map((s) => s.trim());
 }
 function email(name, tier) {
-  const fn = (name.split(' ')[0] || 'there'), me = $('sig').value.trim() || '[Your name]';
+  // "Last, First" -> First; otherwise the first word. Strip stray punctuation.
+  const parts = name.includes(',') ? name.split(',')[1] : name;
+  const fn = (parts.trim().split(/\\s+/)[0] || '').replace(/[^\\p{L}\\p{N}'-]/gu, '') || 'there', me = $('sig').value.trim() || '[Your name]';
   if (tier === 14) return 'Subject: Quick question about the program\\n\\nHey ' + fn + ',\\n\\nNoticed you joined the program but have not had a chance to start promoting yet - totally normal. I just want to make sure you have what you need.\\n\\nWhat would make it easier to get your first link live this week? Happy to send creatives, talking points, or jump on a quick call.\\n\\n- ' + me;
   if (tier === 30) return 'Subject: A quick update + something that might help\\n\\nHey ' + fn + ',\\n\\nWanted to share what is working for our top partners right now - it might be useful if you are thinking about promoting again.\\n\\nIf now is not the right time, no worries. Just let me know what would make this a better fit down the line.\\n\\n- ' + me;
   return 'Subject: Should I keep your spot open?\\n\\nHey ' + fn + ',\\n\\nHave not seen activity on your affiliate account in a while, so I wanted to check in before assuming it is not a fit anymore.\\n\\nIf you are open to it, I would love to send a couple of quick wins other partners used to get started. If it is just not the right time, that is completely fine too.\\n\\n- ' + me;
@@ -301,10 +304,10 @@ function parse(text) {
   const lines = text.trim().split(/\\r?\\n/); const head = splitCSV(lines[0].toLowerCase());
   const ni = head.indexOf('name'), di = head.indexOf('last_active_date'), ei = head.indexOf('email');
   if (ni < 0 || di < 0) { alert('The CSV needs "name" and "last_active_date" columns.'); return; }
-  const today = new Date(); results = [];
+  const today = new Date(); results = []; skipped = 0;
   for (let i = 1; i < lines.length; i++) {
     if (!lines[i].trim()) continue;
-    const c = splitCSV(lines[i]); const d = new Date(c[di]); if (isNaN(d)) continue;
+    const c = splitCSV(lines[i]); const d = new Date(c[di]); if (isNaN(d)) { skipped++; continue; }
     const days = Math.floor((today - d) / 864e5); const tier = days >= 60 ? 60 : days >= 30 ? 30 : days >= 14 ? 14 : 0;
     if (tier) results.push({ name: c[ni] || 'Partner', addr: ei >= 0 ? c[ei] : '', date: c[di], days, tier });
   }
@@ -315,6 +318,8 @@ function render() {
   $('sum').innerHTML = [['Dormant found', results.length], ['14+ days', n(14)], ['30+ days', n(30)], ['60+ days', n(60)]].map(([l, v]) => '<div class="stat"><span>' + l + '</span><strong>' + v + '</strong></div>').join('');
   $('rows').innerHTML = results.map((r, i) => '<tr><td>' + esc(r.name) + (r.addr ? '<br><span class="small muted">' + esc(r.addr) + '</span>' : '') + '</td><td>' + esc(r.date) + '</td><td>' + r.days + '</td><td><span class="pill">' + r.tier + '+ days</span></td><td><button class="btn ghost small" data-i="' + i + '" style="padding:5px 10px;font-size:13px">Copy email</button></td></tr>').join('');
   $('res').hidden = false;
+  $('skip').textContent = skipped ? skipped + ' row(s) skipped because the date could not be read. Use YYYY-MM-DD.' : '';
+  if (window.gtag) gtag('event', 'tool_use', { tool: 'dormant-affiliate-finder' });
 }
 $('rows').addEventListener('click', (e) => { const b = e.target.closest('[data-i]'); if (b) { const r = results[b.dataset.i]; copyText(email(r.name, r.tier), b); } });
 const drop = $('drop'), file = $('file');
@@ -507,8 +512,8 @@ live(() => {
   const t = $('t').value, d = $('d').value, TF = '20px arial', DF = '14px arial', TM = 580, DM = 920;
   const tw = width(t, TF), dw = width(d, DF);
   meter('mt', tw, TM); meter('md', dw, DM);
-  set('ht', t.length + ' characters - ' + Math.round(tw) + ' / ' + TM + ' px ' + (tw > TM ? '(will be truncated)' : '(fits)'));
-  set('hd', d.length + ' characters - ' + Math.round(dw) + ' / ' + DM + ' px ' + (dw > DM ? '(will be truncated)' : d.length < 70 ? '(short - Google may rewrite it)' : '(fits)'));
+  set('ht', t.length + ' characters - ' + Math.round(tw) + ' / ~' + TM + ' px ' + (tw > TM ? '(likely truncated)' : '(fits)'));
+  set('hd', d.length + ' characters - ' + Math.round(dw) + ' / ~' + DM + ' px ' + (dw > DM ? '(likely truncated)' : d.length < 70 ? '(short - Google may rewrite it)' : '(fits)'));
   set('pt', cut(t || 'Page title', TF, TM)); set('pd', cut(d || 'Meta description', DF, DM));
   let u = $('u').value; try { const x = new URL(u); u = x.hostname + x.pathname.replace(/\\/$/, '').split('/').filter(Boolean).map((p) => ' > ' + p).join(''); } catch (e) {}
   set('pu', u);
@@ -553,8 +558,9 @@ function ncdf(z) { const t = 1 / (1 + 0.2316419 * Math.abs(z)); const d = 0.3989
 live(() => {
   const va = num('va'), ca = num('ca'), vb = num('vb'), cb = num('cb');
   if (!ok(va, ca, vb, cb) || va <= 0 || vb <= 0) return;
+  if (ca > va || cb > vb) { set('o_v', 'Conversions cannot be higher than visitors - check your numbers.'); return; }
   const ra = ca / va, rb = cb / vb, pp = (ca + cb) / (va + vb), se = Math.sqrt(pp * (1 - pp) * (1 / va + 1 / vb));
-  const z = se > 0 ? (rb - ra) / se : 0, p = 2 * (1 - ncdf(Math.abs(z))), conf = (1 - p) * 100;
+  const z = se > 0 ? (rb - ra) / se : 0, p = Math.min(1, Math.max(0, 2 * (1 - ncdf(Math.abs(z))))), conf = (1 - p) * 100;
   set('o_ra', pct(ra * 100)); set('o_rb', pct(rb * 100)); set('o_up', ra > 0 ? pct((rb - ra) / ra * 100, 1) : '-');
   set('o_p', p < 0.0001 ? '< 0.0001' : fnum(p, 4)); set('o_conf', pct(conf, 1));
   $('o_conf').classList.toggle('bad', conf < 95);
