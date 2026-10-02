@@ -1,7 +1,12 @@
 # GrowthMath - free marketing tools site (AdSense)
 
 **Started:** 2026-09-26 - CEO call from Adam: "turn the tools into free tools on a site with AdSense".
-**Status:** LIVE on temp URL https://mobizombi.github.io/growthmath/ (noindex, 2026-09-26). Repo: github.com/mobizombi/growthmath (main = source, gh-pages = build). Waiting on Adam's domain.
+**Status:** LIVE at https://growthmath.io (2 Oct 2026). Domain + DNS on Cloudflare (bought by Adam), hosting = GitHub Pages (repo mobizombi/growthmath: main = source, gh-pages = build), HTTPS enforced.
+- GSC: Domain property `sc-domain:growthmath.io` (adamscheuer@gmail.com), verified by DNS TXT. Sitemap submitted 2 Oct, homepage indexing requested.
+- GA4: property "growthmath.io" in the **traffic-goat** GA account, Measurement ID `G-NNNSG3D7ML`, stream "GrowthMath web". Consent Mode v2 default-denied for EEA/UK/CH. Custom event `tool_use` (param `tool`).
+- IndexNow: key file live, `node indexnow.mjs` pings Bing/Yandex (202 on 2 Oct).
+- Tests: `test/cases.js` - 21 hand-checked cases, all pass on live. Run it in the browser console on the site after any tool change.
+- Launch/distribution: see LAUNCH.md.
 
 ## The play
 - A standalone free-tools site (not traffic-goat.com - ads on a $1,950 consulting site kill trust).
@@ -36,11 +41,11 @@ Preview: launch.json `growthmath` (port 4630). Tools data lives in `src/tools.mj
 AdSense publisher: `ca-pub-5619164579775107` (same account as SolarCostLab). Auto ads only until `AD_SLOT` is set.
 
 ## To go live (Adam-gated)
-1. **Buy the domain** (default in build: growthmath.io - check availability; alternatives: growthmath.com, marketermath.com). ~$10-35/yr.
-2. DONE: repo + Pages live on temp URL. On domain: `./deploy.sh https://<domain>`, set Pages custom domain, DNS = 4 GitHub A records (185.199.108-111.153) + `www` CNAME mobizombi.github.io.
+1. DONE - growthmath.io bought on Cloudflare ($32 yr1 / $50 renew).
+2. DONE - DNS (4 A records + www CNAME, DNS-only) + Pages custom domain + HTTPS.
 3. **AdSense -> Sites -> Add site** with the domain, wait for approval (days-weeks).
 4. **AdSense -> Privacy & messaging -> enable the GDPR consent message** (required for EEA/UK traffic; privacy page already promises it).
-5. Add to GSC, submit sitemap.
+5. DONE - GSC + sitemap + GA4.
 6. Set up a mailbox or forward for the contact email.
 
 ## Growth after launch
