@@ -159,5 +159,8 @@ const today = new Date().toISOString().slice(0, 10);
 const urls = ['/', ...tools.map((t) => `/${t.slug}/`), ...Object.keys(pages)];
 writeFileSync(OUT + '/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 if (!TEMP) writeFileSync(OUT + '/CNAME', HOST + '\n');
+// IndexNow key (Bing/Yandex instant crawl). Submit with: node indexnow.mjs
+export const INDEXNOW_KEY = '533f7889d5ad743ef1f4e3731f054279';
+if (!TEMP) writeFileSync(OUT + `/${INDEXNOW_KEY}.txt`, INDEXNOW_KEY);
 writeFileSync(OUT + '/.nojekyll', '');
 console.log(`Built ${urls.length} pages for ${SITE} -> ${OUT}/ (ads: ${ADSENSE || 'off'})`);
