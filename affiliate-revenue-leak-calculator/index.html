@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Affiliate Revenue Leak Calculator - Cost of Dormant Affiliates</title>
+<meta name="description" content="Most affiliate programs have 80%+ inactive partners. Calculate how much monthly revenue your dormant affiliates are leaving on the table.">
+<link rel="canonical" href="https://growthmath.io/affiliate-revenue-leak-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="Affiliate Revenue Leak Calculator - Cost of Dormant Affiliates"><meta property="og:description" content="Most affiliate programs have 80%+ inactive partners. Calculate how much monthly revenue your dormant affiliates are leaving on the table."><meta property="og:url" content="https://growthmath.io/affiliate-revenue-leak-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Affiliate Program Revenue Leak Calculator","url":"https://growthmath.io/affiliate-revenue-leak-calculator/","description":"Most affiliate programs have 80%+ inactive partners. Calculate how much monthly revenue your dormant affiliates are leaving on the table.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a normal affiliate activation rate?","acceptedAnswer":{"@type":"Answer","text":"Many programs see only 10-20% of approved affiliates generating sales in a given quarter. Above 25% is strong."}},{"@type":"Question","name":"How is \"active\" defined?","acceptedAnswer":{"@type":"Answer","text":"This calculator treats an affiliate as active if they drove at least one sale in the last 90 days. Use whatever definition your network reports."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Affiliate Program Revenue Leak Calculator","item":"https://growthmath.io/affiliate-revenue-leak-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#affiliate">Affiliate marketing</a> / Affiliate Program Revenue Leak Calculator</div>
+<h1>Affiliate Program Revenue Leak Calculator</h1>
+<p class="lede">In most affiliate programs, 80-90% of approved partners never send a sale. Here is what that costs you.</p>
+<section class="tool"><div>
+
+<div class="field"><label for="approved">Approved affiliates</label>
+<div class="inp"><input id="approved" type="text" inputmode="decimal" value="400" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="active">Active affiliates (sent a sale in the last 90 days)</label>
+<div class="inp"><input id="active" type="text" inputmode="decimal" value="40" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="avg">Average monthly revenue per active affiliate</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="avg" type="text" inputmode="decimal" value="350" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="rate">Realistic reactivation rate</label>
+<div class="inp has-suf"><input id="rate" type="text" inputmode="decimal" value="15" autocomplete="off"><span class="suf">%</span></div>
+<div class="hint">A structured outreach campaign typically wakes up 10-20% of dormant partners.</div></div>
+</div>
+<div class="out">
+<div class="big-label">Monthly revenue leak</div><div class="big bad" id="o_leak">-</div>
+<div class="stats"><div class="stat"><span>Dormant affiliates</span><strong id="o_dorm">-</strong></div><div class="stat"><span>Activation rate</span><strong id="o_act">-</strong></div><div class="stat"><span>Recoverable partners</span><strong id="o_rec">-</strong></div><div class="stat"><span>Annual leak</span><strong id="o_year">-</strong></div></div>
+</div></section>
+
+<article class="content narrow">
+<h2>The dormant affiliate problem</h2>
+<p>Affiliate programs follow a steep power law: a handful of partners drive most of the revenue, and the majority sign up, grab a link and never promote. It is widely reported across the industry that most approved affiliates - often 80% or more - never drive a single sale.</p>
+<p>Each of those partners already passed your approval process. They know your brand and they have an audience. Waking up even a small share of them is usually far cheaper than recruiting new ones.</p>
+<div class="formula">Monthly leak = (Approved - Active) x Reactivation rate x Revenue per active affiliate</div>
+<h2>How to recover the leak</h2>
+<ol><li><b>Segment by time since last activity</b> - 14, 30 and 60+ days dark need different messages. Our free <a href="/dormant-affiliate-finder/">Dormant Affiliate Finder</a> does this from a CSV.</li><li><b>Remove friction</b> - ready-made creatives, swipe copy and a deep-link generator.</li><li><b>Give a reason to act now</b> - a time-limited commission bump or bonus for the first sale.</li><li><b>Talk to the top 10% personally</b> - a short call beats any automated sequence.</li></ol>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>What is a normal affiliate activation rate?</summary><p>Many programs see only 10-20% of approved affiliates generating sales in a given quarter. Above 25% is strong.</p></details><details><summary>How is &quot;active&quot; defined?</summary><p>This calculator treats an affiliate as active if they drove at least one sale in the last 90 days. Use whatever definition your network reports.</p></details></div></article>
+<div class="cta"><div><strong>Run an affiliate program that is not growing?</strong><p>Traffic Goat audits affiliate programs and shows exactly where partners and revenue are leaking - with a fix plan.</p></div><a class="btn" href="https://traffic-goat.com/?utm_source=growthmath&utm_medium=referral&utm_campaign=tool_cta" rel="noopener">See the audit</a></div>
+<h2>Related tools</h2><div class="grid"><a class="card" href="/dormant-affiliate-finder/"><span class="tag">Affiliate marketing</span><b>Dormant Affiliate Finder + Email Generator</b><span>Upload a CSV, flag inactive partners by tier, get reactivation emails.</span></a><a class="card" href="/affiliate-commission-calculator/"><span class="tag">Affiliate marketing</span><b>Affiliate Commission &amp; EPC Calculator</b><span>Estimate affiliate earnings, EPC and the traffic you need to hit a goal.</span></a><a class="card" href="/customer-ltv-calculator/"><span class="tag">E-commerce & business</span><b>Customer Lifetime Value (LTV) Calculator</b><span>LTV, LTV:CAC ratio and payback for e-commerce and subscriptions.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const a = num('approved'), act = num('active'), avg = num('avg'), r = num('rate') / 100;
+  if (!ok(a, act, avg, r)) return;
+  const d = Math.max(a - act, 0), rec = Math.round(d * r), leak = rec * avg;
+  set('o_leak', money(leak, 0)); set('o_dorm', fnum(d, 0)); set('o_rec', fnum(rec, 0));
+  set('o_act', a > 0 ? pct(act / a * 100, 1) : '-'); set('o_year', money(leak * 12, 0));
+});</script>
+</body></html>

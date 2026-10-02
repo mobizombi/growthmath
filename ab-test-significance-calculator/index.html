@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A/B Test Significance Calculator - Statistical Confidence</title>
+<meta name="description" content="Check if your A/B test result is statistically significant. Enter visitors and conversions for each variant to get conversion rates, uplift, p-value and confidence.">
+<link rel="canonical" href="https://growthmath.io/ab-test-significance-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="A/B Test Significance Calculator - Statistical Confidence"><meta property="og:description" content="Check if your A/B test result is statistically significant. Enter visitors and conversions for each variant to get conversion rates, uplift, p-value and confidence."><meta property="og:url" content="https://growthmath.io/ab-test-significance-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"A/B Test Significance Calculator","url":"https://growthmath.io/ab-test-significance-calculator/","description":"Check if your A/B test result is statistically significant. Enter visitors and conversions for each variant to get conversion rates, uplift, p-value and confidence.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What confidence level should I use?","acceptedAnswer":{"@type":"Answer","text":"95% is the standard. For low-risk changes some teams accept 90%."}},{"@type":"Question","name":"Is this one-tailed or two-tailed?","acceptedAnswer":{"@type":"Answer","text":"Two-tailed. It detects a difference in either direction, which is the safer default."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"A/B Test Significance Calculator","item":"https://growthmath.io/ab-test-significance-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#cro">Testing & CRO</a> / A/B Test Significance Calculator</div>
+<h1>A/B Test Significance Calculator</h1>
+<p class="lede">Before you ship the &quot;winner&quot;, check whether the difference is real or just random noise.</p>
+<section class="tool"><div>
+<div class="big-label" style="margin-bottom:8px">Variant A (control)</div>
+<div class="row2">
+<div class="field"><label for="va">Visitors</label>
+<div class="inp"><input id="va" type="text" inputmode="decimal" value="5000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="ca">Conversions</label>
+<div class="inp"><input id="ca" type="text" inputmode="decimal" value="150" autocomplete="off"></div>
+</div></div>
+<div class="big-label" style="margin:6px 0 8px">Variant B</div>
+<div class="row2">
+<div class="field"><label for="vb">Visitors</label>
+<div class="inp"><input id="vb" type="text" inputmode="decimal" value="5000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="cb">Conversions</label>
+<div class="inp"><input id="cb" type="text" inputmode="decimal" value="190" autocomplete="off"></div>
+</div></div>
+</div>
+<div class="out">
+<div class="big-label">Confidence B is different</div><div class="big" id="o_conf">-</div>
+<div class="stats"><div class="stat"><span>Conv. rate A</span><strong id="o_ra">-</strong></div><div class="stat"><span>Conv. rate B</span><strong id="o_rb">-</strong></div><div class="stat"><span>Relative uplift</span><strong id="o_up">-</strong></div><div class="stat"><span>p-value</span><strong id="o_p">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>How this calculator works</h2>
+<p>It runs a two-tailed, two-proportion z-test - the standard method most A/B testing tools use. It compares the two conversion rates, accounts for sample size, and returns the probability that a difference this large would appear by chance if the variants were actually identical (the p-value).</p>
+<div class="formula">z = (rate B - rate A) / sqrt( p x (1 - p) x (1/visitors A + 1/visitors B) )<br>where p = total conversions / total visitors</div>
+<h2>How to read the result</h2>
+<ul><li><b>95% confidence or higher</b> - the conventional threshold to call a winner.</li><li><b>90 - 95%</b> - promising, but keep running.</li><li><b>Below 90%</b> - you cannot tell the variants apart yet.</li></ul>
+<h2>Common A/B testing mistakes</h2>
+<ul><li><b>Peeking and stopping early.</b> Checking daily and stopping the moment you hit 95% inflates false positives. Decide the sample size up front.</li><li><b>Tests shorter than a week.</b> Weekday and weekend visitors behave differently - run at least one full business cycle.</li><li><b>Too few conversions.</b> Under ~100 conversions per variant, results swing wildly.</li><li><b>Testing tiny changes on low traffic.</b> Small sites should test bold changes (offer, headline, price) that can produce big uplifts.</li></ul>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>What confidence level should I use?</summary><p>95% is the standard. For low-risk changes some teams accept 90%.</p></details><details><summary>Is this one-tailed or two-tailed?</summary><p>Two-tailed. It detects a difference in either direction, which is the safer default.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/cpm-cpc-cpa-calculator/"><span class="tag">Paid ads</span><b>CPM, CPC &amp; CPA Calculator</b><span>All your ad cost metrics - CPM, CPC, CTR, CPA, conversion rate - at once.</span></a><a class="card" href="/serp-snippet-preview/"><span class="tag">SEO & tracking</span><b>SERP Snippet Preview &amp; Meta Length Checker</b><span>See how your title and meta description look in Google - with pixel width.</span></a><a class="card" href="/roas-calculator/"><span class="tag">Paid ads</span><b>ROAS Calculator</b><span>Return on ad spend plus your break-even ROAS from margin.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>
+function ncdf(z) { const t = 1 / (1 + 0.2316419 * Math.abs(z)); const d = 0.3989423 * Math.exp(-z * z / 2); const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return z > 0 ? 1 - p : p; }
+live(() => {
+  const va = num('va'), ca = num('ca'), vb = num('vb'), cb = num('cb');
+  if (!ok(va, ca, vb, cb) || va <= 0 || vb <= 0) return;
+  if (ca > va || cb > vb) { set('o_v', 'Conversions cannot be higher than visitors - check your numbers.'); return; }
+  const ra = ca / va, rb = cb / vb, pp = (ca + cb) / (va + vb), se = Math.sqrt(pp * (1 - pp) * (1 / va + 1 / vb));
+  const z = se > 0 ? (rb - ra) / se : 0, p = Math.min(1, Math.max(0, 2 * (1 - ncdf(Math.abs(z))))), conf = (1 - p) * 100;
+  set('o_ra', pct(ra * 100)); set('o_rb', pct(rb * 100)); set('o_up', ra > 0 ? pct((rb - ra) / ra * 100, 1) : '-');
+  set('o_p', p < 0.0001 ? '< 0.0001' : fnum(p, 4)); set('o_conf', pct(conf, 1));
+  $('o_conf').classList.toggle('bad', conf < 95);
+  set('o_v', conf >= 95 ? 'Significant at 95%. ' + (rb > ra ? 'B is the winner.' : 'A (control) performs better.') : 'Not significant yet. Keep the test running or treat the result as a tie.' + (Math.min(ca, cb) < 100 ? ' Aim for at least 100 conversions per variant.' : ''));
+});</script>
+</body></html>

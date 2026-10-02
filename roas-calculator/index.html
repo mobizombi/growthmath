@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROAS Calculator - Return on Ad Spend + Break-Even ROAS</title>
+<meta name="description" content="Free ROAS calculator. Enter ad spend and revenue to get ROAS, profit and your break-even ROAS based on profit margin. Works for Google, Meta and TikTok ads.">
+<link rel="canonical" href="https://growthmath.io/roas-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="ROAS Calculator - Return on Ad Spend + Break-Even ROAS"><meta property="og:description" content="Free ROAS calculator. Enter ad spend and revenue to get ROAS, profit and your break-even ROAS based on profit margin. Works for Google, Meta and TikTok ads."><meta property="og:url" content="https://growthmath.io/roas-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ROAS Calculator","url":"https://growthmath.io/roas-calculator/","description":"Free ROAS calculator. Enter ad spend and revenue to get ROAS, profit and your break-even ROAS based on profit margin. Works for Google, Meta and TikTok ads.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a good ROAS?","acceptedAnswer":{"@type":"Answer","text":"A common rule of thumb is 4x, but the real answer depends on margin. A 90%-margin digital product is profitable at 1.2x, while a 20%-margin reseller needs more than 5x."}},{"@type":"Question","name":"Is ROAS the same as ROI?","acceptedAnswer":{"@type":"Answer","text":"No. ROAS compares revenue to ad spend only. ROI compares profit to the total investment including product and operating costs."}},{"@type":"Question","name":"How do I calculate ROAS in percent?","acceptedAnswer":{"@type":"Answer","text":"Multiply ROAS by 100. A 3.5x ROAS is 350%."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"ROAS Calculator","item":"https://growthmath.io/roas-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#ads">Paid ads</a> / ROAS Calculator</div>
+<h1>ROAS Calculator</h1>
+<p class="lede">Find your return on ad spend - and, more importantly, the ROAS you actually need to stop losing money.</p>
+<section class="tool"><div>
+
+<div class="field"><label for="spend">Ad spend</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="spend" type="text" inputmode="decimal" value="1000" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="rev">Revenue from ads</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="rev" type="text" inputmode="decimal" value="3500" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="margin">Gross margin</label>
+<div class="inp has-suf"><input id="margin" type="text" inputmode="decimal" value="40" autocomplete="off"><span class="suf">%</span></div>
+<div class="hint">Revenue left after product cost, shipping and fees - before ad spend.</div></div>
+</div>
+<div class="out">
+<div class="big-label">Your ROAS</div><div class="big" id="o_roas">-</div>
+<div class="stats"><div class="stat"><span>Break-even ROAS</span><strong id="o_be">-</strong></div><div class="stat"><span>Profit after ads</span><strong id="o_profit">-</strong></div><div class="stat"><span>ROAS as %</span><strong id="o_pct">-</strong></div><div class="stat"><span>Max ad spend at break-even</span><strong id="o_maxcpa">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>What is ROAS?</h2>
+<p>ROAS (return on ad spend) is the revenue your ads generate for every dollar you spend on them. A ROAS of 3.5x means $3.50 in revenue for each $1 of ad spend.</p>
+<div class="formula">ROAS = Revenue from ads / Ad spend</div>
+<h2>Break-even ROAS: the number that actually matters</h2>
+<p>A "good" ROAS is meaningless without your margin. If you keep 40 cents of every sales dollar after product and fulfilment costs, every $1 of ads needs to bring in $2.50 just to break even.</p>
+<div class="formula">Break-even ROAS = 1 / Gross margin</div>
+<div class="tscroll"><table class="t"><tr><th>Gross margin</th><th>Break-even ROAS</th><th>Typical business</th></tr>
+<tr><td>20%</td><td>5.0x</td><td>Electronics, resellers</td></tr>
+<tr><td>30%</td><td>3.3x</td><td>General e-commerce</td></tr>
+<tr><td>50%</td><td>2.0x</td><td>Apparel, private label</td></tr>
+<tr><td>70%</td><td>1.4x</td><td>Cosmetics, supplements</td></tr>
+<tr><td>90%</td><td>1.1x</td><td>SaaS, digital products, courses</td></tr></table></div>
+<h2>How to use this calculator</h2>
+<ol><li>Enter the ad spend for the period (campaign, week or month).</li><li>Enter the revenue attributed to those ads in your ad platform or analytics.</li><li>Enter your gross margin to get break-even ROAS and true profit after ads.</li></ol>
+<p>If your ROAS is below break-even, every sale is costing you money - even when the dashboard looks "green". Either lower acquisition cost, raise average order value, or improve margin.</p>
+<h2>ROAS vs. ROI</h2>
+<p>ROAS only looks at revenue versus ad spend. ROI subtracts all costs (product, fees, staff, tools) and compares profit to investment. A campaign can have a 3x ROAS and still a negative ROI. Use ROAS to steer campaigns day-to-day and ROI to judge the business.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>What is a good ROAS?</summary><p>A common rule of thumb is 4x, but the real answer depends on margin. A 90%-margin digital product is profitable at 1.2x, while a 20%-margin reseller needs more than 5x.</p></details><details><summary>Is ROAS the same as ROI?</summary><p>No. ROAS compares revenue to ad spend only. ROI compares profit to the total investment including product and operating costs.</p></details><details><summary>How do I calculate ROAS in percent?</summary><p>Multiply ROAS by 100. A 3.5x ROAS is 350%.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/cpm-cpc-cpa-calculator/"><span class="tag">Paid ads</span><b>CPM, CPC &amp; CPA Calculator</b><span>All your ad cost metrics - CPM, CPC, CTR, CPA, conversion rate - at once.</span></a><a class="card" href="/break-even-cpa-calculator/"><span class="tag">Paid ads</span><b>Break-Even CPA Calculator</b><span>The most you can pay for a customer before an ad campaign loses money.</span></a><a class="card" href="/profit-margin-calculator/"><span class="tag">E-commerce & business</span><b>Profit Margin &amp; Markup Calculator</b><span>Margin, markup and profit from cost and price - or the price for a target margin.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const s = num('spend'), r = num('rev'), m0 = num('margin') / 100, m = m0 > 0 && m0 <= 1 ? m0 : NaN;
+  if (!ok(s, r) || s <= 0) return;
+  const roas = r / s, be = m > 0 ? 1 / m : NaN, profit = r * m - s;
+  set('o_roas', fnum(roas) + 'x'); set('o_pct', pct(roas * 100, 0));
+  set('o_be', ok(be) ? fnum(be) + 'x' : '-'); set('o_profit', ok(profit) ? money(profit) : '-');
+  set('o_maxcpa', ok(m) ? money(r * m) : '-');
+  $('o_roas').classList.toggle('bad', ok(be) && roas < be);
+  set('o_v', !ok(be) ? 'Enter a gross margin between 1% and 100% to see if this campaign is profitable.' :
+    roas >= be ? 'Profitable: your ' + fnum(roas) + 'x ROAS beats the ' + fnum(be) + 'x you need to break even.' :
+    'Losing money: you need ' + fnum(be) + 'x ROAS at a ' + pct(m * 100, 0) + ' margin. Cut spend or raise margin.');
+});</script>
+</body></html>

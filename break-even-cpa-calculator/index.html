@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break-Even CPA Calculator - Max Cost per Acquisition</title>
+<meta name="description" content="Find the maximum CPA you can afford. Enter price, costs and repeat purchases to get break-even CPA, target CPA and max CPC for your ads.">
+<link rel="canonical" href="https://growthmath.io/break-even-cpa-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="Break-Even CPA Calculator - Max Cost per Acquisition"><meta property="og:description" content="Find the maximum CPA you can afford. Enter price, costs and repeat purchases to get break-even CPA, target CPA and max CPC for your ads."><meta property="og:url" content="https://growthmath.io/break-even-cpa-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Break-Even CPA Calculator","url":"https://growthmath.io/break-even-cpa-calculator/","description":"Find the maximum CPA you can afford. Enter price, costs and repeat purchases to get break-even CPA, target CPA and max CPC for your ads.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between CPA and CAC?","acceptedAnswer":{"@type":"Answer","text":"CPA usually refers to the ad cost per conversion inside one channel. CAC (customer acquisition cost) includes all sales and marketing costs across channels."}},{"@type":"Question","name":"Should I include repeat purchases?","acceptedAnswer":{"@type":"Answer","text":"Include them if you have solid retention data and enough cash flow. Otherwise judge on the first purchase to stay safe."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Break-Even CPA Calculator","item":"https://growthmath.io/break-even-cpa-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#ads">Paid ads</a> / Break-Even CPA Calculator</div>
+<h1>Break-Even CPA Calculator</h1>
+<p class="lede">Know your ceiling before you launch: the highest cost per customer your numbers can survive.</p>
+<section class="tool"><div>
+
+<div class="field"><label for="aov">Average order value</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="aov" type="text" inputmode="decimal" value="80" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="cogs">Cost per order (product + shipping + fees)</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="cogs" type="text" inputmode="decimal" value="35" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="orders">Orders per customer (lifetime)</label>
+<div class="inp"><input id="orders" type="text" inputmode="decimal" value="1" autocomplete="off"></div>
+<div class="hint">Leave at 1 to judge on the first purchase only.</div></div>
+<div class="row2">
+<div class="field"><label for="tprofit">Target profit (% of revenue)</label>
+<div class="inp has-suf"><input id="tprofit" type="text" inputmode="decimal" value="20" autocomplete="off"><span class="suf">%</span></div>
+</div>
+<div class="field"><label for="cvr">Landing page conv. rate</label>
+<div class="inp has-suf"><input id="cvr" type="text" inputmode="decimal" value="2.5" autocomplete="off"><span class="suf">%</span></div>
+</div></div>
+</div>
+<div class="out">
+<div class="big-label">Break-even CPA</div><div class="big" id="o_be">-</div>
+<div class="stats"><div class="stat"><span>Target CPA (with profit)</span><strong id="o_target">-</strong></div><div class="stat"><span>Max CPC at your conv. rate</span><strong id="o_cpc">-</strong></div><div class="stat"><span>Break-even ROAS</span><strong id="o_roas">-</strong></div><div class="stat"><span>Gross profit per customer</span><strong id="o_gp">-</strong></div></div>
+</div></section>
+
+<article class="content narrow">
+<h2>What break-even CPA means</h2>
+<p>Break-even CPA is the gross profit one customer brings you. Pay exactly that to acquire them and you make zero; pay less and you profit.</p>
+<div class="formula">Break-even CPA = (Average order value - Cost per order) x Orders per customer</div>
+<h2>From CPA to max CPC</h2>
+<p>Ad platforms bill per click, so it helps to turn your CPA ceiling into a bid ceiling. If 2.5% of visitors buy, you get one customer every 40 clicks, so each click is worth your target CPA divided by 40.</p>
+<div class="formula">Max CPC = Target CPA x Conversion rate</div>
+<h2>First purchase vs. lifetime</h2>
+<p>Many profitable brands lose money on the first order and earn it back on repeat purchases. If you know customers buy 2.3 times on average, enter 2.3 - but only if you have the cash flow to wait for those repeat orders.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>What is the difference between CPA and CAC?</summary><p>CPA usually refers to the ad cost per conversion inside one channel. CAC (customer acquisition cost) includes all sales and marketing costs across channels.</p></details><details><summary>Should I include repeat purchases?</summary><p>Include them if you have solid retention data and enough cash flow. Otherwise judge on the first purchase to stay safe.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/roas-calculator/"><span class="tag">Paid ads</span><b>ROAS Calculator</b><span>Return on ad spend plus your break-even ROAS from margin.</span></a><a class="card" href="/customer-ltv-calculator/"><span class="tag">E-commerce & business</span><b>Customer Lifetime Value (LTV) Calculator</b><span>LTV, LTV:CAC ratio and payback for e-commerce and subscriptions.</span></a><a class="card" href="/cpm-cpc-cpa-calculator/"><span class="tag">Paid ads</span><b>CPM, CPC &amp; CPA Calculator</b><span>All your ad cost metrics - CPM, CPC, CTR, CPA, conversion rate - at once.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const aov = num('aov'), cogs = num('cogs'), n = num('orders') || 1, tp = num('tprofit') / 100, cvr = num('cvr') / 100;
+  if (!ok(aov, cogs)) return;
+  const gp = (aov - cogs) * n, be = gp, target = gp - aov * n * (ok(tp) ? tp : 0);
+  set('o_be', money(be)); set('o_gp', money(gp));
+  set('o_target', money(target));
+  set('o_cpc', ok(cvr) ? money(target * cvr) : '-');
+  set('o_roas', gp > 0 ? fnum(aov * n / gp) + 'x' : '-');
+  $('o_be').classList.toggle('bad', be <= 0);
+});</script>
+</body></html>

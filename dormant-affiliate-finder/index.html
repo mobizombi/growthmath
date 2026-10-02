@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dormant Affiliate Finder - Free Reactivation Email Generator</title>
+<meta name="description" content="Upload your affiliate list as CSV. Flag dormant partners by 14/30/60+ days of inactivity and generate ready-to-send reactivation emails. Runs in your browser.">
+<link rel="canonical" href="https://growthmath.io/dormant-affiliate-finder/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="Dormant Affiliate Finder - Free Reactivation Email Generator"><meta property="og:description" content="Upload your affiliate list as CSV. Flag dormant partners by 14/30/60+ days of inactivity and generate ready-to-send reactivation emails. Runs in your browser."><meta property="og:url" content="https://growthmath.io/dormant-affiliate-finder/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Dormant Affiliate Finder + Email Generator","url":"https://growthmath.io/dormant-affiliate-finder/","description":"Upload your affiliate list as CSV. Flag dormant partners by 14/30/60+ days of inactivity and generate ready-to-send reactivation emails. Runs in your browser.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my affiliate data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The CSV is processed entirely in your browser and never sent to a server."}},{"@type":"Question","name":"What date formats work?","acceptedAnswer":{"@type":"Answer","text":"YYYY-MM-DD is the safest. Most formats your browser can parse (like 04/02/2026) also work."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Dormant Affiliate Finder + Email Generator","item":"https://growthmath.io/dormant-affiliate-finder/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#affiliate">Affiliate marketing</a> / Dormant Affiliate Finder + Email Generator</div>
+<h1>Dormant Affiliate Finder + Email Generator</h1>
+<p class="lede">Upload your affiliate list. Get everyone who has gone quiet, sorted by how long, with a reactivation email for each. Your file never leaves your browser.</p>
+<section class="tool single"><div>
+<div class="drop" id="drop"><b>Click to upload</b> or drag a CSV here<br><span class="small muted">Columns needed: <code>name</code>, <code>last_active_date</code> (YYYY-MM-DD). Optional: <code>email</code></span><input type="file" id="file" accept=".csv,text/csv" hidden></div>
+<p class="small muted" style="margin:10px 0 0">No file handy? <a href="#" id="sample">Try it with sample data</a>. Your name for signatures: <input type="text" id="sig" value="" placeholder="Your name" style="width:180px;padding:5px 8px;font-size:14px"></p>
+<div id="res" hidden>
+<p class="small muted" id="skip"></p>
+<div class="stats" id="sum" style="grid-template-columns:repeat(4,1fr)"></div>
+<div style="margin:14px 0"><button class="btn" id="dl">Download all emails (.txt)</button> <button class="btn ghost" id="dlcsv">Download CSV</button></div>
+<div class="tscroll"><table class="res-table"><thead><tr><th>Name</th><th>Last active</th><th>Days dark</th><th>Tier</th><th>Email</th></tr></thead><tbody id="rows"></tbody></table></div>
+</div></div></section>
+
+<article class="content narrow">
+<h2>How it works</h2>
+<ol><li>Export your affiliate list from your network or platform (Impact, PartnerStack, ShareASale, Refersion, Tapfiliate, FirstPromoter...).</li><li>Make sure it has a <code>name</code> column and a <code>last_active_date</code> column - the date of the partner's last click or sale.</li><li>Upload it. Partners are grouped into 14, 30 and 60+ days of inactivity, each with an email tuned to that stage.</li></ol>
+<p><b>Privacy:</b> the file is read by JavaScript in your browser. Nothing is uploaded to a server.</p>
+<h2>Why three tiers?</h2>
+<div class="tscroll"><table class="t"><tr><th>Tier</th><th>What is usually going on</th><th>Message angle</th></tr>
+<tr><td>14+ days</td><td>Joined but never started, or stalled early</td><td>Remove friction - offer creatives and help</td></tr>
+<tr><td>30+ days</td><td>Promoted once, moved on to other offers</td><td>Show what is working for top partners now</td></tr>
+<tr><td>60+ days</td><td>Mentally churned</td><td>Honest "should I keep your spot?" check-in</td></tr></table></div>
+<p>The "should I keep your spot open?" email works because it gives people permission to say no - which makes replying easy, and many reply with a yes.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>Is my affiliate data uploaded anywhere?</summary><p>No. The CSV is processed entirely in your browser and never sent to a server.</p></details><details><summary>What date formats work?</summary><p>YYYY-MM-DD is the safest. Most formats your browser can parse (like 04/02/2026) also work.</p></details></div></article>
+<div class="cta"><div><strong>Run an affiliate program that is not growing?</strong><p>Traffic Goat audits affiliate programs and shows exactly where partners and revenue are leaking - with a fix plan.</p></div><a class="btn" href="https://traffic-goat.com/?utm_source=growthmath&utm_medium=referral&utm_campaign=tool_cta" rel="noopener">See the audit</a></div>
+<h2>Related tools</h2><div class="grid"><a class="card" href="/affiliate-revenue-leak-calculator/"><span class="tag">Affiliate marketing</span><b>Affiliate Program Revenue Leak Calculator</b><span>For program owners: what your dormant affiliates are costing you each month.</span></a><a class="card" href="/affiliate-commission-calculator/"><span class="tag">Affiliate marketing</span><b>Affiliate Commission &amp; EPC Calculator</b><span>Estimate affiliate earnings, EPC and the traffic you need to hit a goal.</span></a><a class="card" href="/utm-builder/"><span class="tag">SEO & tracking</span><b>UTM Link Builder</b><span>Build clean, consistent UTM tracking links for GA4.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>
+let results = [], skipped = 0;
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function splitCSV(line) {
+  const out = []; let cur = '', q = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') { if (q && line[i + 1] === '"') { cur += '"'; i++; } else q = !q; }
+    else if (ch === ',' && !q) { out.push(cur); cur = ''; } else cur += ch;
+  }
+  out.push(cur); return out.map((s) => s.trim());
+}
+function email(name, tier) {
+  // "Last, First" -> First; otherwise the first word. Strip stray punctuation.
+  const parts = name.includes(',') ? name.split(',')[1] : name;
+  const fn = (parts.trim().split(/\s+/)[0] || '').replace(/[^\p{L}\p{N}'-]/gu, '') || 'there', me = $('sig').value.trim() || '[Your name]';
+  if (tier === 14) return 'Subject: Quick question about the program\n\nHey ' + fn + ',\n\nNoticed you joined the program but have not had a chance to start promoting yet - totally normal. I just want to make sure you have what you need.\n\nWhat would make it easier to get your first link live this week? Happy to send creatives, talking points, or jump on a quick call.\n\n- ' + me;
+  if (tier === 30) return 'Subject: A quick update + something that might help\n\nHey ' + fn + ',\n\nWanted to share what is working for our top partners right now - it might be useful if you are thinking about promoting again.\n\nIf now is not the right time, no worries. Just let me know what would make this a better fit down the line.\n\n- ' + me;
+  return 'Subject: Should I keep your spot open?\n\nHey ' + fn + ',\n\nHave not seen activity on your affiliate account in a while, so I wanted to check in before assuming it is not a fit anymore.\n\nIf you are open to it, I would love to send a couple of quick wins other partners used to get started. If it is just not the right time, that is completely fine too.\n\n- ' + me;
+}
+function parse(text) {
+  const lines = text.trim().split(/\r?\n/); const head = splitCSV(lines[0].toLowerCase());
+  const ni = head.indexOf('name'), di = head.indexOf('last_active_date'), ei = head.indexOf('email');
+  if (ni < 0 || di < 0) { alert('The CSV needs "name" and "last_active_date" columns.'); return; }
+  const today = new Date(); results = []; skipped = 0;
+  for (let i = 1; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
+    const c = splitCSV(lines[i]); const d = new Date(c[di]); if (isNaN(d)) { skipped++; continue; }
+    const days = Math.floor((today - d) / 864e5); const tier = days >= 60 ? 60 : days >= 30 ? 30 : days >= 14 ? 14 : 0;
+    if (tier) results.push({ name: c[ni] || 'Partner', addr: ei >= 0 ? c[ei] : '', date: c[di], days, tier });
+  }
+  results.sort((a, b) => b.days - a.days); render();
+}
+function render() {
+  const n = (t) => results.filter((r) => r.tier === t).length;
+  $('sum').innerHTML = [['Dormant found', results.length], ['14+ days', n(14)], ['30+ days', n(30)], ['60+ days', n(60)]].map(([l, v]) => '<div class="stat"><span>' + l + '</span><strong>' + v + '</strong></div>').join('');
+  $('rows').innerHTML = results.map((r, i) => '<tr><td>' + esc(r.name) + (r.addr ? '<br><span class="small muted">' + esc(r.addr) + '</span>' : '') + '</td><td>' + esc(r.date) + '</td><td>' + r.days + '</td><td><span class="pill">' + r.tier + '+ days</span></td><td><button class="btn ghost small" data-i="' + i + '" style="padding:5px 10px;font-size:13px">Copy email</button></td></tr>').join('');
+  $('res').hidden = false;
+  $('skip').textContent = skipped ? skipped + ' row(s) skipped because the date could not be read. Use YYYY-MM-DD.' : '';
+  if (window.gtag) gtag('event', 'tool_use', { tool: 'dormant-affiliate-finder' });
+}
+$('rows').addEventListener('click', (e) => { const b = e.target.closest('[data-i]'); if (b) { const r = results[b.dataset.i]; copyText(email(r.name, r.tier), b); } });
+const drop = $('drop'), file = $('file');
+drop.onclick = () => file.click();
+drop.ondragover = (e) => { e.preventDefault(); drop.classList.add('drag'); };
+drop.ondragleave = () => drop.classList.remove('drag');
+drop.ondrop = (e) => { e.preventDefault(); drop.classList.remove('drag'); if (e.dataTransfer.files[0]) read(e.dataTransfer.files[0]); };
+file.onchange = () => file.files[0] && read(file.files[0]);
+function read(fl) { const r = new FileReader(); r.onload = () => parse(r.result); r.readAsText(fl); }
+$('sample').onclick = (e) => {
+  e.preventDefault(); const d = (n) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
+  parse('name,email,last_active_date\nJane Smith,jane@example.com,' + d(95) + '\nCarlos Diaz,carlos@example.com,' + d(41) + '\nPriya Nair,,' + d(17) + '\nTom Becker,tom@example.com,' + d(3) + '\n"Lee, Ana",ana@example.com,' + d(70));
+};
+function save(name, text, type) { const u = URL.createObjectURL(new Blob([text], { type })); const a = document.createElement('a'); a.href = u; a.download = name; a.click(); URL.revokeObjectURL(u); }
+$('dl').onclick = () => save('reactivation-emails.txt', results.map((r) => '===== ' + r.name + (r.addr ? ' <' + r.addr + '>' : '') + ' - ' + r.days + ' days dark =====\n\n' + email(r.name, r.tier)).join('\n\n\n'), 'text/plain');
+$('dlcsv').onclick = () => save('dormant-affiliates.csv', 'name,email,last_active_date,days_dark,tier\n' + results.map((r) => ['"' + r.name.replace(/"/g, '""') + '"', r.addr, r.date, r.days, r.tier + '+'].join(',')).join('\n'), 'text/csv');
+</script>
+</body></html>

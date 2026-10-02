@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UTM Builder - Free Campaign URL Builder for GA4</title>
+<meta name="description" content="Build UTM tracking links for Google Analytics 4 in seconds. Consistent lowercase naming, presets for common channels, one-click copy.">
+<link rel="canonical" href="https://growthmath.io/utm-builder/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="UTM Builder - Free Campaign URL Builder for GA4"><meta property="og:description" content="Build UTM tracking links for Google Analytics 4 in seconds. Consistent lowercase naming, presets for common channels, one-click copy."><meta property="og:url" content="https://growthmath.io/utm-builder/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"UTM Link Builder","url":"https://growthmath.io/utm-builder/","description":"Build UTM tracking links for Google Analytics 4 in seconds. Consistent lowercase naming, presets for common channels, one-click copy.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which UTM parameters are required?","acceptedAnswer":{"@type":"Answer","text":"Source, medium and campaign should always be set. Content and term are optional."}},{"@type":"Question","name":"Do UTM parameters hurt SEO?","acceptedAnswer":{"@type":"Answer","text":"No, as long as you only use them on external links (ads, emails, social posts). Search engines treat the canonical URL as the page."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"UTM Link Builder","item":"https://growthmath.io/utm-builder/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#seo">SEO & tracking</a> / UTM Link Builder</div>
+<h1>UTM Link Builder</h1>
+<p class="lede">Tag every link the same way, every time - so your GA4 reports stop splitting &quot;Facebook&quot;, &quot;facebook&quot; and &quot;fb&quot; into three sources.</p>
+<section class="tool single"><div>
+<div class="field"><label for="url">Website URL</label><input type="url" id="url" value="https://example.com/landing-page"></div>
+<div class="field"><label for="preset">Quick preset</label><div class="inp"><select id="preset"><option value="">- choose a channel -</option><option>facebook|paid_social</option><option>instagram|paid_social</option><option>tiktok|paid_social</option><option>google|cpc</option><option>newsletter|email</option><option>linkedin|social</option><option>reddit|social</option><option>youtube|video</option><option>partner|affiliate</option></select></div></div>
+<div class="row2"><div class="field"><label for="src">utm_source *</label><input type="text" id="src" value="facebook"></div><div class="field"><label for="med">utm_medium *</label><input type="text" id="med" value="paid_social"></div></div>
+<div class="row2"><div class="field"><label for="cmp">utm_campaign *</label><input type="text" id="cmp" value="spring_sale_2026"></div><div class="field"><label for="cnt">utm_content</label><input type="text" id="cnt" value=""></div></div>
+<div class="field"><label for="trm">utm_term</label><input type="text" id="trm" value=""></div>
+<label class="small"><input type="checkbox" id="lc" checked> Force lowercase and replace spaces with underscores</label>
+<div class="field" style="margin-top:14px"><label>Your tracking link</label><div class="copy-out" id="out"></div></div>
+<button class="btn" id="copy">Copy link</button>
+</div></section>
+
+<article class="content narrow">
+<h2>What each UTM parameter means</h2>
+<div class="tscroll"><table class="t"><tr><th>Parameter</th><th>Answers</th><th>Example</th></tr>
+<tr><td>utm_source</td><td>Where is the traffic from?</td><td>facebook, google, newsletter</td></tr>
+<tr><td>utm_medium</td><td>What type of channel?</td><td>paid_social, cpc, email, affiliate</td></tr>
+<tr><td>utm_campaign</td><td>Which campaign or promotion?</td><td>spring_sale_2026</td></tr>
+<tr><td>utm_content</td><td>Which ad or link variant?</td><td>video_a, blue_button</td></tr>
+<tr><td>utm_term</td><td>Which keyword (search ads)?</td><td>running_shoes</td></tr></table></div>
+<h2>Rules that keep GA4 reports clean</h2>
+<ul><li><b>Always lowercase.</b> GA4 is case-sensitive - "Facebook" and "facebook" become two rows.</li><li><b>Pick one medium vocabulary</b> and stick to it. GA4's default channel groups recognise values like <code>cpc</code>, <code>email</code>, <code>social</code>, <code>paid_social</code>, <code>affiliate</code>.</li><li><b>Never UTM-tag internal links</b> on your own site - it restarts the session and overwrites the original source.</li><li><b>Keep a naming sheet</b> so the whole team uses the same campaign names.</li></ul>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>Which UTM parameters are required?</summary><p>Source, medium and campaign should always be set. Content and term are optional.</p></details><details><summary>Do UTM parameters hurt SEO?</summary><p>No, as long as you only use them on external links (ads, emails, social posts). Search engines treat the canonical URL as the page.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/serp-snippet-preview/"><span class="tag">SEO & tracking</span><b>SERP Snippet Preview &amp; Meta Length Checker</b><span>See how your title and meta description look in Google - with pixel width.</span></a><a class="card" href="/cpm-cpc-cpa-calculator/"><span class="tag">Paid ads</span><b>CPM, CPC &amp; CPA Calculator</b><span>All your ad cost metrics - CPM, CPC, CTR, CPA, conversion rate - at once.</span></a><a class="card" href="/affiliate-commission-calculator/"><span class="tag">Affiliate marketing</span><b>Affiliate Commission &amp; EPC Calculator</b><span>Estimate affiliate earnings, EPC and the traffic you need to hit a goal.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const clean = (s) => ($('lc').checked ? s.trim().toLowerCase().replace(/\s+/g, '_') : s.trim());
+  let u; try { u = new URL($('url').value.trim()); } catch (e) { set('out', 'Enter a full URL starting with https://'); return; }
+  [['utm_source', 'src'], ['utm_medium', 'med'], ['utm_campaign', 'cmp'], ['utm_content', 'cnt'], ['utm_term', 'trm']].forEach(([k, id]) => { const v = clean($(id).value); if (v) u.searchParams.set(k, v); else u.searchParams.delete(k); });
+  set('out', u.toString());
+});
+$('preset').onchange = () => { const [s, m] = $('preset').value.split('|'); if (s) { $('src').value = s; $('med').value = m; $('src').dispatchEvent(new Event('input', { bubbles: true })); } };
+$('copy').onclick = () => copyText($('out').textContent, $('copy'));</script>
+</body></html>
