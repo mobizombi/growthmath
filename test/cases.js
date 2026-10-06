@@ -32,6 +32,17 @@ window.CASES = [
   { t: 'ab-test-significance-calculator', in: { va: 5000, ca: 150, vb: 5000, cb: 190 }, out: { o_ra: '3%', o_rb: '3.8%', o_up: '26.7%', o_p: '0.0273', o_conf: '97.3%' }, verdict: /Significant/ },
   { t: 'ab-test-significance-calculator', in: { va: 1000, ca: 50, vb: 1000, cb: 50 }, out: { o_p: '1', o_conf: '0%' }, verdict: /Not significant/ },
   { t: 'ab-test-significance-calculator', in: { va: 100, ca: 150, vb: 100, cb: 10 }, out: { o_conf: '-' }, verdict: /cannot be higher/ },
+  // ---- CAC: full=(36000+24000)/400=150, paid=90, payback=150/41.65=3.6, ratio=1388/150=9.25->9.3
+  { t: 'cac-calculator', in: { ads: 36000, other: 24000, cust: 400, mgp: 41.65, ltv: 1388 }, out: { o_cac: '$150.00', o_paid: '$90.00', o_pay: '3.6 months', o_ratio: '9.3 : 1', o_max: '$462.67' } },
+  { t: 'cac-calculator', in: { ads: 1000, other: '', cust: 0, mgp: '', ltv: '' }, out: { o_cac: '-', o_paid: '-' } },
+  // ---- Churn: 50/1000=5%, annual 1-.95^12=45.96->46%, life 20, gross MRR 6%, NRR (50000-3000+2000)/50000=98%
+  { t: 'churn-rate-calculator', in: { sc: 1000, lost: 50, smrr: 50000, cmrr: 3000, emrr: 2000 }, out: { o_churn: '5%', o_annual: '46%', o_life: '20 months', o_mrr: '6%', o_nrr: '98%' }, verdict: /above 5%/ },
+  { t: 'churn-rate-calculator', in: { sc: 100, lost: 2, smrr: 10000, cmrr: 200, emrr: 900 }, out: { o_nrr: '107%' }, verdict: /above 100%/ },
+  // ---- Shopify: cpo=60-20-6-1.74-0.3=31.96; net=15980-5200=10780; po=21.56; nm=35.9%; beroas=1.88x; beo=ceil(5200/31.96)=163
+  { t: 'shopify-profit-calculator', in: { price: 60, orders: 500, cogs: 20, ship: 6, pf: 2.9, ff: 0.3, ads: 5000, fixed: 200 }, out: { o_net: '$10,780.00', o_po: '$21.56', o_nm: '35.9%', o_gm: '$31.96', o_beroas: '1.88x', o_beo: '163' }, verdict: /Profitable/ },
+  { t: 'shopify-profit-calculator', in: { price: 60, orders: 100, cogs: 20, ship: 6, pf: 2.9, ff: 0.3, ads: 5000, fixed: 200 }, out: { o_net: '-$2,004.00' }, verdict: /Losing money/ },
+  // ---- YouTube: ad=200*4=800, year 9600, total 1600, eff 8.00, range 400-1200
+  { t: 'youtube-earnings-calculator', in: { views: 200000, rpm: 4, sp: 1, rate: 800 }, out: { o_ad: '$800.00', o_year: '$9,600.00', o_total: '$1,600.00', o_eff: '$8.00', o_low: '$400 - $1,200' } },
 ];
 
 window.runAll = async (base = '') => {

@@ -14,7 +14,7 @@
 - Double duty: affiliate-program tools carry a soft CTA to the Traffic Goat audit (UTM `utm_source=growthmath`).
 - Everything client-side: no backend, no hosting cost, GitHub Pages.
 
-## Tools (11)
+## Tools (15)
 | Slug | Tool | Origin |
 |---|---|---|
 | roas-calculator | ROAS + break-even ROAS | new |
@@ -28,6 +28,12 @@
 | utm-builder | GA4 UTM links | new |
 | serp-snippet-preview | Title/meta pixel-width check | new |
 | ab-test-significance-calculator | Two-proportion z-test | new |
+| cac-calculator | Paid + fully loaded CAC, payback, LTV:CAC | 2026-10-06 |
+| churn-rate-calculator | Customer + MRR churn, NRR, lifetime | 2026-10-06 |
+| shopify-profit-calculator | Profit per order, net margin, break-even ROAS | 2026-10-06 |
+| youtube-earnings-calculator | Ad revenue from views x RPM + sponsors | 2026-10-06 |
+
+**2026-10-06 content pass (AdSense "low value content" risk):** every tool page got worked examples, mistakes and extra FAQs via `src/extra.mjs` (merged in build), and a `/guides/` section (`src/guides.mjs`, Article + FAQ schema) with 5 guides linked both ways with the tools. Tests: 28 cases.
 
 Each page: tool + formula + benchmarks + FAQ (FAQPage/WebApplication/Breadcrumb schema) + related tools. Plus About / Contact / Privacy (AdSense-compliant cookie text) / Terms / 404, sitemap, robots, ads.txt.
 

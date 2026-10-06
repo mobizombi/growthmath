@@ -2,6 +2,8 @@
 // Config via env: SITE_URL (canonical origin), CONTACT_EMAIL, ADSENSE (ca-pub id, empty = no ads).
 import { mkdirSync, writeFileSync, readFileSync, rmSync, copyFileSync } from 'node:fs';
 import { tools, categories } from './src/tools.mjs';
+import { extra } from './src/extra.mjs';
+import { guides } from './src/guides.mjs';
 
 const SITE = (process.env.SITE_URL || 'https://growthmath.io').replace(/\/$/, '');
 const HOST = new URL(SITE).hostname;
@@ -52,7 +54,7 @@ ${ADSENSE ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/
 ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
 </head><body>
 <header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>${NAME}</a>
-<nav><a href="/#tools">All tools</a><a href="/about/">About</a></nav></div></header>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
 <main class="wrap">${body}</main>
 <footer class="site-foot"><div class="wrap"><div><b>${NAME}</b> - free calculators for marketers, affiliates and store owners. &copy; ${YEAR}</div>
 <div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
@@ -64,8 +66,13 @@ function card(t) {
   return `<a class="card" href="/${t.slug}/"><span class="tag">${categories[t.cat]}</span><b>${esc(t.name)}</b><span>${esc(t.short)}</span></a>`;
 }
 
-function toolPage(t) {
+const guideCard = (g) => `<a class="card" href="/guides/${g.slug}/"><span class="tag">Guide</span><b>${esc(g.name)}</b><span>${esc(g.desc)}</span></a>`;
+
+function toolPage(t0) {
+  const x = extra[t0.slug] || {};
+  const t = { ...t0, content: t0.content + (x.html || ''), faq: [...t0.faq, ...(x.faq || [])] };
   const path = `/${t.slug}/`;
+  const tGuides = guides.filter((g) => g.tools.includes(t.slug));
   const faqHtml = t.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('');
   const related = t.related.map((s) => bySlug[s]).filter(Boolean).map(card).join('');
   const cta = t.cta
@@ -81,6 +88,7 @@ ${adUnit()}
 <h2>Frequently asked questions</h2><div class="faq">${faqHtml}</div></article>
 ${cta}
 <h2>Related tools</h2><div class="grid">${related}</div>
+${tGuides.length ? `<h2>Related guides</h2><div class="grid">${tGuides.map(guideCard).join('')}</div>` : ''}
 ${adUnit()}`;
   const schema = [
     { '@context': 'https://schema.org', '@type': 'WebApplication', name: t.name, url: SITE + path, description: t.desc, applicationCategory: 'BusinessApplication', operatingSystem: 'Any', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
@@ -99,8 +107,9 @@ function home() {
   }).join('');
   const body = `
 <section class="hero"><h1>The numbers behind your marketing, calculated in seconds.</h1>
-<p class="lede">Free, no-signup calculators for ROAS, CPA, affiliate earnings, LTV, margins, UTM links and A/B tests. Everything runs in your browser - your data never leaves your device.</p></section>
+<p class="lede">Free, no-signup calculators for ROAS, CPA, affiliate earnings, LTV, CAC, churn, store profit, YouTube earnings, UTM links and A/B tests. Everything runs in your browser - your data never leaves your device.</p></section>
 <div id="tools">${sections}</div>
+<h3 class="cat-h" id="guides">Guides</h3><div class="grid">${guides.map(guideCard).join('')}</div>
 ${adUnit()}
 <article class="content narrow">
 <h2>Why GrowthMath?</h2>
@@ -108,7 +117,42 @@ ${adUnit()}
 <ul><li><b>Free and no signup.</b> Open a tool and use it.</li><li><b>Private.</b> Calculations run locally in your browser. Uploaded files are never sent to a server.</li><li><b>Explained.</b> Every tool shows its formula, benchmarks and common mistakes.</li></ul>
 </article>`;
   const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: NAME, url: SITE + '/' }];
-  return layout({ title: `${NAME} - Free Marketing, Ads & Affiliate Calculators`, desc: 'Free calculators for marketers: ROAS, CPM/CPC/CPA, break-even CPA, affiliate EPC, LTV, profit margin, UTM builder, SERP preview and A/B test significance.', path: '/', body, schema });
+  return layout({ title: `${NAME} - Free Marketing, Ads & Affiliate Calculators`, desc: 'Free calculators for marketers: ROAS, CPA, affiliate EPC, LTV, CAC, churn, Shopify profit, YouTube earnings, profit margin, UTM builder and A/B test significance.', path: '/', body, schema });
+}
+
+function guidePage(g) {
+  const path = `/guides/${g.slug}/`;
+  const faqHtml = g.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('');
+  const toolCards = g.tools.map((s) => bySlug[s]).filter(Boolean).map(card).join('');
+  const more = guides.filter((o) => o.slug !== g.slug).map(guideCard).join('');
+  const body = `
+<div class="crumbs"><a href="/">Home</a> / <a href="/guides/">Guides</a> / ${esc(g.name)}</div>
+<h1>${esc(g.title.split(':')[0].split(' (')[0])}</h1>
+<p class="lede">${esc(g.lede)}</p>
+<h2>Calculators for this guide</h2><div class="grid">${toolCards}</div>
+${adUnit()}
+<article class="content narrow">${g.html}
+<h2>Frequently asked questions</h2><div class="faq">${faqHtml}</div></article>
+<h2>More guides</h2><div class="grid">${more}</div>
+${adUnit()}`;
+  const schema = [
+    { '@context': 'https://schema.org', '@type': 'Article', headline: g.title, description: g.desc, url: SITE + path, datePublished: g.date || '2026-10-06', dateModified: new Date().toISOString().slice(0, 10), author: { '@type': 'Organization', name: NAME }, publisher: { '@type': 'Organization', name: NAME } },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: g.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: SITE + '/guides/' },
+      { '@type': 'ListItem', position: 3, name: g.name, item: SITE + path } ] },
+  ];
+  return layout({ title: g.title, desc: g.desc, path, body, schema });
+}
+
+function guidesIndex() {
+  const body = `
+<div class="crumbs"><a href="/">Home</a> / Guides</div>
+<h1>Marketing math guides</h1>
+<p class="lede">Plain-English explanations of the formulas behind ads, affiliate and growth decisions - each one paired with a free calculator.</p>
+<div class="grid">${guides.map(guideCard).join('')}</div>`;
+  return layout({ title: `Marketing Math Guides - ROAS, EPC, LTV:CAC, A/B Tests - ${NAME}`, desc: 'Guides to the formulas that drive marketing decisions: good ROAS, break-even ROAS, EPC, LTV:CAC ratio and A/B test sample size.', path: '/guides/', body });
 }
 
 const staticPage = (path, title, desc, html) => layout({ title: `${title} - ${NAME}`, desc, path, body: `<article class="content narrow"><h1>${title}</h1>${html}</article>` });
@@ -147,6 +191,8 @@ const write = (p, s) => { s = rebase(s); const file = OUT + (p.endsWith('/') ? p
 
 write('/', home());
 for (const t of tools) write(`/${t.slug}/`, toolPage(t));
+write('/guides/', guidesIndex());
+for (const g of guides) write(`/guides/${g.slug}/`, guidePage(g));
 for (const [p, html] of Object.entries(pages)) write(p, html);
 write('/404.html', staticPage('/404.html', 'Page not found', 'Page not found.', `<p>That page does not exist. <a href="/">Browse all tools</a>.</p>`));
 
@@ -156,7 +202,7 @@ writeFileSync(OUT + '/favicon.svg', `<svg xmlns="http://www.w3.org/2000/svg" vie
 if (ADSENSE && !TEMP) writeFileSync(OUT + '/ads.txt', `google.com, ${ADSENSE.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n`);
 writeFileSync(OUT + '/robots.txt', TEMP ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 const today = new Date().toISOString().slice(0, 10);
-const urls = ['/', ...tools.map((t) => `/${t.slug}/`), ...Object.keys(pages)];
+const urls = ['/', ...tools.map((t) => `/${t.slug}/`), '/guides/', ...guides.map((g) => `/guides/${g.slug}/`), ...Object.keys(pages)];
 writeFileSync(OUT + '/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 if (!TEMP) writeFileSync(OUT + '/CNAME', HOST + '\n');
 // IndexNow key (Bing/Yandex instant crawl). Submit with: node indexnow.mjs

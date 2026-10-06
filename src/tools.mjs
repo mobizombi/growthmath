@@ -6,6 +6,8 @@ const f = (id, label, value, o = {}) => `
 <div class="inp${o.pre ? ' has-pre' : ''}${o.suf ? ' has-suf' : ''}">${o.pre ? `<span class="pre">${o.pre}</span>` : ''}<input id="${id}" type="text" inputmode="decimal" value="${value}" autocomplete="off">${o.suf ? `<span class="suf">${o.suf}</span>` : ''}</div>
 ${o.hint ? `<div class="hint">${o.hint}</div>` : ''}</div>`;
 
+const table = (head, rows) => `<div class="tscroll"><table class="t"><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</table></div>`;
+
 const stat = (id, label) => `<div class="stat"><span>${label}</span><strong id="${id}">-</strong></div>`;
 
 export const categories = {
@@ -14,6 +16,7 @@ export const categories = {
   ecom: 'E-commerce & business',
   seo: 'SEO & tracking',
   cro: 'Testing & CRO',
+  creator: 'Creators & publishers',
 };
 
 export const tools = [
@@ -579,5 +582,217 @@ live(() => {
       ['Is this one-tailed or two-tailed?', 'Two-tailed. It detects a difference in either direction, which is the safer default.'],
     ],
     related: ['cpm-cpc-cpa-calculator', 'serp-snippet-preview', 'roas-calculator'],
+  },
+
+  // ---------------------------------------------------------------- CAC
+  {
+    slug: 'cac-calculator',
+    cat: 'ecom',
+    name: 'CAC Calculator',
+    short: 'Customer acquisition cost - paid and fully loaded - with payback and LTV:CAC.',
+    title: 'CAC Calculator - Customer Acquisition Cost, Payback & LTV:CAC',
+    desc: 'Free CAC calculator. Work out paid and fully loaded customer acquisition cost, CAC payback in months and your LTV:CAC ratio from a few numbers.',
+    h1: 'Customer Acquisition Cost (CAC) Calculator',
+    lede: 'What one new customer really costs you - once salaries, tools and agencies are counted, not just ad spend.',
+    tool: `<div>
+${f('ads', 'Ad spend in the period', '36000', { pre: '$' })}
+${f('other', 'Other sales & marketing costs', '24000', { pre: '$', hint: 'Marketing and sales salaries, agencies, tools, content, commissions. Leave 0 for paid CAC only.' })}
+${f('cust', 'New customers in the period', '400')}
+<div class="row2">${f('mgp', 'Monthly gross profit per customer', '41.65', { pre: '$', hint: 'Optional - for payback.' })}${f('ltv', 'Customer lifetime value', '1388', { pre: '$', hint: 'Optional - gross-profit LTV.' })}</div>
+</div>
+<div class="out">
+<div class="big-label">Fully loaded CAC</div><div class="big" id="o_cac">-</div>
+<div class="stats">${stat('o_paid', 'Paid CAC (ads only)')}${stat('o_pay', 'CAC payback')}${stat('o_ratio', 'LTV : CAC')}${stat('o_max', 'Max CAC at 3:1')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const a = num('ads'), o0 = num('other'), c = num('cust'), mgp = num('mgp'), ltv = num('ltv');
+  if (!ok(a, c) || c <= 0) return;
+  const o = ok(o0) ? o0 : 0, full = (a + o) / c, paid = a / c;
+  set('o_cac', money(full)); set('o_paid', money(paid));
+  const pay = ok(mgp) && mgp > 0 ? full / mgp : NaN, ratio = ok(ltv) && ltv > 0 && full > 0 ? ltv / full : NaN;
+  set('o_pay', ok(pay) ? fnum(pay, 1) + ' months' : '-');
+  set('o_ratio', ok(ratio) ? fnum(ratio, 1) + ' : 1' : '-');
+  set('o_max', ok(ltv) && ltv > 0 ? money(ltv / 3) : '-');
+  set('o_v', ok(ratio) ? (ratio < 1 ? 'Each customer costs more than they are worth. Fix CAC or retention before scaling.' : ratio < 3 ? 'Below the 3:1 benchmark - profitable but thin.' : ratio > 5 ? 'Above 5:1 - you can probably afford to spend more on growth.' : 'Healthy 3-5:1 ratio.')
+    : ok(pay) ? 'It takes ' + fnum(pay, 1) + ' months of gross profit to earn back what you paid for a customer.' : 'Add monthly gross profit or LTV to see payback and LTV:CAC.');
+});`,
+    content: `
+<h2>The CAC formula</h2>
+<div class="formula">CAC = Total sales and marketing cost / New customers acquired</div>
+<p>Use the same period on both sides. If you spent $60,000 on sales and marketing last quarter and won 400 new customers, CAC is $150.</p>
+<h2>Paid CAC vs. fully loaded CAC</h2>
+<p><b>Paid CAC</b> divides only ad spend by new customers. It is useful for comparing channels and campaigns day to day. <b>Fully loaded CAC</b> adds everything it takes to win customers: marketing and sales salaries, agencies, freelancers, software, content production and sales commissions. It is the honest number for unit economics, and the one investors and lenders ask for.</p>
+<p>The gap is often large. In the default example, paid CAC is $90 but fully loaded CAC is $150 - a ratio that looks like 15:1 on ad spend alone is really about 9:1.</p>
+<h2>CAC payback period</h2>
+<div class="formula">CAC payback (months) = CAC / Monthly gross profit per customer</div>
+<p>Payback tells you how long cash is tied up in each new customer. Under 12 months is generally considered healthy for subscription businesses; longer paybacks need more cash to grow and leave you exposed if customers churn early.</p>
+<h2>Blended vs. new-customer CAC</h2>
+<p>Only count genuinely new customers in the denominator. Including returning customers who would have bought anyway makes CAC look lower than it is. If you can, calculate CAC per channel as well as blended - a blended average often hides one channel that is losing money.</p>
+<h2>How to lower CAC</h2>
+<ul><li>Improve landing-page and trial conversion rates - the same spend then wins more customers.</li><li>Cut channels whose CAC is above break-even and move budget to efficient ones.</li><li>Invest in compounding channels such as SEO, referrals and partnerships, whose cost per customer falls over time.</li><li>Raise prices or average order value, which does not lower CAC but improves the ratio to LTV.</li></ul>
+<p>Pair this with the <a href="/customer-ltv-calculator/">LTV calculator</a> and read <a href="/guides/ltv-to-cac-ratio/">what LTV:CAC ratio to aim for</a>.</p>`,
+    faq: [
+      ['What is a good CAC?', 'There is no universal number. A good CAC is comfortably below the gross profit a customer brings over their lifetime - typically one third of LTV or less - and is earned back within about 12 months.'],
+      ['Should CAC include salaries?', 'For fully loaded CAC, yes. Include marketing and sales salaries, agencies and tools. Paid CAC (ads only) is useful for channel decisions but flatters the true cost.'],
+      ['What is the difference between CAC and CPA?', 'CPA is the cost of any conversion action - a lead, signup or purchase - usually measured per campaign. CAC is the cost of winning a new paying customer, usually across all channels and costs.'],
+    ],
+    related: ['customer-ltv-calculator', 'churn-rate-calculator', 'break-even-cpa-calculator'],
+  },
+
+  // ---------------------------------------------------------------- Churn / MRR
+  {
+    slug: 'churn-rate-calculator',
+    cat: 'ecom',
+    name: 'Churn Rate & MRR Calculator',
+    short: 'Customer churn, MRR churn, net revenue retention and average lifetime.',
+    title: 'Churn Rate Calculator - Customer Churn, MRR Churn & NRR',
+    desc: 'Free churn rate calculator for subscription businesses. Get monthly and annual customer churn, gross MRR churn, net revenue retention and average customer lifetime.',
+    h1: 'Churn Rate & MRR Calculator',
+    lede: 'How fast you lose customers and revenue - and how long the average subscriber actually stays.',
+    tool: `<div>
+<div class="row2">${f('sc', 'Customers at start of month', '1000')}${f('lost', 'Customers lost during month', '50')}</div>
+<div class="row2">${f('smrr', 'MRR at start of month', '50000', { pre: '$' })}${f('cmrr', 'MRR lost (cancels + downgrades)', '3000', { pre: '$' })}</div>
+${f('emrr', 'Expansion MRR (upgrades + add-ons)', '2000', { pre: '$', hint: 'From existing customers only - not new customers.' })}
+</div>
+<div class="out">
+<div class="big-label">Monthly customer churn</div><div class="big" id="o_churn">-</div>
+<div class="stats">${stat('o_annual', 'Annual customer churn')}${stat('o_life', 'Average lifetime')}${stat('o_mrr', 'Gross MRR churn')}${stat('o_nrr', 'Net revenue retention')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const sc = num('sc'), lost = num('lost'), smrr = num('smrr'), cmrr = num('cmrr'), e0 = num('emrr');
+  if (ok(sc, lost) && sc > 0 && lost <= sc) {
+    const c = lost / sc;
+    set('o_churn', pct(c * 100, 2)); set('o_annual', pct((1 - Math.pow(1 - c, 12)) * 100, 1));
+    set('o_life', c > 0 ? fnum(1 / c, 1) + ' months' : 'No churn');
+  }
+  if (ok(smrr, cmrr) && smrr > 0 && cmrr <= smrr) {
+    const e = ok(e0) ? e0 : 0, g = cmrr / smrr, nrr = (smrr - cmrr + e) / smrr;
+    set('o_mrr', pct(g * 100, 2)); set('o_nrr', pct(nrr * 100, 1));
+    set('o_v', nrr >= 1 ? 'Net revenue retention is above 100% - expansion from existing customers outweighs what you lose.' : g > 0.05 ? 'Gross MRR churn above 5% a month is high for most subscription businesses - retention is your biggest lever.' : 'Revenue churn is under control, but expansion is not yet covering it.');
+  } else if (ok(sc, lost) && lost > sc) set('o_v', 'Customers lost cannot be higher than customers at the start.');
+});`,
+    content: `
+<h2>The churn formulas</h2>
+<div class="formula">Customer churn rate = Customers lost in period / Customers at start of period</div>
+<div class="formula">Average lifetime (months) = 1 / Monthly churn rate</div>
+<div class="formula">Gross MRR churn = MRR lost (cancellations + downgrades) / MRR at start</div>
+<div class="formula">Net revenue retention = (Start MRR - MRR lost + Expansion MRR) / Start MRR</div>
+<h2>Monthly vs. annual churn</h2>
+<p>Annual churn is not monthly churn times 12, because each month's churn applies to a smaller base. The correct conversion is 1 - (1 - monthly churn)^12. A 5% monthly churn rate is about 46% a year, not 60%.</p>
+${table(['Monthly churn', 'Annual churn', 'Average lifetime'], [['1%', '11.4%', '100 months'], ['2%', '21.5%', '50 months'], ['3%', '30.6%', '33 months'], ['5%', '46.0%', '20 months'], ['8%', '63.2%', '12.5 months'], ['10%', '71.8%', '10 months']])}
+<h2>Customer churn vs. revenue churn</h2>
+<p>They can tell different stories. If small customers leave and large ones stay, customer churn looks bad while revenue churn looks fine - and the reverse is a serious warning. Track both. Net revenue retention above 100% means existing customers grow faster through upgrades than you lose to cancellations, which is the strongest position a subscription business can be in.</p>
+<h2>What counts as good churn?</h2>
+<p>Churn varies enormously by customer type. Consumer subscriptions and small-business software commonly see several percent per month, while software sold to large companies on annual contracts often has single-digit annual churn. Compare yourself with businesses selling to similar customers at similar prices, and focus on the trend: falling churn is worth more than any benchmark.</p>
+<h2>How to reduce churn</h2>
+<ul><li><b>Shorten time to value.</b> Customers who get a clear result in their first week stay longer.</li><li><b>Fix involuntary churn.</b> Failed card payments can be a meaningful share of cancellations; card updaters and retry emails recover many of them.</li><li><b>Offer pause and downgrade options</b> before cancellation.</li><li><b>Ask why people leave</b> and fix the top reason each quarter.</li></ul>
+<p>Use the lifetime from this tool in the <a href="/customer-ltv-calculator/">LTV calculator</a>, and compare LTV with your <a href="/cac-calculator/">CAC</a>.</p>`,
+    faq: [
+      ['How do I convert monthly churn to annual churn?', 'Annual churn = 1 - (1 - monthly churn)^12. For 3% monthly churn: 1 - 0.97^12 = 30.6%.'],
+      ['Should new customers be included in the churn calculation?', 'Not in the denominator. Use customers at the start of the period, so customers who join and leave within the same month do not distort the rate. Track early churn of new customers separately.'],
+      ['What is net revenue retention?', 'The share of last period\'s recurring revenue you still have from the same customers, after cancellations, downgrades and upgrades. Above 100% means existing customers are growing revenue on their own.'],
+    ],
+    related: ['customer-ltv-calculator', 'cac-calculator', 'profit-margin-calculator'],
+  },
+
+  // ---------------------------------------------------------------- Shopify profit
+  {
+    slug: 'shopify-profit-calculator',
+    cat: 'ecom',
+    name: 'Shopify Profit Calculator',
+    short: 'Real monthly profit after product, shipping, payment fees, ads and apps.',
+    title: 'Shopify Profit Calculator - Profit per Order, Margin & Break-Even ROAS',
+    desc: 'Free Shopify profit calculator. Enter price, product cost, shipping, payment fees, ad spend and app costs to see real profit per order, net margin and break-even ROAS.',
+    h1: 'Shopify Profit Calculator',
+    lede: 'Revenue is not profit. See what is left of each order after product, shipping, payment fees, ads and your monthly apps.',
+    tool: `<div>
+<div class="row2">${f('price', 'Average order value', '60', { pre: '$' })}${f('orders', 'Orders per month', '500')}</div>
+<div class="row2">${f('cogs', 'Product cost per order', '20', { pre: '$' })}${f('ship', 'Shipping + packaging per order', '6', { pre: '$' })}</div>
+<div class="row2">${f('pf', 'Payment fee', '2.9', { suf: '%', hint: 'Check your plan and country.' })}${f('ff', 'Fixed fee per order', '0.30', { pre: '$' })}</div>
+<div class="row2">${f('ads', 'Ad spend per month', '5000', { pre: '$' })}${f('fixed', 'Shopify plan + apps per month', '200', { pre: '$' })}</div>
+</div>
+<div class="out">
+<div class="big-label">Net profit per month</div><div class="big" id="o_net">-</div>
+<div class="stats">${stat('o_po', 'Profit per order')}${stat('o_nm', 'Net margin')}${stat('o_gm', 'Contribution per order (before ads)')}${stat('o_beroas', 'Break-even ROAS')}${stat('o_beo', 'Break-even orders / month')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const p = num('price'), n = num('orders'), cogs = num('cogs'), sh = num('ship'), pf = num('pf') / 100, ff = num('ff'), ads0 = num('ads'), fx0 = num('fixed');
+  if (!ok(p, n, cogs, sh, pf, ff) || p <= 0 || n <= 0) return;
+  const ads = ok(ads0) ? ads0 : 0, fx = ok(fx0) ? fx0 : 0;
+  const cpo = p - cogs - sh - p * pf - ff, rev = p * n, net = cpo * n - ads - fx;
+  set('o_net', money(net)); set('o_po', money(net / n)); set('o_nm', pct(net / rev * 100, 1)); set('o_gm', money(cpo));
+  $('o_net').classList.toggle('bad', net < 0);
+  set('o_beroas', cpo > 0 ? fnum(p / cpo) + 'x' : '-');
+  set('o_beo', cpo > 0 ? fnum(Math.ceil((ads + fx) / cpo), 0) : '-');
+  set('o_v', cpo <= 0 ? 'Each order loses money before ads. Raise prices or cut product and shipping costs.' : net < 0 ? 'Losing money: you need ' + fnum(Math.ceil((ads + fx) / cpo), 0) + ' orders a month at this spend, or a higher contribution per order.' : 'Profitable: you keep ' + pct(net / rev * 100, 1) + ' of revenue after ads and fixed costs.');
+});`,
+    content: `
+<h2>How this calculator works</h2>
+<div class="formula">Contribution per order = Order value - Product cost - Shipping - (Order value x Payment fee %) - Fixed fee</div>
+<div class="formula">Net profit = Contribution per order x Orders - Ad spend - Monthly plan and apps</div>
+<div class="formula">Break-even ROAS = Order value / Contribution per order</div>
+<p>Contribution per order is what each sale leaves to pay for advertising and fixed costs. It is the number that decides how much you can spend to win an order.</p>
+<h2>Shopify costs people forget</h2>
+<ul><li><b>Payment processing.</b> Shopify Payments charges a percentage plus a fixed fee per online transaction, and the rate depends on your plan and country. If you use a third-party gateway, Shopify adds its own transaction fee on top. Check your current rates in your admin before relying on the default.</li><li><b>Apps.</b> Reviews, subscriptions, upsells and email apps add up quickly; many stores spend more on apps than on the Shopify plan itself.</li><li><b>Shipping you absorb.</b> "Free shipping" is never free - it is a cost per order.</li><li><b>Returns and refunds.</b> Add your average refund cost per order to product cost, especially in apparel.</li><li><b>Currency conversion and payout fees</b> if you sell internationally.</li><li><b>Taxes.</b> Sales tax and VAT you collect are not revenue; leave them out of order value.</li></ul>
+<h2>Worked example</h2>
+<p>With the defaults - a $60 order, $20 product, $6 shipping, 2.9% + $0.30 payment fees - each order contributes $31.96. At 500 orders a month that is $15,980, minus $5,000 of ads and $200 of plan and apps, leaving <b>$10,780</b> profit, a 35.9% net margin. Break-even ROAS is 1.88x: spend $5,000 on ads and they must drive at least $9,400 of sales to pay for themselves.</p>
+<h2>Ways to raise profit per order</h2>
+<ul><li>Raise average order value with bundles and a free-shipping threshold set above your current average order.</li><li>Negotiate shipping rates or switch carriers once volume grows.</li><li>Cut apps you no longer use - review them every quarter.</li><li>Raise prices on best-sellers; a small price increase goes straight to profit.</li></ul>
+<p>Next: check whether your campaigns clear the bar with the <a href="/roas-calculator/">ROAS calculator</a>, and see <a href="/guides/break-even-roas-formula/">how break-even ROAS works</a>.</p>`,
+    faq: [
+      ['What profit margin is good for a Shopify store?', 'It varies by product. Many stores aim for 50%+ gross margin so there is room for ads, and a net margin of 10 to 20% after ads and fixed costs is a healthy result for most small e-commerce brands.'],
+      ['Does Shopify charge transaction fees?', 'With Shopify Payments you pay card processing fees but no extra Shopify transaction fee. With third-party payment gateways, Shopify adds a transaction fee that depends on your plan.'],
+      ['Should I include my own time as a cost?', 'Not in this calculator, but remember that profit has to pay you. If the business needs 40 hours a week, compare monthly profit with what that time is worth.'],
+    ],
+    related: ['roas-calculator', 'profit-margin-calculator', 'break-even-cpa-calculator'],
+  },
+
+  // ---------------------------------------------------------------- YouTube earnings
+  {
+    slug: 'youtube-earnings-calculator',
+    cat: 'creator',
+    name: 'YouTube Earnings Calculator',
+    short: 'Estimate YouTube ad revenue from views and RPM, plus sponsorships.',
+    title: 'YouTube Earnings Calculator - Estimate Ad Revenue from Views & RPM',
+    desc: 'Free YouTube earnings calculator. Estimate monthly and yearly AdSense revenue from views and RPM, add sponsorships, and see how niche changes what a channel earns.',
+    h1: 'YouTube Earnings Calculator',
+    lede: 'Estimate what a channel earns from ads and sponsorships - using RPM, the number YouTube actually pays on.',
+    tool: `<div>
+<div class="row2">${f('views', 'Views per month', '200000')}${f('rpm', 'RPM (revenue per 1,000 views)', '4', { pre: '$', hint: 'Find it in YouTube Studio - Analytics - Revenue.' })}</div>
+<div class="row2">${f('sp', 'Sponsored videos per month', '1')}${f('rate', 'Average fee per sponsorship', '800', { pre: '$' })}</div>
+</div>
+<div class="out">
+<div class="big-label">Estimated monthly ad revenue</div><div class="big" id="o_ad">-</div>
+<div class="stats">${stat('o_year', 'Ad revenue per year')}${stat('o_total', 'Monthly total with sponsors')}${stat('o_eff', 'Effective earnings per 1,000 views')}${stat('o_low', 'Range at RPM -50% / +50%')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const v = num('views'), r = num('rpm'), sp0 = num('sp'), rate0 = num('rate');
+  if (!ok(v, r)) return;
+  const ad = v / 1000 * r, spon = (ok(sp0) ? sp0 : 0) * (ok(rate0) ? rate0 : 0), tot = ad + spon;
+  set('o_ad', money(ad)); set('o_year', money(ad * 12)); set('o_total', money(tot));
+  set('o_eff', v > 0 ? money(tot / v * 1000) : '-');
+  set('o_low', money(ad * 0.5, 0) + ' - ' + money(ad * 1.5, 0));
+  set('o_v', v > 0 && spon > ad ? 'Sponsorships earn more than ads here - common for channels in niches with a clear buyer audience.' : 'Ad revenue swings with season and audience; treat this as an estimate, not a forecast.');
+});`,
+    content: `
+<h2>How YouTube earnings are calculated</h2>
+<div class="formula">Monthly ad revenue = Monthly views / 1,000 x RPM</div>
+<p><b>RPM</b> (revenue per mille) is what you actually earn per 1,000 views, after YouTube's share and counting all views - including those that showed no ad. <b>CPM</b> is what advertisers pay per 1,000 ad impressions, before YouTube's share. RPM is always lower than CPM, and it is the right number for estimating income.</p>
+<h2>Why RPM varies so much</h2>
+<p>RPM depends on how much advertisers will pay to reach your viewers. Rough tendencies, which vary by country and season:</p>
+${table(['Niche', 'Typical RPM tendency'], [['Personal finance, investing, business software', 'Among the highest - advertisers pay a lot for these viewers'], ['Tech reviews, education, marketing', 'Above average'], ['Lifestyle, travel, food', 'Middle of the range'], ['Gaming, entertainment, music, vlogs', 'Often lower'], ['YouTube Shorts', 'Usually far lower per view than long-form']])}
+<p>Viewer location matters as much as niche: views from the US, UK, Canada and Australia usually earn several times more than views from lower-cost ad markets. Q4 (October to December) RPMs tend to be highest and January the lowest, because advertiser budgets follow the shopping calendar. The only reliable RPM is the one in your own YouTube Studio.</p>
+<h2>Revenue share basics</h2>
+<p>For long-form videos, creators in the YouTube Partner Program receive the majority of ad revenue (YouTube's published split is 55% to the creator). Shorts revenue is pooled and shared under a separate model, which is one reason Shorts RPMs are much lower. YouTube Premium views also pay creators a share of subscription revenue.</p>
+<h2>Sponsorships often beat ads</h2>
+<p>For channels with a focused audience, one sponsored segment can earn more than a month of ad revenue. Sponsors usually price on expected views - often quoted as a cost per 1,000 views of the video - and pay more for niches with a clear buying audience. Affiliate links in descriptions add a third income stream; estimate it with the <a href="/affiliate-commission-calculator/">affiliate EPC calculator</a>.</p>
+<h2>Requirements to earn ad revenue</h2>
+<p>You need to join the YouTube Partner Program, which requires a minimum number of subscribers plus either public watch hours or Shorts views in a recent period, and you must follow YouTube's monetization policies. Check YouTube's current requirements, as thresholds have changed over time.</p>`,
+    faq: [
+      ['How much does YouTube pay per 1,000 views?', 'That is your RPM, and it ranges widely - from well under $1 to more than $10 per 1,000 views depending on niche, audience country, season and video length. Check YouTube Studio for your real number.'],
+      ['What is the difference between RPM and CPM?', 'CPM is what advertisers pay per 1,000 ad impressions. RPM is what you earn per 1,000 views, after YouTube\'s share and including views with no ads. RPM is lower and is the number to use for income.'],
+      ['How much does a YouTuber with 1 million views earn?', 'Multiply by RPM: at $2 RPM about $2,000, at $5 about $5,000, at $10 about $10,000 - before sponsorships, affiliates and merchandise.'],
+    ],
+    related: ['affiliate-commission-calculator', 'cpm-cpc-cpa-calculator', 'utm-builder'],
   },
 ];
