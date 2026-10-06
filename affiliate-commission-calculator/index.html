@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Affiliate Commission &amp; EPC Calculator - Earnings per Click</title>
+<meta name="description" content="Estimate affiliate income. Enter clicks, conversion rate, order value and commission to get monthly earnings, EPC, and the clicks needed to reach your income goal.">
+<link rel="canonical" href="https://growthmath.io/affiliate-commission-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="Affiliate Commission &amp; EPC Calculator - Earnings per Click"><meta property="og:description" content="Estimate affiliate income. Enter clicks, conversion rate, order value and commission to get monthly earnings, EPC, and the clicks needed to reach your income goal."><meta property="og:url" content="https://growthmath.io/affiliate-commission-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Affiliate Commission & EPC Calculator","url":"https://growthmath.io/affiliate-commission-calculator/","description":"Estimate affiliate income. Enter clicks, conversion rate, order value and commission to get monthly earnings, EPC, and the clicks needed to reach your income goal.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a good EPC?","acceptedAnswer":{"@type":"Answer","text":"It depends on the niche. $0.10 - $0.50 is common for retail, while finance, software and dating offers often pay $1 - $5+ per click."}},{"@type":"Question","name":"Is EPC shown per click or per 100 clicks?","acceptedAnswer":{"@type":"Answer","text":"Some networks (such as CJ) show EPC per 100 clicks. Divide by 100 to compare with this calculator."}},{"@type":"Question","name":"How do I calculate EPC from my network report?","acceptedAnswer":{"@type":"Answer","text":"Divide total commissions by total clicks for the same period. $540 in commissions from 1,200 clicks is an EPC of $0.45."}},{"@type":"Question","name":"Why is my EPC lower than the network says?","acceptedAnswer":{"@type":"Answer","text":"Network EPC is an average across all affiliates, including coupon and loyalty sites that convert very well. Content and social traffic usually converts lower. Trust your own numbers after a few hundred clicks."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Affiliate Commission & EPC Calculator","item":"https://growthmath.io/affiliate-commission-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#affiliate">Affiliate marketing</a> / Affiliate Commission &amp; EPC Calculator</div>
+<h1>Affiliate Commission &amp; EPC Calculator</h1>
+<p class="lede">Compare affiliate offers by what they actually pay per click - and see how much traffic your income goal needs.</p>
+<section class="tool"><div>
+
+<div class="field"><label for="clicks">Monthly clicks to the offer</label>
+<div class="inp"><input id="clicks" type="text" inputmode="decimal" value="2000" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="cvr">Conversion rate</label>
+<div class="inp has-suf"><input id="cvr" type="text" inputmode="decimal" value="3" autocomplete="off"><span class="suf">%</span></div>
+</div>
+<div class="row2">
+<div class="field"><label for="aov">Average sale value</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="aov" type="text" inputmode="decimal" value="60" autocomplete="off"></div>
+</div>
+<div class="field"><label for="com">Commission</label>
+<div class="inp has-suf"><input id="com" type="text" inputmode="decimal" value="30" autocomplete="off"><span class="suf">%</span></div>
+</div></div>
+
+<div class="field"><label for="flat">Or flat CPA payout per sale</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="flat" type="text" inputmode="decimal" value="" autocomplete="off"></div>
+<div class="hint">Fill this in instead of %, e.g. for CPA/CPL offers.</div></div>
+
+<div class="field"><label for="goal">Monthly income goal</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="goal" type="text" inputmode="decimal" value="3000" autocomplete="off"></div>
+</div>
+</div>
+<div class="out">
+<div class="big-label">Estimated monthly earnings</div><div class="big" id="o_earn">-</div>
+<div class="stats"><div class="stat"><span>EPC (earnings per click)</span><strong id="o_epc">-</strong></div><div class="stat"><span>Sales per month</span><strong id="o_sales">-</strong></div><div class="stat"><span>Payout per sale</span><strong id="o_per">-</strong></div><div class="stat"><span>Clicks needed for goal</span><strong id="o_need">-</strong></div></div>
+</div></section>
+
+<article class="content narrow">
+<h2>What is EPC?</h2>
+<p>EPC (earnings per click) is the average amount you earn every time someone clicks your affiliate link. It is the single best number for comparing offers, because it combines commission size and conversion rate into one figure.</p>
+<div class="formula">EPC = Conversion rate x Payout per sale<br>Monthly earnings = Clicks x EPC</div>
+<h2>Why a 50% commission can lose to a 10% one</h2>
+<p>A 50% commission on a $20 product that converts at 1% earns $0.10 per click. A 10% commission on a $400 product that converts at 2% earns $0.80 per click - eight times more for the same traffic. Always compare EPC, not commission rate.</p>
+<h2>Working backwards from a goal</h2>
+<p>Divide your income goal by EPC to see the traffic you need. If $3,000/month needs 50,000 clicks, you know whether the plan is realistic - and whether to find a higher-EPC offer first.</p>
+<h2>Where to find real conversion rates</h2>
+<p>Most affiliate networks show network-wide EPC on the offer page. Use it as a starting estimate, then replace it with your own numbers after a few hundred clicks - your audience will convert differently.</p>
+<h2>Worked example: comparing three offers for the same audience</h2>
+<p>A blog about home coffee gets 3,000 clicks a month to affiliate links. Three programs are on the table:</p>
+<div class="tscroll"><table class="t"><tr><th>Offer</th><th>Payout</th><th>Est. conversion</th><th>EPC</th><th>Monthly (3,000 clicks)</th></tr><tr><td>Coffee subscription</td><td>$15 flat per signup</td><td>4%</td><td>$0.60</td><td>$1,800</td></tr><tr><td>Espresso machine (Amazon, ~3%)</td><td>$18 on a $600 sale</td><td>1.5%</td><td>$0.27</td><td>$810</td></tr><tr><td>Grinder brand direct (12%)</td><td>$24 on a $200 sale</td><td>2.5%</td><td>$0.60</td><td>$1,800</td></tr></table></div>
+<p>The machine has the highest ticket, but the low commission rate and lower conversion rate make it the weakest offer per click. The subscription and the grinder tie on EPC - so the tie-breakers become cookie length, recurring payouts and how reliably each program pays.</p>
+<h2>Things EPC does not show</h2>
+<ul><li><b>Recurring commissions.</b> A subscription program that pays every month the customer stays is worth far more than its first-month EPC. Multiply by the average customer lifetime.</li><li><b>Cookie window.</b> A 1-day cookie (Amazon) loses sales from people who come back later. A 30 to 90-day cookie captures them.</li><li><b>Reversals.</b> Some programs reverse 10 to 30% of commissions for returns or cancelled trials. Use approved commissions, not pending ones.</li><li><b>Payout reliability.</b> A high EPC from a program that pays late or changes terms is worth less than it looks.</li></ul>
+<h2>How to raise your EPC</h2>
+<ul><li>Send clicks from high-intent pages: comparisons, "best X for Y" and reviews convert far better than general articles.</li><li>Link to the specific product, not the homepage.</li><li>Negotiate: once you send consistent volume, ask the affiliate manager for a higher tier, a bonus or an exclusive discount code.</li><li>Test placement: a comparison table near the top of the page usually beats links at the bottom.</li></ul>
+<p>More in our guide on <a href="/guides/how-to-calculate-epc/">how to calculate EPC</a>.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>What is a good EPC?</summary><p>It depends on the niche. $0.10 - $0.50 is common for retail, while finance, software and dating offers often pay $1 - $5+ per click.</p></details><details><summary>Is EPC shown per click or per 100 clicks?</summary><p>Some networks (such as CJ) show EPC per 100 clicks. Divide by 100 to compare with this calculator.</p></details><details><summary>How do I calculate EPC from my network report?</summary><p>Divide total commissions by total clicks for the same period. $540 in commissions from 1,200 clicks is an EPC of $0.45.</p></details><details><summary>Why is my EPC lower than the network says?</summary><p>Network EPC is an average across all affiliates, including coupon and loyalty sites that convert very well. Content and social traffic usually converts lower. Trust your own numbers after a few hundred clicks.</p></details></div></article>
+<div class="cta"><div><strong>Run an affiliate program that is not growing?</strong><p>Traffic Goat audits affiliate programs and shows exactly where partners and revenue are leaking - with a fix plan.</p></div><a class="btn" href="https://traffic-goat.com/?utm_source=growthmath&utm_medium=referral&utm_campaign=tool_cta" rel="noopener">See the audit</a></div>
+<h2>Related tools</h2><div class="grid"><a class="card" href="/affiliate-revenue-leak-calculator/"><span class="tag">Affiliate marketing</span><b>Affiliate Program Revenue Leak Calculator</b><span>For program owners: what your dormant affiliates are costing you each month.</span></a><a class="card" href="/dormant-affiliate-finder/"><span class="tag">Affiliate marketing</span><b>Dormant Affiliate Finder + Email Generator</b><span>Upload a CSV, flag inactive partners by tier, get reactivation emails.</span></a><a class="card" href="/utm-builder/"><span class="tag">SEO & tracking</span><b>UTM Link Builder</b><span>Build clean, consistent UTM tracking links for GA4.</span></a></div>
+<h2>Related guides</h2><div class="grid"><a class="card" href="/guides/how-to-calculate-epc/"><span class="tag">Guide</span><b>How to calculate EPC</b><span>EPC = commissions / clicks. How to calculate earnings per click, EPC per 100 clicks, what a good EPC is, and how to use EPC to choose affiliate offers.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const c = num('clicks'), cvr = num('cvr') / 100, aov = num('aov'), com = num('com') / 100, flat = num('flat'), goal = num('goal');
+  const per = ok(flat) && flat > 0 ? flat : aov * com;
+  if (!ok(c, cvr, per)) return;
+  const sales = c * cvr, earn = sales * per, epc = cvr * per;
+  set('o_earn', money(earn)); set('o_epc', money(epc)); set('o_sales', fnum(sales, 1)); set('o_per', money(per));
+  set('o_need', ok(goal) && epc > 0 ? fnum(Math.ceil(goal / epc), 0) : '-');
+});</script>
+</body></html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Churn Rate Calculator - Customer Churn, MRR Churn &amp; NRR</title>
+<meta name="description" content="Free churn rate calculator for subscription businesses. Get monthly and annual customer churn, gross MRR churn, net revenue retention and average customer lifetime.">
+<link rel="canonical" href="https://growthmath.io/churn-rate-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="Churn Rate Calculator - Customer Churn, MRR Churn &amp; NRR"><meta property="og:description" content="Free churn rate calculator for subscription businesses. Get monthly and annual customer churn, gross MRR churn, net revenue retention and average customer lifetime."><meta property="og:url" content="https://growthmath.io/churn-rate-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Churn Rate & MRR Calculator","url":"https://growthmath.io/churn-rate-calculator/","description":"Free churn rate calculator for subscription businesses. Get monthly and annual customer churn, gross MRR churn, net revenue retention and average customer lifetime.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert monthly churn to annual churn?","acceptedAnswer":{"@type":"Answer","text":"Annual churn = 1 - (1 - monthly churn)^12. For 3% monthly churn: 1 - 0.97^12 = 30.6%."}},{"@type":"Question","name":"Should new customers be included in the churn calculation?","acceptedAnswer":{"@type":"Answer","text":"Not in the denominator. Use customers at the start of the period, so customers who join and leave within the same month do not distort the rate. Track early churn of new customers separately."}},{"@type":"Question","name":"What is net revenue retention?","acceptedAnswer":{"@type":"Answer","text":"The share of last period's recurring revenue you still have from the same customers, after cancellations, downgrades and upgrades. Above 100% means existing customers are growing revenue on their own."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Churn Rate & MRR Calculator","item":"https://growthmath.io/churn-rate-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#ecom">E-commerce & business</a> / Churn Rate &amp; MRR Calculator</div>
+<h1>Churn Rate &amp; MRR Calculator</h1>
+<p class="lede">How fast you lose customers and revenue - and how long the average subscriber actually stays.</p>
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="sc">Customers at start of month</label>
+<div class="inp"><input id="sc" type="text" inputmode="decimal" value="1000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="lost">Customers lost during month</label>
+<div class="inp"><input id="lost" type="text" inputmode="decimal" value="50" autocomplete="off"></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="smrr">MRR at start of month</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="smrr" type="text" inputmode="decimal" value="50000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="cmrr">MRR lost (cancels + downgrades)</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="cmrr" type="text" inputmode="decimal" value="3000" autocomplete="off"></div>
+</div></div>
+
+<div class="field"><label for="emrr">Expansion MRR (upgrades + add-ons)</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="emrr" type="text" inputmode="decimal" value="2000" autocomplete="off"></div>
+<div class="hint">From existing customers only - not new customers.</div></div>
+</div>
+<div class="out">
+<div class="big-label">Monthly customer churn</div><div class="big" id="o_churn">-</div>
+<div class="stats"><div class="stat"><span>Annual customer churn</span><strong id="o_annual">-</strong></div><div class="stat"><span>Average lifetime</span><strong id="o_life">-</strong></div><div class="stat"><span>Gross MRR churn</span><strong id="o_mrr">-</strong></div><div class="stat"><span>Net revenue retention</span><strong id="o_nrr">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>The churn formulas</h2>
+<div class="formula">Customer churn rate = Customers lost in period / Customers at start of period</div>
+<div class="formula">Average lifetime (months) = 1 / Monthly churn rate</div>
+<div class="formula">Gross MRR churn = MRR lost (cancellations + downgrades) / MRR at start</div>
+<div class="formula">Net revenue retention = (Start MRR - MRR lost + Expansion MRR) / Start MRR</div>
+<h2>Monthly vs. annual churn</h2>
+<p>Annual churn is not monthly churn times 12, because each month's churn applies to a smaller base. The correct conversion is 1 - (1 - monthly churn)^12. A 5% monthly churn rate is about 46% a year, not 60%.</p>
+<div class="tscroll"><table class="t"><tr><th>Monthly churn</th><th>Annual churn</th><th>Average lifetime</th></tr><tr><td>1%</td><td>11.4%</td><td>100 months</td></tr><tr><td>2%</td><td>21.5%</td><td>50 months</td></tr><tr><td>3%</td><td>30.6%</td><td>33 months</td></tr><tr><td>5%</td><td>46.0%</td><td>20 months</td></tr><tr><td>8%</td><td>63.2%</td><td>12.5 months</td></tr><tr><td>10%</td><td>71.8%</td><td>10 months</td></tr></table></div>
+<h2>Customer churn vs. revenue churn</h2>
+<p>They can tell different stories. If small customers leave and large ones stay, customer churn looks bad while revenue churn looks fine - and the reverse is a serious warning. Track both. Net revenue retention above 100% means existing customers grow faster through upgrades than you lose to cancellations, which is the strongest position a subscription business can be in.</p>
+<h2>What counts as good churn?</h2>
+<p>Churn varies enormously by customer type. Consumer subscriptions and small-business software commonly see several percent per month, while software sold to large companies on annual contracts often has single-digit annual churn. Compare yourself with businesses selling to similar customers at similar prices, and focus on the trend: falling churn is worth more than any benchmark.</p>
+<h2>How to reduce churn</h2>
+<ul><li><b>Shorten time to value.</b> Customers who get a clear result in their first week stay longer.</li><li><b>Fix involuntary churn.</b> Failed card payments can be a meaningful share of cancellations; card updaters and retry emails recover many of them.</li><li><b>Offer pause and downgrade options</b> before cancellation.</li><li><b>Ask why people leave</b> and fix the top reason each quarter.</li></ul>
+<p>Use the lifetime from this tool in the <a href="/customer-ltv-calculator/">LTV calculator</a>, and compare LTV with your <a href="/cac-calculator/">CAC</a>.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>How do I convert monthly churn to annual churn?</summary><p>Annual churn = 1 - (1 - monthly churn)^12. For 3% monthly churn: 1 - 0.97^12 = 30.6%.</p></details><details><summary>Should new customers be included in the churn calculation?</summary><p>Not in the denominator. Use customers at the start of the period, so customers who join and leave within the same month do not distort the rate. Track early churn of new customers separately.</p></details><details><summary>What is net revenue retention?</summary><p>The share of last period's recurring revenue you still have from the same customers, after cancellations, downgrades and upgrades. Above 100% means existing customers are growing revenue on their own.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/customer-ltv-calculator/"><span class="tag">E-commerce & business</span><b>Customer Lifetime Value (LTV) Calculator</b><span>LTV, LTV:CAC ratio and payback for e-commerce and subscriptions.</span></a><a class="card" href="/cac-calculator/"><span class="tag">E-commerce & business</span><b>CAC Calculator</b><span>Customer acquisition cost - paid and fully loaded - with payback and LTV:CAC.</span></a><a class="card" href="/profit-margin-calculator/"><span class="tag">E-commerce & business</span><b>Profit Margin &amp; Markup Calculator</b><span>Margin, markup and profit from cost and price - or the price for a target margin.</span></a></div>
+<h2>Related guides</h2><div class="grid"><a class="card" href="/guides/ltv-to-cac-ratio/"><span class="tag">Guide</span><b>LTV to CAC ratio</b><span>The LTV:CAC ratio compares customer lifetime value to acquisition cost. Why 3:1 is the common target, how to calculate both sides correctly, and how to improve it.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const sc = num('sc'), lost = num('lost'), smrr = num('smrr'), cmrr = num('cmrr'), e0 = num('emrr');
+  if (ok(sc, lost) && sc > 0 && lost <= sc) {
+    const c = lost / sc;
+    set('o_churn', pct(c * 100, 2)); set('o_annual', pct((1 - Math.pow(1 - c, 12)) * 100, 1));
+    set('o_life', c > 0 ? fnum(1 / c, 1) + ' months' : 'No churn');
+  }
+  if (ok(smrr, cmrr) && smrr > 0 && cmrr <= smrr) {
+    const e = ok(e0) ? e0 : 0, g = cmrr / smrr, nrr = (smrr - cmrr + e) / smrr;
+    set('o_mrr', pct(g * 100, 2)); set('o_nrr', pct(nrr * 100, 1));
+    set('o_v', nrr >= 1 ? 'Net revenue retention is above 100% - expansion from existing customers outweighs what you lose.' : g > 0.05 ? 'Gross MRR churn above 5% a month is high for most subscription businesses - retention is your biggest lever.' : 'Revenue churn is under control, but expansion is not yet covering it.');
+  } else if (ok(sc, lost) && lost > sc) set('o_v', 'Customers lost cannot be higher than customers at the start.');
+});</script>
+</body></html>

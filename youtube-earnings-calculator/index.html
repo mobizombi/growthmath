@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YouTube Earnings Calculator - Estimate Ad Revenue from Views &amp; RPM</title>
+<meta name="description" content="Free YouTube earnings calculator. Estimate monthly and yearly AdSense revenue from views and RPM, add sponsorships, and see how niche changes what a channel earns.">
+<link rel="canonical" href="https://growthmath.io/youtube-earnings-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="YouTube Earnings Calculator - Estimate Ad Revenue from Views &amp; RPM"><meta property="og:description" content="Free YouTube earnings calculator. Estimate monthly and yearly AdSense revenue from views and RPM, add sponsorships, and see how niche changes what a channel earns."><meta property="og:url" content="https://growthmath.io/youtube-earnings-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"YouTube Earnings Calculator","url":"https://growthmath.io/youtube-earnings-calculator/","description":"Free YouTube earnings calculator. Estimate monthly and yearly AdSense revenue from views and RPM, add sponsorships, and see how niche changes what a channel earns.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does YouTube pay per 1,000 views?","acceptedAnswer":{"@type":"Answer","text":"That is your RPM, and it ranges widely - from well under $1 to more than $10 per 1,000 views depending on niche, audience country, season and video length. Check YouTube Studio for your real number."}},{"@type":"Question","name":"What is the difference between RPM and CPM?","acceptedAnswer":{"@type":"Answer","text":"CPM is what advertisers pay per 1,000 ad impressions. RPM is what you earn per 1,000 views, after YouTube's share and including views with no ads. RPM is lower and is the number to use for income."}},{"@type":"Question","name":"How much does a YouTuber with 1 million views earn?","acceptedAnswer":{"@type":"Answer","text":"Multiply by RPM: at $2 RPM about $2,000, at $5 about $5,000, at $10 about $10,000 - before sponsorships, affiliates and merchandise."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"YouTube Earnings Calculator","item":"https://growthmath.io/youtube-earnings-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#creator">Creators & publishers</a> / YouTube Earnings Calculator</div>
+<h1>YouTube Earnings Calculator</h1>
+<p class="lede">Estimate what a channel earns from ads and sponsorships - using RPM, the number YouTube actually pays on.</p>
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="views">Views per month</label>
+<div class="inp"><input id="views" type="text" inputmode="decimal" value="200000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="rpm">RPM (revenue per 1,000 views)</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="rpm" type="text" inputmode="decimal" value="4" autocomplete="off"></div>
+<div class="hint">Find it in YouTube Studio - Analytics - Revenue.</div></div></div>
+<div class="row2">
+<div class="field"><label for="sp">Sponsored videos per month</label>
+<div class="inp"><input id="sp" type="text" inputmode="decimal" value="1" autocomplete="off"></div>
+</div>
+<div class="field"><label for="rate">Average fee per sponsorship</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="rate" type="text" inputmode="decimal" value="800" autocomplete="off"></div>
+</div></div>
+</div>
+<div class="out">
+<div class="big-label">Estimated monthly ad revenue</div><div class="big" id="o_ad">-</div>
+<div class="stats"><div class="stat"><span>Ad revenue per year</span><strong id="o_year">-</strong></div><div class="stat"><span>Monthly total with sponsors</span><strong id="o_total">-</strong></div><div class="stat"><span>Effective earnings per 1,000 views</span><strong id="o_eff">-</strong></div><div class="stat"><span>Range at RPM -50% / +50%</span><strong id="o_low">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>How YouTube earnings are calculated</h2>
+<div class="formula">Monthly ad revenue = Monthly views / 1,000 x RPM</div>
+<p><b>RPM</b> (revenue per mille) is what you actually earn per 1,000 views, after YouTube's share and counting all views - including those that showed no ad. <b>CPM</b> is what advertisers pay per 1,000 ad impressions, before YouTube's share. RPM is always lower than CPM, and it is the right number for estimating income.</p>
+<h2>Why RPM varies so much</h2>
+<p>RPM depends on how much advertisers will pay to reach your viewers. Rough tendencies, which vary by country and season:</p>
+<div class="tscroll"><table class="t"><tr><th>Niche</th><th>Typical RPM tendency</th></tr><tr><td>Personal finance, investing, business software</td><td>Among the highest - advertisers pay a lot for these viewers</td></tr><tr><td>Tech reviews, education, marketing</td><td>Above average</td></tr><tr><td>Lifestyle, travel, food</td><td>Middle of the range</td></tr><tr><td>Gaming, entertainment, music, vlogs</td><td>Often lower</td></tr><tr><td>YouTube Shorts</td><td>Usually far lower per view than long-form</td></tr></table></div>
+<p>Viewer location matters as much as niche: views from the US, UK, Canada and Australia usually earn several times more than views from lower-cost ad markets. Q4 (October to December) RPMs tend to be highest and January the lowest, because advertiser budgets follow the shopping calendar. The only reliable RPM is the one in your own YouTube Studio.</p>
+<h2>Revenue share basics</h2>
+<p>For long-form videos, creators in the YouTube Partner Program receive the majority of ad revenue (YouTube's published split is 55% to the creator). Shorts revenue is pooled and shared under a separate model, which is one reason Shorts RPMs are much lower. YouTube Premium views also pay creators a share of subscription revenue.</p>
+<h2>Sponsorships often beat ads</h2>
+<p>For channels with a focused audience, one sponsored segment can earn more than a month of ad revenue. Sponsors usually price on expected views - often quoted as a cost per 1,000 views of the video - and pay more for niches with a clear buying audience. Affiliate links in descriptions add a third income stream; estimate it with the <a href="/affiliate-commission-calculator/">affiliate EPC calculator</a>.</p>
+<h2>Requirements to earn ad revenue</h2>
+<p>You need to join the YouTube Partner Program, which requires a minimum number of subscribers plus either public watch hours or Shorts views in a recent period, and you must follow YouTube's monetization policies. Check YouTube's current requirements, as thresholds have changed over time.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>How much does YouTube pay per 1,000 views?</summary><p>That is your RPM, and it ranges widely - from well under $1 to more than $10 per 1,000 views depending on niche, audience country, season and video length. Check YouTube Studio for your real number.</p></details><details><summary>What is the difference between RPM and CPM?</summary><p>CPM is what advertisers pay per 1,000 ad impressions. RPM is what you earn per 1,000 views, after YouTube's share and including views with no ads. RPM is lower and is the number to use for income.</p></details><details><summary>How much does a YouTuber with 1 million views earn?</summary><p>Multiply by RPM: at $2 RPM about $2,000, at $5 about $5,000, at $10 about $10,000 - before sponsorships, affiliates and merchandise.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/affiliate-commission-calculator/"><span class="tag">Affiliate marketing</span><b>Affiliate Commission &amp; EPC Calculator</b><span>Estimate affiliate earnings, EPC and the traffic you need to hit a goal.</span></a><a class="card" href="/cpm-cpc-cpa-calculator/"><span class="tag">Paid ads</span><b>CPM, CPC &amp; CPA Calculator</b><span>All your ad cost metrics - CPM, CPC, CTR, CPA, conversion rate - at once.</span></a><a class="card" href="/utm-builder/"><span class="tag">SEO & tracking</span><b>UTM Link Builder</b><span>Build clean, consistent UTM tracking links for GA4.</span></a></div>
+
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const v = num('views'), r = num('rpm'), sp0 = num('sp'), rate0 = num('rate');
+  if (!ok(v, r)) return;
+  const ad = v / 1000 * r, spon = (ok(sp0) ? sp0 : 0) * (ok(rate0) ? rate0 : 0), tot = ad + spon;
+  set('o_ad', money(ad)); set('o_year', money(ad * 12)); set('o_total', money(tot));
+  set('o_eff', v > 0 ? money(tot / v * 1000) : '-');
+  set('o_low', money(ad * 0.5, 0) + ' - ' + money(ad * 1.5, 0));
+  set('o_v', v > 0 && spon > ad ? 'Sponsorships earn more than ads here - common for channels in niches with a clear buyer audience.' : 'Ad revenue swings with season and audience; treat this as an estimate, not a forecast.');
+});</script>
+</body></html>

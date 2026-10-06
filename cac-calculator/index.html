@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAC Calculator - Customer Acquisition Cost, Payback &amp; LTV:CAC</title>
+<meta name="description" content="Free CAC calculator. Work out paid and fully loaded customer acquisition cost, CAC payback in months and your LTV:CAC ratio from a few numbers.">
+<link rel="canonical" href="https://growthmath.io/cac-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="CAC Calculator - Customer Acquisition Cost, Payback &amp; LTV:CAC"><meta property="og:description" content="Free CAC calculator. Work out paid and fully loaded customer acquisition cost, CAC payback in months and your LTV:CAC ratio from a few numbers."><meta property="og:url" content="https://growthmath.io/cac-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CAC Calculator","url":"https://growthmath.io/cac-calculator/","description":"Free CAC calculator. Work out paid and fully loaded customer acquisition cost, CAC payback in months and your LTV:CAC ratio from a few numbers.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a good CAC?","acceptedAnswer":{"@type":"Answer","text":"There is no universal number. A good CAC is comfortably below the gross profit a customer brings over their lifetime - typically one third of LTV or less - and is earned back within about 12 months."}},{"@type":"Question","name":"Should CAC include salaries?","acceptedAnswer":{"@type":"Answer","text":"For fully loaded CAC, yes. Include marketing and sales salaries, agencies and tools. Paid CAC (ads only) is useful for channel decisions but flatters the true cost."}},{"@type":"Question","name":"What is the difference between CAC and CPA?","acceptedAnswer":{"@type":"Answer","text":"CPA is the cost of any conversion action - a lead, signup or purchase - usually measured per campaign. CAC is the cost of winning a new paying customer, usually across all channels and costs."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"CAC Calculator","item":"https://growthmath.io/cac-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#ecom">E-commerce & business</a> / CAC Calculator</div>
+<h1>Customer Acquisition Cost (CAC) Calculator</h1>
+<p class="lede">What one new customer really costs you - once salaries, tools and agencies are counted, not just ad spend.</p>
+<section class="tool"><div>
+
+<div class="field"><label for="ads">Ad spend in the period</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="ads" type="text" inputmode="decimal" value="36000" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="other">Other sales & marketing costs</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="other" type="text" inputmode="decimal" value="24000" autocomplete="off"></div>
+<div class="hint">Marketing and sales salaries, agencies, tools, content, commissions. Leave 0 for paid CAC only.</div></div>
+
+<div class="field"><label for="cust">New customers in the period</label>
+<div class="inp"><input id="cust" type="text" inputmode="decimal" value="400" autocomplete="off"></div>
+</div>
+<div class="row2">
+<div class="field"><label for="mgp">Monthly gross profit per customer</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="mgp" type="text" inputmode="decimal" value="41.65" autocomplete="off"></div>
+<div class="hint">Optional - for payback.</div></div>
+<div class="field"><label for="ltv">Customer lifetime value</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="ltv" type="text" inputmode="decimal" value="1388" autocomplete="off"></div>
+<div class="hint">Optional - gross-profit LTV.</div></div></div>
+</div>
+<div class="out">
+<div class="big-label">Fully loaded CAC</div><div class="big" id="o_cac">-</div>
+<div class="stats"><div class="stat"><span>Paid CAC (ads only)</span><strong id="o_paid">-</strong></div><div class="stat"><span>CAC payback</span><strong id="o_pay">-</strong></div><div class="stat"><span>LTV : CAC</span><strong id="o_ratio">-</strong></div><div class="stat"><span>Max CAC at 3:1</span><strong id="o_max">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>The CAC formula</h2>
+<div class="formula">CAC = Total sales and marketing cost / New customers acquired</div>
+<p>Use the same period on both sides. If you spent $60,000 on sales and marketing last quarter and won 400 new customers, CAC is $150.</p>
+<h2>Paid CAC vs. fully loaded CAC</h2>
+<p><b>Paid CAC</b> divides only ad spend by new customers. It is useful for comparing channels and campaigns day to day. <b>Fully loaded CAC</b> adds everything it takes to win customers: marketing and sales salaries, agencies, freelancers, software, content production and sales commissions. It is the honest number for unit economics, and the one investors and lenders ask for.</p>
+<p>The gap is often large. In the default example, paid CAC is $90 but fully loaded CAC is $150 - a ratio that looks like 15:1 on ad spend alone is really about 9:1.</p>
+<h2>CAC payback period</h2>
+<div class="formula">CAC payback (months) = CAC / Monthly gross profit per customer</div>
+<p>Payback tells you how long cash is tied up in each new customer. Under 12 months is generally considered healthy for subscription businesses; longer paybacks need more cash to grow and leave you exposed if customers churn early.</p>
+<h2>Blended vs. new-customer CAC</h2>
+<p>Only count genuinely new customers in the denominator. Including returning customers who would have bought anyway makes CAC look lower than it is. If you can, calculate CAC per channel as well as blended - a blended average often hides one channel that is losing money.</p>
+<h2>How to lower CAC</h2>
+<ul><li>Improve landing-page and trial conversion rates - the same spend then wins more customers.</li><li>Cut channels whose CAC is above break-even and move budget to efficient ones.</li><li>Invest in compounding channels such as SEO, referrals and partnerships, whose cost per customer falls over time.</li><li>Raise prices or average order value, which does not lower CAC but improves the ratio to LTV.</li></ul>
+<p>Pair this with the <a href="/customer-ltv-calculator/">LTV calculator</a> and read <a href="/guides/ltv-to-cac-ratio/">what LTV:CAC ratio to aim for</a>.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>What is a good CAC?</summary><p>There is no universal number. A good CAC is comfortably below the gross profit a customer brings over their lifetime - typically one third of LTV or less - and is earned back within about 12 months.</p></details><details><summary>Should CAC include salaries?</summary><p>For fully loaded CAC, yes. Include marketing and sales salaries, agencies and tools. Paid CAC (ads only) is useful for channel decisions but flatters the true cost.</p></details><details><summary>What is the difference between CAC and CPA?</summary><p>CPA is the cost of any conversion action - a lead, signup or purchase - usually measured per campaign. CAC is the cost of winning a new paying customer, usually across all channels and costs.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/customer-ltv-calculator/"><span class="tag">E-commerce & business</span><b>Customer Lifetime Value (LTV) Calculator</b><span>LTV, LTV:CAC ratio and payback for e-commerce and subscriptions.</span></a><a class="card" href="/churn-rate-calculator/"><span class="tag">E-commerce & business</span><b>Churn Rate &amp; MRR Calculator</b><span>Customer churn, MRR churn, net revenue retention and average lifetime.</span></a><a class="card" href="/break-even-cpa-calculator/"><span class="tag">Paid ads</span><b>Break-Even CPA Calculator</b><span>The most you can pay for a customer before an ad campaign loses money.</span></a></div>
+<h2>Related guides</h2><div class="grid"><a class="card" href="/guides/ltv-to-cac-ratio/"><span class="tag">Guide</span><b>LTV to CAC ratio</b><span>The LTV:CAC ratio compares customer lifetime value to acquisition cost. Why 3:1 is the common target, how to calculate both sides correctly, and how to improve it.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const a = num('ads'), o0 = num('other'), c = num('cust'), mgp = num('mgp'), ltv = num('ltv');
+  if (!ok(a, c) || c <= 0) return;
+  const o = ok(o0) ? o0 : 0, full = (a + o) / c, paid = a / c;
+  set('o_cac', money(full)); set('o_paid', money(paid));
+  const pay = ok(mgp) && mgp > 0 ? full / mgp : NaN, ratio = ok(ltv) && ltv > 0 && full > 0 ? ltv / full : NaN;
+  set('o_pay', ok(pay) ? fnum(pay, 1) + ' months' : '-');
+  set('o_ratio', ok(ratio) ? fnum(ratio, 1) + ' : 1' : '-');
+  set('o_max', ok(ltv) && ltv > 0 ? money(ltv / 3) : '-');
+  set('o_v', ok(ratio) ? (ratio < 1 ? 'Each customer costs more than they are worth. Fix CAC or retention before scaling.' : ratio < 3 ? 'Below the 3:1 benchmark - profitable but thin.' : ratio > 5 ? 'Above 5:1 - you can probably afford to spend more on growth.' : 'Healthy 3-5:1 ratio.')
+    : ok(pay) ? 'It takes ' + fnum(pay, 1) + ' months of gross profit to earn back what you paid for a customer.' : 'Add monthly gross profit or LTV to see payback and LTV:CAC.');
+});</script>
+</body></html>

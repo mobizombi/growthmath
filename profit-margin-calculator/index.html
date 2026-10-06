@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Profit Margin Calculator - Margin, Markup &amp; Selling Price</title>
+<meta name="description" content="Free profit margin calculator. Get gross margin, markup and profit from cost and price, or find the selling price you need for a target margin.">
+<link rel="canonical" href="https://growthmath.io/profit-margin-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="Profit Margin Calculator - Margin, Markup &amp; Selling Price"><meta property="og:description" content="Free profit margin calculator. Get gross margin, markup and profit from cost and price, or find the selling price you need for a target margin."><meta property="og:url" content="https://growthmath.io/profit-margin-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Profit Margin & Markup Calculator","url":"https://growthmath.io/profit-margin-calculator/","description":"Free profit margin calculator. Get gross margin, markup and profit from cost and price, or find the selling price you need for a target margin.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can margin be over 100%?","acceptedAnswer":{"@type":"Answer","text":"No. Margin is a share of the price, so it can approach but never reach 100%. Markup can be any size."}},{"@type":"Question","name":"What should I include in cost?","acceptedAnswer":{"@type":"Answer","text":"For gross margin, include the direct cost of the unit: product, packaging, shipping to you, and payment fees. Rent and salaries belong in net margin."}},{"@type":"Question","name":"How do I convert markup to margin?","acceptedAnswer":{"@type":"Answer","text":"Margin = Markup / (1 + Markup). A 100% markup is a 50% margin; a 50% markup is a 33.3% margin."}},{"@type":"Question","name":"Should I price with margin or markup?","acceptedAnswer":{"@type":"Answer","text":"Most retailers think in markup on cost because it is easy to apply, but plan and report in margin, because ad budgets, break-even ROAS and profit all depend on margin."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Profit Margin & Markup Calculator","item":"https://growthmath.io/profit-margin-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#ecom">E-commerce & business</a> / Profit Margin &amp; Markup Calculator</div>
+<h1>Profit Margin &amp; Markup Calculator</h1>
+<p class="lede">Enter cost and price to get margin and markup - or set a target margin and get the price to charge.</p>
+<section class="tool"><div>
+
+<div class="field"><label for="cost">Cost</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="cost" type="text" inputmode="decimal" value="40" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="price">Selling price</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="price" type="text" inputmode="decimal" value="100" autocomplete="off"></div>
+</div>
+<hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+
+<div class="field"><label for="tm">Target margin (optional)</label>
+<div class="inp has-suf"><input id="tm" type="text" inputmode="decimal" value="50" autocomplete="off"><span class="suf">%</span></div>
+<div class="hint">We will show the price you need to hit this margin.</div></div>
+</div>
+<div class="out">
+<div class="big-label">Gross margin</div><div class="big" id="o_m">-</div>
+<div class="stats"><div class="stat"><span>Markup</span><strong id="o_mu">-</strong></div><div class="stat"><span>Profit per unit</span><strong id="o_p">-</strong></div><div class="stat"><span>Price for target margin</span><strong id="o_tp">-</strong></div><div class="stat"><span>Markup for target margin</span><strong id="o_tmu">-</strong></div></div>
+</div></section>
+
+<article class="content narrow">
+<h2>Margin vs. markup</h2>
+<p>They use the same two numbers but divide by different things, which is why they are so often confused.</p>
+<div class="formula">Margin = (Price - Cost) / Price<br>Markup = (Price - Cost) / Cost<br>Price for target margin = Cost / (1 - Target margin)</div>
+<p>A product that costs $40 and sells for $100 has a 60% margin but a 150% markup. Pricing with "50% markup" when you meant "50% margin" leaves you with a 33% margin instead.</p>
+<div class="tscroll"><table class="t"><tr><th>Markup</th><th>Equals margin</th></tr>
+<tr><td>25%</td><td>20%</td></tr><tr><td>50%</td><td>33.3%</td></tr><tr><td>100%</td><td>50%</td></tr><tr><td>150%</td><td>60%</td></tr><tr><td>300%</td><td>75%</td></tr></table></div>
+<h2>Worked example: pricing a new product</h2>
+<p>A candle costs $8 to make, $1.50 to package and $0.90 in payment fees on average - $10.40 in total. The shop wants a 65% gross margin to leave room for ads and overheads.</p>
+<ul><li>Price for 65% margin: $10.40 / (1 - 0.65) = <b>$29.71</b>, so price at $29.99 or $30</li><li>At $30: margin = ($30 - $10.40) / $30 = 65.3%; markup = 188%</li><li>If the owner had applied a "65% markup" by mistake: $10.40 x 1.65 = $17.16, a margin of only 39%</li></ul>
+<h2>Typical gross margins by business type</h2>
+<div class="tscroll"><table class="t"><tr><th>Business type</th><th>Typical gross margin</th></tr><tr><td>Grocery and convenience</td><td>20% - 30%</td></tr><tr><td>Consumer electronics retail</td><td>20% - 35%</td></tr><tr><td>General e-commerce</td><td>35% - 50%</td></tr><tr><td>Apparel (own brand)</td><td>50% - 65%</td></tr><tr><td>Cosmetics and supplements</td><td>60% - 80%</td></tr><tr><td>Software and digital products</td><td>75% - 90%</td></tr></table></div>
+<p>These are broad ranges and vary by brand, channel and scale - use them to sanity-check your pricing, not as targets.</p>
+<h2>Gross margin vs. net margin</h2>
+<p>Gross margin only subtracts the direct cost of the product. Net margin subtracts everything: ads, salaries, rent, software, interest and tax. A product with a 60% gross margin can easily produce a 10% net margin once acquisition and overheads are paid. That is why your gross margin decides how much you can spend on ads - see the <a href="/roas-calculator/">ROAS calculator</a> for the break-even ROAS your margin implies.</p>
+<h2>Discounts eat margin faster than you think</h2>
+<p>A 20% discount on a product with a 50% margin does not cut profit by 20% - it cuts it by 40%. On a $100 product costing $50, profit falls from $50 to $30. To make the same total profit you need about 67% more sales. Run the numbers before running the sale.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>Can margin be over 100%?</summary><p>No. Margin is a share of the price, so it can approach but never reach 100%. Markup can be any size.</p></details><details><summary>What should I include in cost?</summary><p>For gross margin, include the direct cost of the unit: product, packaging, shipping to you, and payment fees. Rent and salaries belong in net margin.</p></details><details><summary>How do I convert markup to margin?</summary><p>Margin = Markup / (1 + Markup). A 100% markup is a 50% margin; a 50% markup is a 33.3% margin.</p></details><details><summary>Should I price with margin or markup?</summary><p>Most retailers think in markup on cost because it is easy to apply, but plan and report in margin, because ad budgets, break-even ROAS and profit all depend on margin.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/roas-calculator/"><span class="tag">Paid ads</span><b>ROAS Calculator</b><span>Return on ad spend plus your break-even ROAS from margin.</span></a><a class="card" href="/break-even-cpa-calculator/"><span class="tag">Paid ads</span><b>Break-Even CPA Calculator</b><span>The most you can pay for a customer before an ad campaign loses money.</span></a><a class="card" href="/customer-ltv-calculator/"><span class="tag">E-commerce & business</span><b>Customer Lifetime Value (LTV) Calculator</b><span>LTV, LTV:CAC ratio and payback for e-commerce and subscriptions.</span></a></div>
+<h2>Related guides</h2><div class="grid"><a class="card" href="/guides/what-is-a-good-roas/"><span class="tag">Guide</span><b>What is a good ROAS?</b><span>What counts as a good ROAS depends on your margin. Break-even ROAS by margin, typical ROAS by channel, and how to set a target ROAS that leaves profit.</span></a><a class="card" href="/guides/break-even-roas-formula/"><span class="tag">Guide</span><b>Break-even ROAS formula</b><span>The break-even ROAS formula is 1 / gross margin. How to calculate gross margin correctly, worked examples, and how to turn break-even ROAS into CPA and bids.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const c = num('cost'), p = num('price'), tm = num('tm') / 100;
+  if (ok(c, p) && p > 0) { set('o_m', pct((p - c) / p * 100)); set('o_mu', c > 0 ? pct((p - c) / c * 100) : '-'); set('o_p', money(p - c)); $('o_m').classList.toggle('bad', p < c); }
+  if (ok(c, tm) && tm < 1) { set('o_tp', money(c / (1 - tm))); set('o_tmu', pct(tm / (1 - tm) * 100)); } else { set('o_tp', '-'); set('o_tmu', '-'); }
+});</script>
+</body></html>

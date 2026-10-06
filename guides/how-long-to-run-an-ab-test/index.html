@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Long Should You Run an A/B Test? (Sample Size Guide)</title>
+<meta name="description" content="How long to run an A/B test: sample size by conversion rate and expected lift, why to run at least one to two weeks, and the mistakes that create false winners.">
+<link rel="canonical" href="https://growthmath.io/guides/how-long-to-run-an-ab-test/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="How Long Should You Run an A/B Test? (Sample Size Guide)"><meta property="og:description" content="How long to run an A/B test: sample size by conversion rate and expected lift, why to run at least one to two weeks, and the mistakes that create false winners."><meta property="og:url" content="https://growthmath.io/guides/how-long-to-run-an-ab-test/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How Long Should You Run an A/B Test? (Sample Size Guide)","description":"How long to run an A/B test: sample size by conversion rate and expected lift, why to run at least one to two weeks, and the mistakes that create false winners.","url":"https://growthmath.io/guides/how-long-to-run-an-ab-test/","datePublished":"2026-10-06","dateModified":"2026-10-06","author":{"@type":"Organization","name":"GrowthMath"},"publisher":{"@type":"Organization","name":"GrowthMath"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the minimum time to run an A/B test?","acceptedAnswer":{"@type":"Answer","text":"At least one full week, and ideally two, even if the required sample size is reached sooner."}},{"@type":"Question","name":"Can I stop an A/B test early if it reaches 95% confidence?","acceptedAnswer":{"@type":"Answer","text":"Not safely. Stopping at the first significant reading inflates false positives. Wait for the sample size you planned."}},{"@type":"Question","name":"What if my site does not have enough traffic?","acceptedAnswer":{"@type":"Answer","text":"Test bigger changes that could produce 20 to 30% lifts, test on your highest-traffic pages, or measure an earlier step in the funnel such as add-to-cart."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://growthmath.io/guides/"},{"@type":"ListItem","position":3,"name":"How long to run an A/B test","item":"https://growthmath.io/guides/how-long-to-run-an-ab-test/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/guides/">Guides</a> / How long to run an A/B test</div>
+<h1>How Long Should You Run an A/B Test?</h1>
+<p class="lede">Stop too early and you ship false winners. Run too long and you waste traffic. Here is how to plan the right duration before you start.</p>
+<h2>Calculators for this guide</h2><div class="grid"><a class="card" href="/ab-test-significance-calculator/"><span class="tag">Testing & CRO</span><b>A/B Test Significance Calculator</b><span>Is your winning variant real or noise? Get confidence and uplift.</span></a><a class="card" href="/cpm-cpc-cpa-calculator/"><span class="tag">Paid ads</span><b>CPM, CPC &amp; CPA Calculator</b><span>All your ad cost metrics - CPM, CPC, CTR, CPA, conversion rate - at once.</span></a></div>
+
+<article class="content narrow">
+<p>Run an A/B test until it reaches the sample size you calculated before starting, and for at least one full week - ideally two - so every day of the week is represented. Never stop just because the dashboard shows 95% confidence on day three. The duration comes from three things: your baseline conversion rate, the smallest lift you want to detect, and how much traffic you have.</p>
+<h2>Step 1: decide the minimum lift worth detecting</h2>
+<p>Ask: what is the smallest improvement that would change a decision? For a pricing page that might be a 10% relative lift; for a button colour, nothing small is worth the effort. The smaller the lift, the more traffic you need - roughly four times the traffic to detect half the effect.</p>
+<h2>Step 2: look up the sample size</h2>
+<p>At 95% confidence and 80% power (the usual defaults), the visitors needed per variant are approximately:</p>
+<div class="tscroll"><table class="t"><tr><th>Baseline conversion</th><th>10% relative lift</th><th>20% relative lift</th><th>30% relative lift</th></tr><tr><td>1%</td><td>~163,000</td><td>~42,700</td><td>~19,800</td></tr><tr><td>2%</td><td>~80,700</td><td>~21,100</td><td>~9,800</td></tr><tr><td>3%</td><td>~53,200</td><td>~13,900</td><td>~6,400</td></tr><tr><td>5%</td><td>~31,200</td><td>~8,200</td><td>~3,800</td></tr><tr><td>10%</td><td>~14,800</td><td>~3,800</td><td>~1,800</td></tr></table></div>
+<p>These come from the standard two-proportion sample size formula. Multiply by the number of variants (two for a classic A/B test) to get total traffic.</p>
+<h2>Step 3: convert sample size into days</h2>
+<div class="formula">Days = (Visitors per variant x Number of variants) / Daily visitors in the test</div>
+<p>Example: a product page converts at 3%, gets 2,000 visitors a day, and the team wants to detect a 20% lift. That needs about 13,900 per variant, or 27,800 total - about 14 days. If the result says 3 days, still run a full week; if it says 6 months, test something bolder.</p>
+<div class="tscroll"><table class="t"><tr><th>Situation</th><th>What to do</th></tr><tr><td>Under 7 days needed</td><td>Run for 7 to 14 days anyway to cover weekly cycles</td></tr><tr><td>1 to 4 weeks needed</td><td>Ideal; run as planned</td></tr><tr><td>More than 6 to 8 weeks needed</td><td>Test a bigger change, test higher in the funnel, or use a higher-traffic page</td></tr></table></div>
+<h2>Why at least one full week</h2>
+<p>Visitors behave differently on Monday morning and Saturday night, and email sends, paydays and promotions create spikes. A test that runs Tuesday to Thursday only measures Tuesday-to-Thursday visitors. Running whole weeks averages these cycles out.</p>
+<h2>Mistakes that create false winners</h2>
+<ul><li><b>Peeking.</b> Checking significance every day and stopping at the first 95% reading pushes the real false-positive rate well above 5%. Decide the sample size first and check significance at the end.</li><li><b>Changing the test mid-way.</b> Editing a variant or splitting traffic differently resets the experiment.</li><li><b>Novelty effect.</b> Returning visitors sometimes click a new design simply because it is new. Longer tests let this fade.</li><li><b>Too many variants.</b> Each extra variant needs its own full sample and raises the chance of a lucky winner.</li><li><b>Ignoring segments after the fact.</b> Slicing results by device or country until something "wins" is fishing. Plan segments before starting.</li></ul>
+<h2>When the test ends</h2>
+<p>Enter the final visitors and conversions for each variant into the <a href="/ab-test-significance-calculator/">A/B test significance calculator</a>. If you reach 95% confidence and the lift is big enough to matter, ship it. If not, the honest conclusion is "no detectable difference" - which is still useful, because it tells you this change is not where the growth is.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>What is the minimum time to run an A/B test?</summary><p>At least one full week, and ideally two, even if the required sample size is reached sooner.</p></details><details><summary>Can I stop an A/B test early if it reaches 95% confidence?</summary><p>Not safely. Stopping at the first significant reading inflates false positives. Wait for the sample size you planned.</p></details><details><summary>What if my site does not have enough traffic?</summary><p>Test bigger changes that could produce 20 to 30% lifts, test on your highest-traffic pages, or measure an earlier step in the funnel such as add-to-cart.</p></details></div></article>
+<h2>More guides</h2><div class="grid"><a class="card" href="/guides/what-is-a-good-roas/"><span class="tag">Guide</span><b>What is a good ROAS?</b><span>What counts as a good ROAS depends on your margin. Break-even ROAS by margin, typical ROAS by channel, and how to set a target ROAS that leaves profit.</span></a><a class="card" href="/guides/break-even-roas-formula/"><span class="tag">Guide</span><b>Break-even ROAS formula</b><span>The break-even ROAS formula is 1 / gross margin. How to calculate gross margin correctly, worked examples, and how to turn break-even ROAS into CPA and bids.</span></a><a class="card" href="/guides/how-to-calculate-epc/"><span class="tag">Guide</span><b>How to calculate EPC</b><span>EPC = commissions / clicks. How to calculate earnings per click, EPC per 100 clicks, what a good EPC is, and how to use EPC to choose affiliate offers.</span></a><a class="card" href="/guides/ltv-to-cac-ratio/"><span class="tag">Guide</span><b>LTV to CAC ratio</b><span>The LTV:CAC ratio compares customer lifetime value to acquisition cost. Why 3:1 is the common target, how to calculate both sides correctly, and how to improve it.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+
+</body></html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CPM, CPC &amp; CPA Calculator - All Ad Metrics in One</title>
+<meta name="description" content="Calculate CPM, CPC, CTR, CPA and conversion rate from ad spend, impressions, clicks and conversions. Free ad metrics calculator for any ad platform.">
+<link rel="canonical" href="https://growthmath.io/cpm-cpc-cpa-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="CPM, CPC &amp; CPA Calculator - All Ad Metrics in One"><meta property="og:description" content="Calculate CPM, CPC, CTR, CPA and conversion rate from ad spend, impressions, clicks and conversions. Free ad metrics calculator for any ad platform."><meta property="og:url" content="https://growthmath.io/cpm-cpc-cpa-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CPM, CPC & CPA Calculator","url":"https://growthmath.io/cpm-cpc-cpa-calculator/","description":"Calculate CPM, CPC, CTR, CPA and conversion rate from ad spend, impressions, clicks and conversions. Free ad metrics calculator for any ad platform.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between CPM and CPC?","acceptedAnswer":{"@type":"Answer","text":"CPM is the cost of 1,000 ad impressions. CPC is the cost of a single click. You can convert between them with CTR: CPC = CPM / (CTR x 10)."}},{"@type":"Question","name":"What is a good CPA?","acceptedAnswer":{"@type":"Answer","text":"Any CPA below the profit you make per conversion. Use the break-even CPA calculator to find your ceiling."}},{"@type":"Question","name":"Does this work for Google Ads and Meta Ads?","acceptedAnswer":{"@type":"Answer","text":"Yes. The formulas are the same on every platform - just copy spend, impressions, clicks and conversions from the dashboard."}},{"@type":"Question","name":"How do I calculate CPM from CPC and CTR?","acceptedAnswer":{"@type":"Answer","text":"CPM = CPC x CTR x 1,000, with CTR as a decimal. A $0.80 CPC at a 1.5% CTR equals a $12 CPM."}},{"@type":"Question","name":"Why did my CPM jump in November and December?","acceptedAnswer":{"@type":"Answer","text":"Q4 brings more advertisers into the same auctions for Black Friday and the holidays, so the price of reaching people rises. Expect higher CPMs from October and plan budgets and target CPAs around it."}},{"@type":"Question","name":"Should I optimise for CPC or CPA?","acceptedAnswer":{"@type":"Answer","text":"For sales and leads, optimise for CPA. Cheap clicks are worthless if they do not convert, and some of the lowest-CPC placements bring the weakest traffic."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"CPM, CPC & CPA Calculator","item":"https://growthmath.io/cpm-cpc-cpa-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#ads">Paid ads</a> / CPM, CPC &amp; CPA Calculator</div>
+<h1>CPM, CPC &amp; CPA Calculator</h1>
+<p class="lede">Paste the four numbers from any ad dashboard and get every cost and rate metric instantly.</p>
+<section class="tool"><div>
+
+<div class="field"><label for="spend">Ad spend</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="spend" type="text" inputmode="decimal" value="500" autocomplete="off"></div>
+</div>
+<div class="row2">
+<div class="field"><label for="imp">Impressions</label>
+<div class="inp"><input id="imp" type="text" inputmode="decimal" value="120000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="clk">Clicks</label>
+<div class="inp"><input id="clk" type="text" inputmode="decimal" value="1800" autocomplete="off"></div>
+</div></div>
+
+<div class="field"><label for="conv">Conversions</label>
+<div class="inp"><input id="conv" type="text" inputmode="decimal" value="45" autocomplete="off"></div>
+<div class="hint">Sales, leads or sign-ups - whatever you optimise for.</div></div>
+</div>
+<div class="out">
+<div class="big-label">Cost per acquisition (CPA)</div><div class="big" id="o_cpa">-</div>
+<div class="stats"><div class="stat"><span>CPM (per 1,000 views)</span><strong id="o_cpm">-</strong></div><div class="stat"><span>CPC (per click)</span><strong id="o_cpc">-</strong></div><div class="stat"><span>CTR</span><strong id="o_ctr">-</strong></div><div class="stat"><span>Conversion rate</span><strong id="o_cvr">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>The formulas</h2>
+<div class="formula">CPM = Spend / Impressions x 1,000<br>CPC = Spend / Clicks<br>CTR = Clicks / Impressions x 100<br>Conversion rate = Conversions / Clicks x 100<br>CPA = Spend / Conversions</div>
+<h2>How the metrics connect</h2>
+<p>These numbers are a chain. CPA is simply CPC divided by conversion rate, and CPC is CPM divided by (CTR x 10). That tells you where to look when costs rise:</p>
+<ul><li><b>High CPM</b> - you are paying a lot to be seen. Audience is small or competitive, or it is a seasonal peak (Q4).</li><li><b>Low CTR</b> - the ad is not earning the click. Fix the hook, image or offer.</li><li><b>Low conversion rate</b> - people click but do not buy. Fix the landing page, price or trust signals.</li></ul>
+<h2>Typical benchmarks</h2>
+<div class="tscroll"><table class="t"><tr><th>Platform</th><th>Typical CPM</th><th>Typical CTR</th></tr>
+<tr><td>Meta (Facebook/Instagram)</td><td>$8 - $20</td><td>0.9% - 1.5%</td></tr>
+<tr><td>Google Search</td><td>n/a (CPC based)</td><td>3% - 6%</td></tr>
+<tr><td>Google Display</td><td>$2 - $6</td><td>0.3% - 0.6%</td></tr>
+<tr><td>TikTok</td><td>$5 - $12</td><td>0.8% - 1.5%</td></tr>
+<tr><td>LinkedIn</td><td>$25 - $60</td><td>0.4% - 0.7%</td></tr></table></div>
+<p class="small muted">Benchmarks vary widely by country, industry and season - treat them as a rough sanity check, not a target.</p>
+<h2>Worked example: finding the weak link</h2>
+<p>Two campaigns each spend $1,000 and produce 40 sales, so both have a $25 CPA. The chain shows they have completely different problems:</p>
+<div class="tscroll"><table class="t"><tr><th>Metric</th><th>Campaign A</th><th>Campaign B</th></tr><tr><td>CPM</td><td>$20.00</td><td>$5.00</td></tr><tr><td>CTR</td><td>2.0%</td><td>0.5%</td></tr><tr><td>CPC</td><td>$1.00</td><td>$1.00</td></tr><tr><td>Conversion rate</td><td>4.0%</td><td>4.0%</td></tr><tr><td>CPA</td><td>$25.00</td><td>$25.00</td></tr></table></div>
+<p>Campaign A pays a lot for attention but earns clicks well - it needs a broader or cheaper audience. Campaign B reaches people cheaply but its ad is ignored - it needs a new hook or creative. Same CPA, opposite fixes. Without the full chain you would treat them the same.</p>
+<h2>How each lever moves CPA</h2>
+<div class="formula">CPA = CPM / (1,000 x CTR x Conversion rate)</div>
+<p>Because the formula multiplies, improvements compound. Raising CTR from 1% to 1.5% and conversion rate from 2% to 3% together cuts CPA by more than half (1 / (1.5 x 1.5) = 44% of the original). That is usually far easier than finding a 56% cheaper audience.</p>
+<ul><li><b>CPM</b> is mostly set by the auction: audience size, competition and season. You influence it with broader targeting and better ad quality scores, but only so much.</li><li><b>CTR</b> is the creative's job. Test hooks, thumbnails and offers before anything else.</li><li><b>Conversion rate</b> is the landing page and offer. Page speed, price, reviews and a clear next step move it.</li></ul>
+<h2>Reading the numbers by funnel stage</h2>
+<p>Do not compare metrics across objectives. A brand-awareness campaign optimised for reach will show a low CPM and a weak CTR by design, while a retargeting campaign shows a high CPM but strong conversion rate. Compare like with like: prospecting to prospecting, retargeting to retargeting, and the same objective on the same platform.</p>
+<h2>Sample size before you judge</h2>
+<p>CPA from five conversions is noise. As a rough rule, wait for at least 50 conversions (or several thousand clicks for CTR) before declaring one campaign better than another. For formal tests, use the <a href="/ab-test-significance-calculator/">A/B test significance calculator</a>.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>What is the difference between CPM and CPC?</summary><p>CPM is the cost of 1,000 ad impressions. CPC is the cost of a single click. You can convert between them with CTR: CPC = CPM / (CTR x 10).</p></details><details><summary>What is a good CPA?</summary><p>Any CPA below the profit you make per conversion. Use the break-even CPA calculator to find your ceiling.</p></details><details><summary>Does this work for Google Ads and Meta Ads?</summary><p>Yes. The formulas are the same on every platform - just copy spend, impressions, clicks and conversions from the dashboard.</p></details><details><summary>How do I calculate CPM from CPC and CTR?</summary><p>CPM = CPC x CTR x 1,000, with CTR as a decimal. A $0.80 CPC at a 1.5% CTR equals a $12 CPM.</p></details><details><summary>Why did my CPM jump in November and December?</summary><p>Q4 brings more advertisers into the same auctions for Black Friday and the holidays, so the price of reaching people rises. Expect higher CPMs from October and plan budgets and target CPAs around it.</p></details><details><summary>Should I optimise for CPC or CPA?</summary><p>For sales and leads, optimise for CPA. Cheap clicks are worthless if they do not convert, and some of the lowest-CPC placements bring the weakest traffic.</p></details></div></article>
+
+<h2>Related tools</h2><div class="grid"><a class="card" href="/roas-calculator/"><span class="tag">Paid ads</span><b>ROAS Calculator</b><span>Return on ad spend plus your break-even ROAS from margin.</span></a><a class="card" href="/break-even-cpa-calculator/"><span class="tag">Paid ads</span><b>Break-Even CPA Calculator</b><span>The most you can pay for a customer before an ad campaign loses money.</span></a><a class="card" href="/ab-test-significance-calculator/"><span class="tag">Testing & CRO</span><b>A/B Test Significance Calculator</b><span>Is your winning variant real or noise? Get confidence and uplift.</span></a></div>
+<h2>Related guides</h2><div class="grid"><a class="card" href="/guides/how-to-calculate-epc/"><span class="tag">Guide</span><b>How to calculate EPC</b><span>EPC = commissions / clicks. How to calculate earnings per click, EPC per 100 clicks, what a good EPC is, and how to use EPC to choose affiliate offers.</span></a><a class="card" href="/guides/how-long-to-run-an-ab-test/"><span class="tag">Guide</span><b>How long to run an A/B test</b><span>How long to run an A/B test: sample size by conversion rate and expected lift, why to run at least one to two weeks, and the mistakes that create false winners.</span></a></div>
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const s = num('spend'), i = num('imp'), c = num('clk'), v = num('conv');
+  set('o_cpm', ok(s, i) && i > 0 ? money(s / i * 1000) : '-');
+  set('o_cpc', ok(s, c) && c > 0 ? money(s / c) : '-');
+  set('o_ctr', ok(c, i) && i > 0 ? pct(c / i * 100) : '-');
+  set('o_cvr', ok(v, c) && c > 0 ? pct(v / c * 100) : '-');
+  set('o_cpa', ok(s, v) && v > 0 ? money(s / v) : '-');
+  const ctr = c / i * 100;
+  set('o_v', ok(ctr) ? (ctr < 0.9 ? 'CTR under 0.9% is weak for most platforms - test new creative or tighter targeting.' : ctr > 2 ? 'CTR above 2% is strong - if CPA is still high, the problem is the landing page, not the ad.' : 'CTR is in the normal range. Watch conversion rate for the next lever.') : '');
+});</script>
+</body></html>
