@@ -795,4 +795,347 @@ ${table(['Niche', 'Typical RPM tendency'], [['Personal finance, investing, busin
     ],
     related: ['affiliate-commission-calculator', 'cpm-cpc-cpa-calculator', 'utm-builder'],
   },
+
+  // ---------------------------------------------------------------- Engagement rate
+  {
+    slug: 'engagement-rate-calculator',
+    cat: 'creator',
+    name: 'Engagement Rate Calculator',
+    short: 'Instagram, TikTok or LinkedIn engagement rate by followers and by reach.',
+    title: 'Engagement Rate Calculator - Instagram, TikTok & LinkedIn (by Followers and Reach)',
+    desc: 'Free engagement rate calculator. Enter likes, comments, shares, saves and followers to get engagement rate by followers and by reach, with benchmarks for Instagram, TikTok and LinkedIn.',
+    h1: 'Engagement Rate Calculator',
+    lede: 'Work out engagement rate the two ways brands actually check it - per follower and per person reached.',
+    tool: `<div>
+<div class="row2">${f('likes', 'Likes (total)', '4200')}${f('comments', 'Comments (total)', '180')}</div>
+<div class="row2">${f('shares', 'Shares (total)', '90')}${f('saves', 'Saves (total)', '130')}</div>
+<div class="row2">${f('posts', 'Number of posts', '5', { hint: 'How many posts the totals above cover.' })}${f('followers', 'Followers', '50000')}</div>
+${f('reach', 'Total reach of those posts (optional)', '60000', { hint: 'From your insights. Leave empty if you only have public numbers.' })}
+</div>
+<div class="out">
+<div class="big-label">Engagement rate by followers</div><div class="big" id="o_er">-</div>
+<div class="stats">${stat('o_err', 'Engagement rate by reach')}${stat('o_avg', 'Interactions per post')}${stat('o_cr', 'Comments per 100 likes')}${stat('o_rf', 'Reach as % of followers')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const l = num('likes'), c = num('comments'), s0 = num('shares'), v0 = num('saves'), n = num('posts'), fol = num('followers'), r = num('reach');
+  if (!ok(l, c) || !ok(n) || n <= 0) return;
+  const tot = l + c + (ok(s0) ? s0 : 0) + (ok(v0) ? v0 : 0), per = tot / n;
+  set('o_avg', fnum(per, 0));
+  set('o_cr', l > 0 ? fnum(c / l * 100, 1) : '-');
+  if (ok(r) && r > 0) set('o_err', pct(tot / r * 100, 2));
+  if (ok(r, fol) && fol > 0 && r > 0) set('o_rf', pct(r / n / fol * 100, 1));
+  if (!ok(fol) || fol <= 0) return;
+  const er = per / fol * 100;
+  set('o_er', pct(er, 2));
+  set('o_v', er < 1 ? 'Under 1% is low for most accounts - posts are being seen but not acted on. Test stronger hooks and ask a question people can answer.' : er < 3 ? 'Between 1% and 3% is a solid, typical engagement rate for most accounts.' : er < 6 ? 'Above 3% is strong engagement - a good number to show brands.' : 'Above 6% is exceptional. Common for small or very niche accounts; check that a single viral post is not skewing the average.');
+});`,
+    content: `
+<h2>Engagement rate formulas</h2>
+<div class="formula">Engagement rate by followers = (Likes + Comments + Shares + Saves) / Posts / Followers x 100</div>
+<div class="formula">Engagement rate by reach = (Likes + Comments + Shares + Saves) / Total reach x 100</div>
+<p><b>By followers</b> is the number anyone can calculate from public data, so it is what most brands and agencies quote. <b>By reach</b> measures how people who actually saw the post reacted - it is the fairer measure of content quality, because reach on most platforms is now driven by recommendations rather than by followers.</p>
+<h2>Worked example</h2>
+<p>Five posts collected 4,200 likes, 180 comments, 90 shares and 130 saves - 4,600 interactions, or 920 per post. With 50,000 followers that is 920 / 50,000 = <b>1.84%</b> engagement by followers. The posts reached 60,000 people in total, so engagement by reach is 4,600 / 60,000 = <b>7.67%</b>. Average reach per post was only 12,000, or 24% of followers - typical for an account that depends on followers rather than recommendations.</p>
+<h2>Typical engagement rates by platform</h2>
+${table(['Platform', 'Typical rate by followers', 'Notes'], [['TikTok', 'Often 3% - 9%', 'Reach comes mostly from the For You feed, so rates by followers run high'], ['Instagram', 'Often 0.5% - 3%', 'Reels usually beat static posts; carousels earn the most saves'], ['LinkedIn', 'Often 1% - 4%', 'Comments carry the most weight; personal profiles beat company pages'], ['Facebook pages', 'Often under 0.5%', 'Organic page reach is low'], ['X (Twitter)', 'Often under 1%', 'Highly dependent on topic and timing']])}
+<p class="small muted">Ranges differ between studies, niches and account sizes - use them as a sanity check, not a target. Compare yourself mainly with your own past months and with accounts of a similar size in your niche.</p>
+<h2>Why small accounts have higher engagement</h2>
+<p>Engagement rate almost always falls as follower count rises. Small accounts have a tighter, more interested audience; large accounts collect inactive and passive followers over time. A 6% rate at 5,000 followers and a 1.5% rate at 500,000 followers can be equally healthy, which is why brands increasingly look at engagement within a follower band.</p>
+<h2>Which interactions matter most</h2>
+<ul><li><b>Shares and saves</b> signal that a post is worth coming back to or sending to someone - the platforms weight them heavily when deciding what to recommend.</li><li><b>Comments</b> show conversation. A low comments-per-100-likes number on high likes can mean the content is passive, or that likes are not coming from real fans.</li><li><b>Likes</b> are the cheapest action and the easiest to inflate.</li></ul>
+<h2>Spotting fake engagement</h2>
+<p>Very high likes with almost no comments, generic one-word comments, or a sudden jump in followers without a matching jump in reach are classic signs of bought engagement. If you are vetting an influencer, ask for screenshots of reach and audience location from their insights, and estimate what a sponsored post is worth with the <a href="/cpm-cpc-cpa-calculator/">CPM calculator</a>.</p>`,
+    faq: [
+      ['What is a good engagement rate on Instagram?', 'For most accounts 1% to 3% by followers is solid, and above 3% is strong. Smaller accounts usually see higher rates than large ones, and Reels tend to beat static posts.'],
+      ['Should I calculate engagement rate by followers or by reach?', 'Use followers when you only have public data or need to compare accounts. Use reach when you have insights access - it shows how well the content performs with the people who actually saw it.'],
+      ['Do views count as engagement?', 'Not in this formula. Views and impressions measure exposure, not interaction. Video creators sometimes report engagement by views instead of followers; in that case divide interactions by views.'],
+    ],
+    related: ['youtube-earnings-calculator', 'email-list-growth-calculator', 'cpm-cpc-cpa-calculator'],
+  },
+
+  // ---------------------------------------------------------------- A/B sample size
+  {
+    slug: 'ab-test-sample-size-calculator',
+    cat: 'cro',
+    name: 'A/B Test Sample Size Calculator',
+    short: 'Visitors you need per variant - and how many days the test must run.',
+    title: 'A/B Test Sample Size Calculator - Visitors per Variant & Test Duration',
+    desc: 'Free A/B test sample size calculator. Enter your baseline conversion rate and the lift you want to detect to get visitors per variant, total sample and how many days to run the test.',
+    h1: 'A/B Test Sample Size Calculator',
+    lede: 'Decide before you start how many visitors a test needs - so you do not stop early and ship a false winner.',
+    tool: `<div>
+<div class="row2">${f('base', 'Baseline conversion rate', '3', { suf: '%' })}${f('mde', 'Minimum detectable lift (relative)', '20', { suf: '%', hint: '20% means detecting 3% -> 3.6%.' })}</div>
+<div class="row2">${f('conf', 'Significance level (confidence)', '95', { suf: '%' })}${f('power', 'Statistical power', '80', { suf: '%' })}</div>
+<div class="row2">${f('variants', 'Number of variants (incl. control)', '2')}${f('daily', 'Visitors per day in the test', '1000')}</div>
+</div>
+<div class="out">
+<div class="big-label">Visitors needed per variant</div><div class="big" id="o_n">-</div>
+<div class="stats">${stat('o_total', 'Total visitors')}${stat('o_days', 'Test duration')}${stat('o_target', 'Variant rate to detect')}${stat('o_conv', 'Conversions per variant (expected)')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `// Inverse standard normal CDF (Acklam's rational approximation, error < 1.2e-9).
+function qnorm(p) {
+  const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.357751867269, -30.66479806614716, 2.506628277459239],
+    b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572],
+    c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783],
+    d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416], pl = 0.02425;
+  if (p < pl) { const q = Math.sqrt(-2 * Math.log(p)); return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1); }
+  if (p > 1 - pl) return -qnorm(1 - p);
+  const q = p - 0.5, r = q * q;
+  return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+}
+live(() => {
+  const p1 = num('base') / 100, m = num('mde') / 100, cf = num('conf') / 100, pw = num('power') / 100, k = num('variants'), daily = num('daily');
+  if (!ok(p1, m, cf, pw) || p1 <= 0 || p1 >= 1 || m <= 0 || cf <= 0.5 || cf >= 1 || pw <= 0.5 || pw >= 1) { set('o_v', 'Enter a baseline between 0 and 100%, a lift above 0, and confidence and power between 50% and 100%.'); return; }
+  const p2 = p1 * (1 + m);
+  if (p2 >= 1) { set('o_v', 'Baseline x (1 + lift) must stay below 100%.'); return; }
+  const za = qnorm(1 - (1 - cf) / 2), zb = qnorm(pw), pb = (p1 + p2) / 2;
+  const n = Math.ceil(Math.pow(za * Math.sqrt(2 * pb * (1 - pb)) + zb * Math.sqrt(p1 * (1 - p1) + p2 * (1 - p2)), 2) / Math.pow(p2 - p1, 2));
+  const kk = ok(k) && k >= 2 ? Math.round(k) : 2, total = n * kk;
+  set('o_n', fnum(n, 0)); set('o_total', fnum(total, 0)); set('o_target', pct(p2 * 100, 2)); set('o_conv', fnum(Math.round(n * p1), 0));
+  const days = ok(daily) && daily > 0 ? Math.ceil(total / daily) : NaN;
+  set('o_days', ok(days) ? fnum(days, 0) + (days === 1 ? ' day' : ' days') : '-');
+  set('o_v', !ok(days) ? 'Add daily visitors to see how long the test must run.' : days > 56 ? 'Over 8 weeks is too long - results drift as seasons and traffic change. Test a bolder change (bigger lift) or a higher-traffic page.' : days < 7 ? 'Run it for at least 7 full days anyway, so every weekday is covered.' : 'A realistic test. Decide the end date now and do not stop early when one variant pulls ahead.');
+});`,
+    content: `
+<h2>The sample size formula</h2>
+<p>This calculator uses the standard two-sided test for the difference between two proportions:</p>
+<div class="formula">n per variant = ( z(1-a/2) x sqrt(2 x p x (1-p)) + z(power) x sqrt(p1(1-p1) + p2(1-p2)) )^2 / (p2 - p1)^2</div>
+<p>where p1 is the baseline conversion rate, p2 is the rate you want to be able to detect (baseline x (1 + lift)), p is their average, a is 1 minus the confidence level, and z(...) is the standard normal quantile - 1.96 for 95% confidence and 0.84 for 80% power.</p>
+<h2>Worked example</h2>
+<p>A product page converts at 3% and you want to reliably detect a 20% relative lift - from 3% to 3.6%. At 95% confidence and 80% power the formula gives <b>13,914 visitors per variant</b>, or 27,828 for an A/B test. With 1,000 visitors a day the test needs <b>28 days</b>. Each variant will see roughly 417 conversions over that time.</p>
+<h2>Why the lift you choose matters so much</h2>
+<p>Sample size grows with the square of the smaller difference. Halve the lift you want to detect and you need roughly four times the traffic:</p>
+${table(['Baseline', 'Lift to detect', 'Visitors per variant (95% / 80%)'], [['3%', '10%', '~53,200'], ['3%', '20%', '~13,900'], ['3%', '30%', '~6,500'], ['10%', '10%', '~14,800'], ['10%', '20%', '~3,800']])}
+<p>That is why low-traffic sites should test bold changes - a new offer, a new page layout, a different price - rather than button colours. Small tweaks produce small lifts that need huge samples to prove.</p>
+<h2>Rules for a clean test</h2>
+<ul><li><b>Fix the sample size before you start</b>, and stop only when you reach it. Checking daily and stopping at the first "significant" result inflates false positives dramatically.</li><li><b>Run whole weeks.</b> Weekday and weekend visitors behave differently; a test should cover at least one, preferably two, full weekly cycles.</li><li><b>Split traffic evenly and randomly</b>, and keep returning visitors in the same variant.</li><li><b>Pick one primary metric</b> before launch. Looking at ten metrics guarantees one of them will look significant by chance.</li><li><b>Adding variants costs traffic.</b> An A/B/C/D test needs twice the total visitors of an A/B test.</li></ul>
+<p>When the test finishes, check the result with the <a href="/ab-test-significance-calculator/">A/B test significance calculator</a>, and translate the lift into money with the <a href="/conversion-rate-calculator/">conversion rate calculator</a>.</p>`,
+    faq: [
+      ['How many visitors do I need for an A/B test?', 'It depends on your baseline conversion rate and the smallest lift you care about. A 3% baseline and a 20% relative lift needs about 13,900 visitors per variant at 95% confidence and 80% power.'],
+      ['What is statistical power?', 'The probability that the test detects a real effect of the size you specified. 80% power means that if the variant truly is 20% better, the test will show a significant result 8 times out of 10.'],
+      ['Can I stop a test early if it is already significant?', 'Not with this fixed-sample method. Repeatedly checking and stopping at the first significant result greatly increases the chance of a false winner. Decide the sample size up front and wait for it, or use a sequential testing method designed for peeking.'],
+    ],
+    related: ['ab-test-significance-calculator', 'conversion-rate-calculator', 'cpm-cpc-cpa-calculator'],
+  },
+
+  // ---------------------------------------------------------------- Conversion rate
+  {
+    slug: 'conversion-rate-calculator',
+    cat: 'cro',
+    name: 'Conversion Rate Calculator',
+    short: 'Conversion rate, revenue per visitor and what a higher rate is worth.',
+    title: 'Conversion Rate Calculator - Conversion Rate, Revenue per Visitor & Uplift Value',
+    desc: 'Free conversion rate calculator. Get your conversion rate and revenue per visitor, then see how much extra revenue a higher conversion rate would bring with the same traffic.',
+    h1: 'Conversion Rate Calculator',
+    lede: 'Get your conversion rate - and see what raising it is worth in money, with the traffic you already have.',
+    tool: `<div>
+<div class="row2">${f('vis', 'Visitors (sessions)', '20000')}${f('conv', 'Conversions (orders, leads)', '400')}</div>
+<div class="row2">${f('aov', 'Average value per conversion', '75', { pre: '$' })}${f('target', 'Target conversion rate', '2.5', { suf: '%' })}</div>
+</div>
+<div class="out">
+<div class="big-label">Conversion rate</div><div class="big" id="o_cvr">-</div>
+<div class="stats">${stat('o_rpv', 'Revenue per visitor')}${stat('o_rev', 'Revenue now')}${stat('o_trev', 'Revenue at target rate')}${stat('o_gain', 'Extra revenue at target')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const v = num('vis'), c = num('conv'), a = num('aov'), t = num('target') / 100;
+  if (!ok(v, c) || v <= 0) return;
+  if (c > v) { set('o_v', 'Conversions cannot be higher than visitors - count each visitor once.'); return; }
+  const cvr = c / v;
+  set('o_cvr', pct(cvr * 100, 2));
+  if (!ok(a)) return;
+  set('o_rpv', money(c * a / v)); set('o_rev', money(c * a));
+  if (!ok(t) || t <= 0 || t > 1) return;
+  const tr = v * t * a, gain = tr - c * a;
+  set('o_trev', money(tr)); set('o_gain', money(gain));
+  set('o_v', gain > 0 ? 'Raising conversion from ' + pct(cvr * 100, 2) + ' to ' + pct(t * 100, 2) + ' adds ' + money(gain) + ' with the same traffic - that is ' + fnum(Math.round(gain / a), 0) + ' more conversions, no extra ad spend.' : 'You are already at or above this target rate.');
+});`,
+    content: `
+<h2>Conversion rate formula</h2>
+<div class="formula">Conversion rate = Conversions / Visitors x 100</div>
+<div class="formula">Revenue per visitor = Revenue / Visitors = Conversion rate x Average order value</div>
+<p>A "conversion" is whatever the page exists to produce: an order, a lead form, a sign-up, a call. Use one definition and keep it fixed so you can compare months.</p>
+<h2>Worked example</h2>
+<p>A store had 20,000 sessions and 400 orders, so its conversion rate is 400 / 20,000 = <b>2%</b>. At a $75 average order that is $30,000 of revenue, or <b>$1.50 per visitor</b>. Raising conversion to 2.5% - one extra order per 200 visitors - would bring 500 orders and $37,500, an extra <b>$7,500</b> from the same traffic. To get the same gain from ads at 2% conversion, you would need 5,000 more visitors.</p>
+<h2>Why revenue per visitor is the better number</h2>
+<p>Conversion rate on its own can mislead. A discount can raise conversion and lower order value so far that you earn less. Revenue per visitor captures both, which makes it the best single number to judge a test or a landing page change. It is also the ceiling for what you can pay per click: if a visitor is worth $1.50 in revenue and your gross margin is 40%, you can pay up to $0.60 per click and break even.</p>
+<h2>Typical conversion rates</h2>
+${table(['Type of page or business', 'Typical conversion rate'], [['E-commerce store, all traffic', 'Around 1% - 3%'], ['E-commerce, returning visitors', 'Often 2 - 3 times new visitors'], ['Lead generation landing page', 'Around 3% - 10%'], ['Free trial sign-up (SaaS)', 'Around 2% - 8% of visitors'], ['Email traffic to a store', 'Usually higher than paid social']])}
+<p class="small muted">Ranges vary hugely by price point, industry, device and traffic source. A luxury store at 0.8% may be doing better than a discount store at 3%. Compare with your own history first.</p>
+<h2>Common conversion rate mistakes</h2>
+<ul><li><b>Mixing users and sessions.</b> Session-based rates are lower than user-based ones. Pick one.</li><li><b>Blending traffic sources.</b> One spike of low-intent traffic (a viral post, a cheap display campaign) drags the average down even if nothing is wrong with the site. Segment by source.</li><li><b>Ignoring mobile.</b> Mobile usually converts lower than desktop; a mobile-only problem hides inside the average.</li><li><b>Declaring victory too early.</b> Small samples swing a lot. Size tests properly with the <a href="/ab-test-sample-size-calculator/">sample size calculator</a>.</li></ul>
+<p>Turn a better conversion rate into an ad budget with the <a href="/break-even-cpa-calculator/">break-even CPA calculator</a>.</p>`,
+    faq: [
+      ['What is a good conversion rate?', 'For most online stores 1% to 3% is typical, and lead generation pages often convert higher. The right benchmark is your own past performance for the same traffic source.'],
+      ['How do I calculate conversion rate in Google Analytics?', 'Divide key events (conversions) by sessions or users for the same period and multiply by 100. Make sure the numerator and denominator use the same date range and filters.'],
+      ['Is a higher conversion rate always better?', 'Not if it comes from discounts that cut order value or margin. Watch revenue per visitor and profit, not just the rate.'],
+    ],
+    related: ['ab-test-sample-size-calculator', 'ab-test-significance-calculator', 'break-even-cpa-calculator'],
+  },
+
+  // ---------------------------------------------------------------- Break-even point
+  {
+    slug: 'break-even-point-calculator',
+    cat: 'ecom',
+    name: 'Break-Even Point Calculator',
+    short: 'Units and revenue you need to cover fixed costs - and to hit a profit goal.',
+    title: 'Break-Even Point Calculator - Break-Even Units & Revenue',
+    desc: 'Free break-even point calculator. Enter fixed costs, price and variable cost per unit to get break-even units, break-even revenue, contribution margin and the sales needed for a profit target.',
+    h1: 'Break-Even Point Calculator',
+    lede: 'How many units you must sell to cover your costs - and how many more to reach the profit you want.',
+    tool: `<div>
+${f('fixed', 'Fixed costs per month', '10000', { pre: '$', hint: 'Rent, salaries, software, insurance - costs that do not change with sales.' })}
+<div class="row2">${f('price', 'Price per unit', '50', { pre: '$' })}${f('vc', 'Variable cost per unit', '30', { pre: '$', hint: 'Product, packaging, shipping, payment fees.' })}</div>
+<div class="row2">${f('tp', 'Target profit per month', '5000', { pre: '$' })}${f('exp', 'Expected units per month (optional)', '600')}</div>
+</div>
+<div class="out">
+<div class="big-label">Break-even units per month</div><div class="big" id="o_units">-</div>
+<div class="stats">${stat('o_rev', 'Break-even revenue')}${stat('o_cm', 'Contribution per unit')}${stat('o_cmr', 'Contribution margin')}${stat('o_tu', 'Units for target profit')}${stat('o_mos', 'Margin of safety')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const F = num('fixed'), p = num('price'), v = num('vc'), tp = num('tp'), e = num('exp');
+  if (!ok(F, p, v) || p <= 0) return;
+  const cm = p - v;
+  set('o_cm', money(cm)); set('o_cmr', pct(cm / p * 100, 1));
+  if (cm <= 0) { set('o_v', 'Each unit costs as much as or more than it sells for, so you can never break even. Raise the price or cut variable costs.'); return; }
+  const be = F / cm, beu = Math.ceil(be);
+  set('o_units', fnum(beu, 0)); set('o_rev', money(F / (cm / p)));
+  if (ok(tp)) set('o_tu', fnum(Math.ceil((F + tp) / cm), 0));
+  if (ok(e) && e > 0) {
+    const mos = (e - be) / e;
+    set('o_mos', pct(mos * 100, 1));
+    set('o_v', e < be ? 'At ' + fnum(e, 0) + ' units you lose ' + money((be - e) * cm) + ' a month. You need ' + fnum(beu - e, 0) + ' more units, a higher price or lower costs.' : 'At ' + fnum(e, 0) + ' units you make ' + money((e - be) * cm) + ' a month, and sales could fall ' + pct(mos * 100, 1) + ' before you lose money.');
+  } else set('o_v', 'Every unit after number ' + fnum(beu, 0) + ' adds ' + money(cm) + ' of profit.');
+});`,
+    content: `
+<h2>Break-even formulas</h2>
+<div class="formula">Contribution per unit = Price - Variable cost per unit</div>
+<div class="formula">Break-even units = Fixed costs / Contribution per unit</div>
+<div class="formula">Break-even revenue = Fixed costs / Contribution margin %</div>
+<div class="formula">Units for target profit = (Fixed costs + Target profit) / Contribution per unit</div>
+<p>Contribution is what each sale leaves over after its own direct costs. That money first pays the fixed costs; once they are covered, every further unit's contribution is profit.</p>
+<h2>Worked example</h2>
+<p>A product sells for $50 and costs $30 to make, pack and ship, so each unit contributes $20 (a 40% contribution margin). With $10,000 of monthly fixed costs, break-even is 10,000 / 20 = <b>500 units</b>, or <b>$25,000</b> of revenue. To make $5,000 profit you need (10,000 + 5,000) / 20 = <b>750 units</b>. If you expect to sell 600, your margin of safety is (600 - 500) / 600 = <b>16.7%</b>: sales can fall by a sixth before you start losing money.</p>
+<h2>Price moves break-even more than you think</h2>
+<p>Because break-even depends on contribution, not price, a small price change has a large effect:</p>
+${table(['Price', 'Contribution per unit', 'Break-even units'], [['$45', '$15', '667'], ['$50', '$20', '500'], ['$55', '$25', '400'], ['$60', '$30', '334']])}
+<p>A 10% price increase (from $50 to $55) cuts the break-even point by 20% in this example. The same logic works in reverse: a 10% discount raises it by a third. See the <a href="/discount-calculator/">discount calculator</a> for how much more you must sell to make a discount pay.</p>
+<h2>Fixed or variable?</h2>
+<ul><li><b>Fixed:</b> rent, salaries, software subscriptions, insurance, loan repayments, your own minimum pay.</li><li><b>Variable:</b> product cost, packaging, shipping, payment processing, marketplace fees, sales commissions.</li><li><b>Advertising</b> can be treated either way. If you set a fixed monthly budget, put it in fixed costs. If you pay per sale (CPA) or think of ads as cost per order, add it to the variable cost per unit.</li></ul>
+<h2>Limits of break-even analysis</h2>
+<p>The model assumes a constant price and constant cost per unit. In reality bulk buying lowers unit cost, discounts lower price, and fixed costs step up when you hire or move. Recalculate whenever one of those changes, and treat the result as a planning number, not a guarantee.</p>`,
+    faq: [
+      ['What is a break-even point?', 'The level of sales at which total revenue equals total costs, so profit is zero. Below it you lose money; above it each additional sale contributes profit.'],
+      ['How do I calculate break-even in revenue instead of units?', 'Divide fixed costs by the contribution margin percentage. With $10,000 fixed costs and a 40% contribution margin, break-even revenue is $25,000.'],
+      ['What is the margin of safety?', 'How far sales can fall before you reach break-even, as a share of expected sales: (Expected sales - Break-even sales) / Expected sales.'],
+    ],
+    related: ['profit-margin-calculator', 'discount-calculator', 'shopify-profit-calculator'],
+  },
+
+  // ---------------------------------------------------------------- Email list growth
+  {
+    slug: 'email-list-growth-calculator',
+    cat: 'creator',
+    name: 'Email List Growth Calculator',
+    short: 'Project your list size from sign-ups and churn - and find its ceiling.',
+    title: 'Email List Growth Calculator - Subscriber Growth, Churn & List Ceiling',
+    desc: 'Free email list growth calculator. Enter current subscribers, new sign-ups per month and monthly churn to project list size, net growth rate and the ceiling your list will level off at.',
+    h1: 'Email List Growth Calculator',
+    lede: 'Project where your list will be in a year - and see the ceiling that churn quietly sets on it.',
+    tool: `<div>
+<div class="row2">${f('cur', 'Current subscribers', '5000')}${f('newm', 'New subscribers per month', '600')}</div>
+<div class="row2">${f('churn', 'Monthly list churn', '2', { suf: '%', hint: 'Unsubscribes + bounces + spam complaints, as % of the list.' })}${f('months', 'Months to project', '12')}</div>
+</div>
+<div class="out">
+<div class="big-label">Projected list size</div><div class="big" id="o_final">-</div>
+<div class="stats">${stat('o_net1', 'Net new subscribers, month 1')}${stat('o_rate', 'Net growth rate, month 1')}${stat('o_lost', 'Subscribers lost over the period')}${stat('o_cap', 'List ceiling (sign-ups / churn)')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const s0 = num('cur'), n = num('newm'), c = num('churn') / 100, m0 = num('months');
+  if (!ok(s0, n, c, m0) || c >= 1 || m0 < 1 || m0 > 600) return;
+  const m = Math.round(m0);
+  let s = s0, lost = 0;
+  for (let i = 0; i < m; i++) { const l = s * c; lost += l; s = s - l + n; }
+  const net1 = n - s0 * c;
+  set('o_final', fnum(Math.round(s), 0)); set('o_net1', fnum(Math.round(net1), 0)); set('o_lost', fnum(Math.round(lost), 0));
+  set('o_rate', s0 > 0 ? pct(net1 / s0 * 100, 1) : '-');
+  set('o_cap', c > 0 ? fnum(Math.round(n / c), 0) : 'No limit');
+  set('o_v', c <= 0 ? 'With no churn the list grows by the full sign-up number every month.' : s0 >= n / c ? 'Your list is at or above its ceiling - churn is eating every new sign-up. Grow sign-ups or cut churn to grow again.' : 'At this pace the list levels off around ' + fnum(Math.round(n / c), 0) + ' subscribers. To raise that ceiling, increase sign-ups or reduce churn.');
+});`,
+    content: `
+<h2>How list growth works</h2>
+<p>Each month you add new sign-ups and lose a percentage of the list to unsubscribes, bounces and spam complaints. Because the loss is a percentage, it grows as the list grows, while sign-ups usually stay roughly flat. Eventually the two meet and the list stops growing:</p>
+<div class="formula">Next month = This month x (1 - Churn %) + New subscribers</div>
+<div class="formula">List ceiling = New subscribers per month / Monthly churn %</div>
+<div class="formula">Net growth rate = (New subscribers - Subscribers lost) / List size at start</div>
+<h2>Worked example</h2>
+<p>A list of 5,000 adds 600 subscribers a month and loses 2% a month. In month one it loses 100 and gains 600, a net 500 (10% growth). After 12 months it reaches about <b>10,380</b> subscribers, having lost about 1,820 along the way. But the ceiling is 600 / 2% = <b>30,000</b>: however long you wait, the list will level off near there unless sign-ups grow or churn falls.</p>
+<h2>Two levers, very different costs</h2>
+${table(['Change', 'New ceiling', 'Effect'], [['Baseline: 600/month, 2% churn', '30,000', '-'], ['Double sign-ups to 1,200/month', '60,000', 'Needs more traffic or a better offer'], ['Halve churn to 1%', '60,000', 'Needs better content and list hygiene'], ['Both', '120,000', 'Compounding effect']])}
+<p>Cutting churn is often cheaper than doubling sign-ups. Send what you promised at sign-up, at the frequency you promised, and remove inactive subscribers before they turn into spam complaints.</p>
+<h2>Typical churn numbers</h2>
+<p>Many healthy lists lose somewhere around 0.5% to 3% a month to unsubscribes, bounces and complaints combined, plus a slower decay as email addresses go stale. If you send very often, buy lists or collect emails with a giveaway unrelated to your content, expect the high end or worse.</p>
+<h2>Growing sign-ups</h2>
+<ul><li><b>Offer something specific</b> in exchange for the email - a checklist, a template, a calculator result - rather than "subscribe to our newsletter".</li><li><b>Put the form where intent is highest:</b> at the end of your most-read posts and inside tools people already use.</li><li><b>Track sign-up rate per page</b> using the <a href="/conversion-rate-calculator/">conversion rate calculator</a>, and tag your promotion links with the <a href="/utm-builder/">UTM builder</a> to see which channels bring subscribers who stay.</li></ul>`,
+    faq: [
+      ['How do I calculate email list growth rate?', 'Subtract subscribers lost (unsubscribes, bounces, complaints) from new subscribers in the period, then divide by the list size at the start. 600 new minus 100 lost on a 5,000 list is a 10% monthly growth rate.'],
+      ['Why has my email list stopped growing?', 'Because churn is a percentage of the list, it grows as the list grows. When monthly losses equal monthly sign-ups, the list plateaus. The plateau is roughly new subscribers per month divided by monthly churn rate.'],
+      ['Should I remove inactive subscribers?', 'Usually yes, after a re-engagement attempt. Inactive addresses hurt deliverability and can turn into spam traps. A smaller, engaged list often earns more than a large, cold one.'],
+    ],
+    related: ['engagement-rate-calculator', 'conversion-rate-calculator', 'customer-ltv-calculator'],
+  },
+
+  // ---------------------------------------------------------------- Discount
+  {
+    slug: 'discount-calculator',
+    cat: 'ecom',
+    name: 'Discount Profit Calculator',
+    short: 'How many more sales a discount needs just to keep the same profit.',
+    title: 'Discount Profit Calculator - Sales Increase Needed to Break Even on a Discount',
+    desc: 'Free discount calculator for stores. Enter price, unit cost and discount to see the new margin and how much sales must rise to make the same gross profit as before.',
+    h1: 'Discount Profit Calculator',
+    lede: 'Before you run a sale, see how many extra orders it needs just to earn what you earn today.',
+    tool: `<div>
+<div class="row2">${f('price', 'Normal price', '100', { pre: '$' })}${f('cost', 'Cost per unit', '60', { pre: '$', hint: 'Product + shipping + fees per unit.' })}</div>
+<div class="row2">${f('disc', 'Discount', '20', { suf: '%' })}${f('units', 'Units you normally sell', '200', { hint: 'In the period the sale will run.' })}</div>
+</div>
+<div class="out">
+<div class="big-label">Sales increase needed to break even</div><div class="big" id="o_need">-</div>
+<div class="stats">${stat('o_np', 'Sale price')}${stat('o_pu', 'Profit per unit on sale')}${stat('o_m', 'Margin on sale')}${stat('o_units', 'Units needed on sale')}${stat('o_gp', 'Gross profit at normal price')}</div>
+<div class="verdict" id="o_v"></div></div>`,
+    js: `live(() => {
+  const p = num('price'), c = num('cost'), d = num('disc') / 100, u = num('units');
+  if (!ok(p, c, d) || p <= 0 || d >= 1) return;
+  const np = p * (1 - d), old = p - c, nw = np - c;
+  set('o_np', money(np)); set('o_pu', money(nw)); set('o_m', pct(nw / np * 100, 1));
+  if (ok(u)) set('o_gp', money(old * u, 0));
+  if (old <= 0) { set('o_v', 'You already lose money on each unit at the normal price.'); return; }
+  if (nw <= 0) { set('o_v', 'At this discount every unit sells at a loss - no amount of extra volume makes it profitable.'); $('o_need').classList.add('bad'); return; }
+  $('o_need').classList.remove('bad');
+  const inc = old / nw - 1;
+  set('o_need', pct(inc * 100, 1));
+  if (ok(u)) set('o_units', fnum(Math.ceil(u * old / nw - 1e-9), 0));
+  set('o_v', 'A ' + pct(d * 100, 0) + ' discount turns ' + money(old) + ' of profit per unit into ' + money(nw) + '. You must sell ' + fnum(old / nw, 2) + 'x as many units to earn the same gross profit.');
+});`,
+    content: `
+<h2>The discount formula</h2>
+<div class="formula">Sales increase needed = Profit per unit before / Profit per unit after discount - 1</div>
+<div class="formula">Profit per unit after = Price x (1 - Discount) - Cost per unit</div>
+<p>The discount comes entirely out of your margin, not out of the price, so the profit per unit falls much faster than the price does.</p>
+<h2>Worked example</h2>
+<p>A product sells for $100 and costs $60, so it makes $40 a unit (a 40% margin). A 20% discount brings the price to $80, but the cost is still $60, so profit per unit halves to $20 - a 25% margin. To make the same $8,000 gross profit you make from 200 units at full price, you need to sell <b>400 units</b> on sale: a <b>100% increase</b> in volume, just to stand still.</p>
+<h2>Discount vs. margin table</h2>
+<p>Sales increase needed to keep the same gross profit:</p>
+${table(['Discount', '30% margin', '40% margin', '50% margin', '60% margin'], [['5%', '20%', '14.3%', '11.1%', '9.1%'], ['10%', '50%', '33.3%', '25%', '20%'], ['15%', '100%', '60%', '42.9%', '33.3%'], ['20%', '200%', '100%', '66.7%', '50%'], ['25%', '500%', '166.7%', '100%', '71.4%'], ['30%', 'Loss', '300%', '150%', '100%']])}
+<p>Lower-margin businesses get hurt fastest. At a 30% margin, a 30% discount means selling at cost - every order is work for nothing.</p>
+<h2>When a discount can still make sense</h2>
+<ul><li><b>Clearing dead stock.</b> If the alternative is writing it off, any price above the cost of selling it is a gain.</li><li><b>Acquiring customers who come back.</b> A first-order discount can pay off if repeat purchases follow - check it with the <a href="/customer-ltv-calculator/">LTV calculator</a>.</li><li><b>Raising order value.</b> "10% off orders over $150" protects margin better than a sitewide discount, because it only applies to bigger baskets.</li></ul>
+<h2>Alternatives to a straight discount</h2>
+<p>Free shipping thresholds, gifts with purchase, bundles and limited-time bonuses often lift sales while costing less than a percentage off, because the perceived value is higher than the cost to you. Whatever you choose, run the numbers first - and check your <a href="/break-even-point-calculator/">break-even point</a> at the sale price.</p>`,
+    faq: [
+      ['How much do sales need to increase to cover a discount?', 'Divide your profit per unit before the discount by your profit per unit after it, then subtract 1. At a 40% margin, a 20% discount needs a 100% increase in units to earn the same gross profit.'],
+      ['Is a 20% discount the same as a 20% loss of profit?', 'No - it is usually much more. The discount comes out of the margin, so on a 40% margin product a 20% discount cuts profit per unit in half.'],
+      ['Does this include fixed costs?', 'No. It compares gross profit (price minus unit cost), which is the right view for a short promotion where fixed costs do not change.'],
+    ],
+    related: ['profit-margin-calculator', 'break-even-point-calculator', 'shopify-profit-calculator'],
+  },
 ];

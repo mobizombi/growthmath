@@ -43,6 +43,25 @@ window.CASES = [
   { t: 'shopify-profit-calculator', in: { price: 60, orders: 100, cogs: 20, ship: 6, pf: 2.9, ff: 0.3, ads: 5000, fixed: 200 }, out: { o_net: '-$2,004.00' }, verdict: /Losing money/ },
   // ---- YouTube: ad=200*4=800, year 9600, total 1600, eff 8.00, range 400-1200
   { t: 'youtube-earnings-calculator', in: { views: 200000, rpm: 4, sp: 1, rate: 800 }, out: { o_ad: '$800.00', o_year: '$9,600.00', o_total: '$1,600.00', o_eff: '$8.00', o_low: '$400 - $1,200' } },
+  // ---- Engagement: 4600/5=920/50000=1.84%; reach 4600/60000=7.67%; cr 180/4200=4.3; rf 12000/50000=24%
+  { t: 'engagement-rate-calculator', in: { likes: 4200, comments: 180, shares: 90, saves: 130, posts: 5, followers: 50000, reach: 60000 }, out: { o_er: '1.84%', o_err: '7.67%', o_avg: '920', o_cr: '4.3', o_rf: '24%' }, verdict: /solid/ },
+  { t: 'engagement-rate-calculator', in: { likes: 100, comments: 0, shares: '', saves: '', posts: 0, followers: 1000, reach: '' }, out: { o_er: '-', o_avg: '-' } },
+  // ---- Sample size: 3% -> 3.6%, 95/80 = 13,914 per variant (two-proportion, pooled), 28 days at 1000/day
+  { t: 'ab-test-sample-size-calculator', in: { base: 3, mde: 20, conf: 95, power: 80, variants: 2, daily: 1000 }, out: { o_n: '13,914', o_total: '27,828', o_days: '28 days', o_target: '3.6%', o_conv: '417' } },
+  { t: 'ab-test-sample-size-calculator', in: { base: 10, mde: 10, conf: 95, power: 80, variants: 3, daily: 0 }, out: { o_n: '14,751', o_total: '44,253', o_days: '-' } },
+  { t: 'ab-test-sample-size-calculator', in: { base: 0, mde: 20, conf: 95, power: 80, variants: 2, daily: 1000 }, out: { o_n: '-' } },
+  // ---- Conversion: 400/20000=2%, rpv 1.50, rev 30000, target 2.5% -> 37500, +7500
+  { t: 'conversion-rate-calculator', in: { vis: 20000, conv: 400, aov: 75, target: 2.5 }, out: { o_cvr: '2%', o_rpv: '$1.50', o_rev: '$30,000.00', o_trev: '$37,500.00', o_gain: '$7,500.00' }, verdict: /100 more conversions/ },
+  { t: 'conversion-rate-calculator', in: { vis: 100, conv: 200, aov: 75, target: 2.5 }, out: { o_cvr: '-' }, verdict: /cannot be higher/ },
+  // ---- Break-even point: cm 20, 500 units, $25,000, 40%, (10000+5000)/20=750, mos (600-500)/600=16.7%
+  { t: 'break-even-point-calculator', in: { fixed: 10000, price: 50, vc: 30, tp: 5000, exp: 600 }, out: { o_units: '500', o_rev: '$25,000.00', o_cm: '$20.00', o_cmr: '40%', o_tu: '750', o_mos: '16.7%' }, verdict: /make \$2,000\.00/ },
+  { t: 'break-even-point-calculator', in: { fixed: 10000, price: 30, vc: 30, tp: 5000, exp: 600 }, out: { o_units: '-', o_cm: '$0.00' }, verdict: /never break even/ },
+  // ---- Email growth: 12 months of s=s*.98+600 from 5000 = 10,382; lost 1,818; ceiling 30,000
+  { t: 'email-list-growth-calculator', in: { cur: 5000, newm: 600, churn: 2, months: 12 }, out: { o_final: '10,382', o_net1: '500', o_rate: '10%', o_lost: '1,818', o_cap: '30,000' } },
+  { t: 'email-list-growth-calculator', in: { cur: 40000, newm: 600, churn: 2, months: 12 }, out: { o_cap: '30,000' }, verdict: /above its ceiling/ },
+  // ---- Discount: 100/60, 20% -> 80, 20/unit, 25%, need 100%, 400 units, gp 8000
+  { t: 'discount-calculator', in: { price: 100, cost: 60, disc: 20, units: 200 }, out: { o_need: '100%', o_np: '$80.00', o_pu: '$20.00', o_m: '25%', o_units: '400', o_gp: '$8,000' } },
+  { t: 'discount-calculator', in: { price: 100, cost: 60, disc: 50, units: 200 }, out: { o_need: '-', o_np: '$50.00' }, verdict: /at a loss/ },
 ];
 
 window.runAll = async (base = '') => {

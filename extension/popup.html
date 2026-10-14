@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>GrowthMath</title><link rel="stylesheet" href="popup.css"></head>
+<body>
+<header><a class="logo" href="https://growthmath.io/?utm_source=chrome_extension&amp;utm_medium=extension&amp;utm_campaign=popup_logo" target="_blank" rel="noopener"><span class="mark">g/m</span>GrowthMath</a>
+<nav role="tablist"><button role="tab" data-tab="utm" aria-selected="true">UTM</button><button role="tab" data-tab="seo" aria-selected="false">SEO</button><button role="tab" data-tab="calc" aria-selected="false">Ads math</button></nav></header>
+
+<section id="utm" class="panel">
+  <label for="url">Page URL</label><input id="url" type="url" spellcheck="false">
+  <label for="preset">Preset</label>
+  <select id="preset"><option value="">Choose a channel...</option><option value="facebook|paid_social">Facebook / Instagram ads</option><option value="google|cpc">Google Ads</option><option value="tiktok|paid_social">TikTok ads</option><option value="linkedin|paid_social">LinkedIn ads</option><option value="newsletter|email">Newsletter</option><option value="facebook|social">Organic Facebook</option><option value="instagram|social">Organic Instagram</option><option value="x|social">X (Twitter)</option><option value="reddit|social">Reddit</option><option value="partner|affiliate">Affiliate / partner</option></select>
+  <div class="row"><div><label for="src">Source *</label><input id="src" placeholder="facebook"></div><div><label for="med">Medium *</label><input id="med" placeholder="paid_social"></div></div>
+  <label for="cmp">Campaign *</label><input id="cmp" placeholder="spring_sale_2026">
+  <div class="row"><div><label for="cnt">Content</label><input id="cnt" placeholder="video_a"></div><div><label for="trm">Term</label><input id="trm" placeholder="keyword"></div></div>
+  <label class="check"><input id="lc" type="checkbox" checked> Lowercase and replace spaces with _</label>
+  <div class="result"><code id="out"></code></div>
+  <div class="btns"><button id="copy" class="primary">Copy link</button><button id="clear">Clear UTMs</button></div>
+  <div id="recent-wrap" hidden><h3>Recent links</h3><ul id="recent"></ul></div>
+</section>
+
+<section id="seo" class="panel" hidden>
+  <div id="seo-msg" class="muted">Reading this page...</div>
+  <div id="seo-body" hidden>
+    <div class="serp"><div class="serp-url" id="s-url"></div><div class="serp-title" id="s-title"></div><div class="serp-desc" id="s-desc"></div></div>
+    <table class="checks"><tbody id="checks"></tbody></table>
+    <p class="small muted">Search engines may rewrite titles and descriptions. Length limits are approximate - Google truncates by pixel width.</p>
+  </div>
+</section>
+
+<section id="calc" class="panel" hidden>
+  <h3>ROAS</h3>
+  <div class="row3"><div><label for="c_spend">Ad spend $</label><input id="c_spend" inputmode="decimal" value="1000"></div><div><label for="c_rev">Revenue $</label><input id="c_rev" inputmode="decimal" value="3500"></div><div><label for="c_m">Margin %</label><input id="c_m" inputmode="decimal" value="40"></div></div>
+  <div class="stats"><div><span>ROAS</span><b id="r_roas">-</b></div><div><span>Break-even</span><b id="r_be">-</b></div><div><span>Profit after ads</span><b id="r_profit">-</b></div></div>
+  <h3>Funnel costs</h3>
+  <div class="row3"><div><label for="c_imp">Impressions</label><input id="c_imp" inputmode="decimal" value="120000"></div><div><label for="c_clk">Clicks</label><input id="c_clk" inputmode="decimal" value="1800"></div><div><label for="c_conv">Conversions</label><input id="c_conv" inputmode="decimal" value="45"></div></div>
+  <div class="stats"><div><span>CPM</span><b id="r_cpm">-</b></div><div><span>CPC</span><b id="r_cpc">-</b></div><div><span>CTR</span><b id="r_ctr">-</b></div><div><span>CVR</span><b id="r_cvr">-</b></div><div><span>CPA</span><b id="r_cpa">-</b></div></div>
+  <p class="small muted">Uses the ad spend above. Inputs are remembered on this device only.</p>
+</section>
+
+<footer><a id="more" href="https://growthmath.io/?utm_source=chrome_extension&amp;utm_medium=extension&amp;utm_campaign=popup_footer" target="_blank" rel="noopener">All 21 free calculators at growthmath.io &rarr;</a></footer>
+<script src="popup.js"></script>
+</body></html>
