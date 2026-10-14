@@ -17,6 +17,16 @@ const GA4 = process.env.GA4 ?? 'G-NNNSG3D7ML'; // GA4 property growthmath.io (tr
 const EEA = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'];
 const AUDIT_URL = 'https://traffic-goat.com/?utm_source=growthmath&utm_medium=referral&utm_campaign=tool_cta';
 const YEAR = new Date().getFullYear();
+// Email signup ("new tools" updates). Static site, so FormSubmit relays each signup to this inbox.
+// After FormSubmit activation, swap the address for the random alias it gives you to keep it out of page source.
+const SIGNUP_TO = process.env.SIGNUP_TO || 'trafficgoathq@gmail.com';
+const signup = (where) => SIGNUP_TO ? `<section class="signup"><div><strong>Get new calculators first</strong><p>One short email when we add a tool or guide. No spam, unsubscribe any time.</p></div>
+<form class="signup-form" action="https://formsubmit.co/${SIGNUP_TO}" method="POST" data-ajax="https://formsubmit.co/ajax/${SIGNUP_TO}">
+<input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" autocomplete="email">
+<input type="hidden" name="_subject" value="GrowthMath signup"><input type="hidden" name="source" value="${where}">
+<input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="${SITE}/?subscribed=1">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+<button class="btn" type="submit">Subscribe</button><span class="signup-msg" role="status"></span></form></section>` : '';
 const OUT = 'dist';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -59,6 +69,12 @@ ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</sc
 <footer class="site-foot"><div class="wrap"><div><b>${NAME}</b> - free calculators for marketers, affiliates and store owners. &copy; ${YEAR}</div>
 <div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
 ${scripts}
+${SIGNUP_TO ? `<script>document.querySelectorAll('.signup-form').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
+if(/[?&]subscribed=1/.test(location.search))m.textContent='Thanks - you are on the list.';
+f.addEventListener('submit',function(e){e.preventDefault();if(f._honey.value)return;b.disabled=true;m.textContent='Sending...';
+fetch(f.dataset.ajax,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({email:f.email.value,source:f.source.value,_subject:f._subject.value,_template:'table',_captcha:'false'})})
+.then(function(r){return r.json().then(function(j){if(!r.ok||String(j.success)==='false')throw 0;})}).then(function(){f.email.value='';m.textContent='Thanks - you are on the list.';if(window.gtag)gtag('event','sign_up',{method:'newsletter',source:f.source.value});})
+.catch(function(){m.textContent='Something went wrong - please try again.';}).finally(function(){b.disabled=false;});});});</script>` : ''}
 </body></html>`;
 }
 
@@ -87,6 +103,7 @@ ${adUnit()}
 <article class="content narrow">${t.content}
 <h2>Frequently asked questions</h2><div class="faq">${faqHtml}</div></article>
 ${cta}
+${signup(t.slug)}
 <h2>Related tools</h2><div class="grid">${related}</div>
 ${tGuides.length ? `<h2>Related guides</h2><div class="grid">${tGuides.map(guideCard).join('')}</div>` : ''}
 ${adUnit()}`;
@@ -109,6 +126,7 @@ function home() {
 <section class="hero"><h1>The numbers behind your marketing, calculated in seconds.</h1>
 <p class="lede">Free, no-signup calculators for ROAS, CPA, affiliate earnings, LTV, CAC, churn, store profit, YouTube earnings, UTM links and A/B tests. Everything runs in your browser - your data never leaves your device.</p></section>
 <div id="tools">${sections}</div>
+${signup('home')}
 <h3 class="cat-h" id="guides">Guides</h3><div class="grid">${guides.map(guideCard).join('')}</div>
 ${adUnit()}
 <article class="content narrow">
@@ -133,6 +151,7 @@ function guidePage(g) {
 ${adUnit()}
 <article class="content narrow">${g.html}
 <h2>Frequently asked questions</h2><div class="faq">${faqHtml}</div></article>
+${signup("guide-" + g.slug)}
 <h2>More guides</h2><div class="grid">${more}</div>
 ${adUnit()}`;
   const schema = [
@@ -175,6 +194,8 @@ const pages = {
 <p>Where the law requires it (for example in the EEA, UK and Switzerland), we ask for your consent before personalised ads or non-essential cookies are used. Until you choose, Google's Consent Mode keeps advertising and analytics storage switched off.</p>
 <h2>Analytics</h2>
 <p>We use Google Analytics 4 to understand which tools are used and how visitors find the site (pages viewed, approximate location, device and browser). It does not receive the numbers you type or the files you upload. You can opt out with the <a href="https://tools.google.com/dlpage/gaoptout" rel="nofollow noopener">Google Analytics opt-out browser add-on</a>.</p>
+<h2>Email updates</h2>
+<p>If you subscribe to updates, we collect only your email address and the page you subscribed from. We use it solely to tell you about new tools and guides, and you can unsubscribe at any time by replying to any email or writing to us. Signups are delivered to us through FormSubmit (formsubmit.co), a form-forwarding service. We never sell or share your address.</p>
 <h2>Server logs</h2>
 <p>Our hosting provider may record standard technical logs (IP address, browser type, pages requested) for security and reliability. We do not use these to identify individuals.</p>
 <h2>Contact</h2>
