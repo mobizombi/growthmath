@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Email List Growth Calculator - Subscriber Growth, Churn &amp; List Ceiling</title>
+<meta name="description" content="Free email list growth calculator. Enter current subscribers, new sign-ups per month and monthly churn to project list size, net growth rate and the ceiling your list will level off at.">
+<link rel="canonical" href="https://growthmath.io/email-list-growth-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="Email List Growth Calculator - Subscriber Growth, Churn &amp; List Ceiling"><meta property="og:description" content="Free email list growth calculator. Enter current subscribers, new sign-ups per month and monthly churn to project list size, net growth rate and the ceiling your list will level off at."><meta property="og:url" content="https://growthmath.io/email-list-growth-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Email List Growth Calculator","url":"https://growthmath.io/email-list-growth-calculator/","description":"Free email list growth calculator. Enter current subscribers, new sign-ups per month and monthly churn to project list size, net growth rate and the ceiling your list will level off at.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate email list growth rate?","acceptedAnswer":{"@type":"Answer","text":"Subtract subscribers lost (unsubscribes, bounces, complaints) from new subscribers in the period, then divide by the list size at the start. 600 new minus 100 lost on a 5,000 list is a 10% monthly growth rate."}},{"@type":"Question","name":"Why has my email list stopped growing?","acceptedAnswer":{"@type":"Answer","text":"Because churn is a percentage of the list, it grows as the list grows. When monthly losses equal monthly sign-ups, the list plateaus. The plateau is roughly new subscribers per month divided by monthly churn rate."}},{"@type":"Question","name":"Should I remove inactive subscribers?","acceptedAnswer":{"@type":"Answer","text":"Usually yes, after a re-engagement attempt. Inactive addresses hurt deliverability and can turn into spam traps. A smaller, engaged list often earns more than a large, cold one."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Email List Growth Calculator","item":"https://growthmath.io/email-list-growth-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a class="nav-ext" href="/affiliate-link-checker-extension/">Extension</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#creator">Creators & publishers</a> / Email List Growth Calculator</div>
+<h1>Email List Growth Calculator</h1>
+<p class="lede">Project where your list will be in a year - and see the ceiling that churn quietly sets on it.</p>
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="cur">Current subscribers</label>
+<div class="inp"><input id="cur" type="text" inputmode="decimal" value="5000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="newm">New subscribers per month</label>
+<div class="inp"><input id="newm" type="text" inputmode="decimal" value="600" autocomplete="off"></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="churn">Monthly list churn</label>
+<div class="inp has-suf"><input id="churn" type="text" inputmode="decimal" value="2" autocomplete="off"><span class="suf">%</span></div>
+<div class="hint">Unsubscribes + bounces + spam complaints, as % of the list.</div></div>
+<div class="field"><label for="months">Months to project</label>
+<div class="inp"><input id="months" type="text" inputmode="decimal" value="12" autocomplete="off"></div>
+</div></div>
+</div>
+<div class="out">
+<div class="big-label">Projected list size</div><div class="big" id="o_final">-</div>
+<div class="stats"><div class="stat"><span>Net new subscribers, month 1</span><strong id="o_net1">-</strong></div><div class="stat"><span>Net growth rate, month 1</span><strong id="o_rate">-</strong></div><div class="stat"><span>Subscribers lost over the period</span><strong id="o_lost">-</strong></div><div class="stat"><span>List ceiling (sign-ups / churn)</span><strong id="o_cap">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>How list growth works</h2>
+<p>Each month you add new sign-ups and lose a percentage of the list to unsubscribes, bounces and spam complaints. Because the loss is a percentage, it grows as the list grows, while sign-ups usually stay roughly flat. Eventually the two meet and the list stops growing:</p>
+<div class="formula">Next month = This month x (1 - Churn %) + New subscribers</div>
+<div class="formula">List ceiling = New subscribers per month / Monthly churn %</div>
+<div class="formula">Net growth rate = (New subscribers - Subscribers lost) / List size at start</div>
+<h2>Worked example</h2>
+<p>A list of 5,000 adds 600 subscribers a month and loses 2% a month. In month one it loses 100 and gains 600, a net 500 (10% growth). After 12 months it reaches about <b>10,380</b> subscribers, having lost about 1,820 along the way. But the ceiling is 600 / 2% = <b>30,000</b>: however long you wait, the list will level off near there unless sign-ups grow or churn falls.</p>
+<h2>Two levers, very different costs</h2>
+<div class="tscroll"><table class="t"><tr><th>Change</th><th>New ceiling</th><th>Effect</th></tr><tr><td>Baseline: 600/month, 2% churn</td><td>30,000</td><td>-</td></tr><tr><td>Double sign-ups to 1,200/month</td><td>60,000</td><td>Needs more traffic or a better offer</td></tr><tr><td>Halve churn to 1%</td><td>60,000</td><td>Needs better content and list hygiene</td></tr><tr><td>Both</td><td>120,000</td><td>Compounding effect</td></tr></table></div>
+<p>Cutting churn is often cheaper than doubling sign-ups. Send what you promised at sign-up, at the frequency you promised, and remove inactive subscribers before they turn into spam complaints.</p>
+<h2>Typical churn numbers</h2>
+<p>Many healthy lists lose somewhere around 0.5% to 3% a month to unsubscribes, bounces and complaints combined, plus a slower decay as email addresses go stale. If you send very often, buy lists or collect emails with a giveaway unrelated to your content, expect the high end or worse.</p>
+<h2>Growing sign-ups</h2>
+<ul><li><b>Offer something specific</b> in exchange for the email - a checklist, a template, a calculator result - rather than "subscribe to our newsletter".</li><li><b>Put the form where intent is highest:</b> at the end of your most-read posts and inside tools people already use.</li><li><b>Track sign-up rate per page</b> using the <a href="/conversion-rate-calculator/">conversion rate calculator</a>, and tag your promotion links with the <a href="/utm-builder/">UTM builder</a> to see which channels bring subscribers who stay.</li></ul>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>How do I calculate email list growth rate?</summary><p>Subtract subscribers lost (unsubscribes, bounces, complaints) from new subscribers in the period, then divide by the list size at the start. 600 new minus 100 lost on a 5,000 list is a 10% monthly growth rate.</p></details><details><summary>Why has my email list stopped growing?</summary><p>Because churn is a percentage of the list, it grows as the list grows. When monthly losses equal monthly sign-ups, the list plateaus. The plateau is roughly new subscribers per month divided by monthly churn rate.</p></details><details><summary>Should I remove inactive subscribers?</summary><p>Usually yes, after a re-engagement attempt. Inactive addresses hurt deliverability and can turn into spam traps. A smaller, engaged list often earns more than a large, cold one.</p></details></div></article>
+
+<section class="signup"><div><strong>Get new calculators first</strong><p>One short email when we add a tool or guide. No spam, unsubscribe any time.</p></div>
+<form class="signup-form" action="https://formsubmit.co/trafficgoathq@gmail.com" method="POST" data-ajax="https://formsubmit.co/ajax/trafficgoathq@gmail.com">
+<input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" autocomplete="email">
+<input type="hidden" name="_subject" value="GrowthMath signup"><input type="hidden" name="source" value="email-list-growth-calculator">
+<input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://growthmath.io/?subscribed=1">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+<button class="btn" type="submit">Subscribe</button><span class="signup-msg" role="status"></span></form></section>
+<h2>Related tools</h2><div class="grid"><a class="card" href="/engagement-rate-calculator/"><span class="tag">Creators & publishers</span><b>Engagement Rate Calculator</b><span>Instagram, TikTok or LinkedIn engagement rate by followers and by reach.</span></a><a class="card" href="/conversion-rate-calculator/"><span class="tag">Testing & CRO</span><b>Conversion Rate Calculator</b><span>Conversion rate, revenue per visitor and what a higher rate is worth.</span></a><a class="card" href="/customer-ltv-calculator/"><span class="tag">E-commerce & business</span><b>Customer Lifetime Value (LTV) Calculator</b><span>LTV, LTV:CAC ratio and payback for e-commerce and subscriptions.</span></a></div>
+
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const s0 = num('cur'), n = num('newm'), c = num('churn') / 100, m0 = num('months');
+  if (!ok(s0, n, c, m0) || c >= 1 || m0 < 1 || m0 > 600) return;
+  const m = Math.round(m0);
+  let s = s0, lost = 0;
+  for (let i = 0; i < m; i++) { const l = s * c; lost += l; s = s - l + n; }
+  const net1 = n - s0 * c;
+  set('o_final', fnum(Math.round(s), 0)); set('o_net1', fnum(Math.round(net1), 0)); set('o_lost', fnum(Math.round(lost), 0));
+  set('o_rate', s0 > 0 ? pct(net1 / s0 * 100, 1) : '-');
+  set('o_cap', c > 0 ? fnum(Math.round(n / c), 0) : 'No limit');
+  set('o_v', c <= 0 ? 'With no churn the list grows by the full sign-up number every month.' : s0 >= n / c ? 'Your list is at or above its ceiling - churn is eating every new sign-up. Grow sign-ups or cut churn to grow again.' : 'At this pace the list levels off around ' + fnum(Math.round(n / c), 0) + ' subscribers. To raise that ceiling, increase sign-ups or reduce churn.');
+});</script>
+<script>document.querySelectorAll('.signup-form').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
+if(/[?&]subscribed=1/.test(location.search))m.textContent='Thanks - you are on the list.';
+f.addEventListener('submit',function(e){e.preventDefault();if(f._honey.value)return;b.disabled=true;m.textContent='Sending...';
+fetch(f.dataset.ajax,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({email:f.email.value,source:f.source.value,_subject:f._subject.value,_template:'table',_captcha:'false'})})
+.then(function(r){return r.json().then(function(j){if(!r.ok||String(j.success)==='false')throw 0;})}).then(function(){f.email.value='';m.textContent='Thanks - you are on the list.';if(window.gtag)gtag('event','sign_up',{method:'newsletter',source:f.source.value});})
+.catch(function(){m.textContent='Something went wrong - please try again.';}).finally(function(){b.disabled=false;});});});</script>
+</body></html>

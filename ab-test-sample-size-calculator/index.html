@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A/B Test Sample Size Calculator - Visitors per Variant &amp; Test Duration</title>
+<meta name="description" content="Free A/B test sample size calculator. Enter your baseline conversion rate and the lift you want to detect to get visitors per variant, total sample and how many days to run the test.">
+<link rel="canonical" href="https://growthmath.io/ab-test-sample-size-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="A/B Test Sample Size Calculator - Visitors per Variant &amp; Test Duration"><meta property="og:description" content="Free A/B test sample size calculator. Enter your baseline conversion rate and the lift you want to detect to get visitors per variant, total sample and how many days to run the test."><meta property="og:url" content="https://growthmath.io/ab-test-sample-size-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"A/B Test Sample Size Calculator","url":"https://growthmath.io/ab-test-sample-size-calculator/","description":"Free A/B test sample size calculator. Enter your baseline conversion rate and the lift you want to detect to get visitors per variant, total sample and how many days to run the test.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many visitors do I need for an A/B test?","acceptedAnswer":{"@type":"Answer","text":"It depends on your baseline conversion rate and the smallest lift you care about. A 3% baseline and a 20% relative lift needs about 13,900 visitors per variant at 95% confidence and 80% power."}},{"@type":"Question","name":"What is statistical power?","acceptedAnswer":{"@type":"Answer","text":"The probability that the test detects a real effect of the size you specified. 80% power means that if the variant truly is 20% better, the test will show a significant result 8 times out of 10."}},{"@type":"Question","name":"Can I stop a test early if it is already significant?","acceptedAnswer":{"@type":"Answer","text":"Not with this fixed-sample method. Repeatedly checking and stopping at the first significant result greatly increases the chance of a false winner. Decide the sample size up front and wait for it, or use a sequential testing method designed for peeking."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"A/B Test Sample Size Calculator","item":"https://growthmath.io/ab-test-sample-size-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a class="nav-ext" href="/affiliate-link-checker-extension/">Extension</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#cro">Testing & CRO</a> / A/B Test Sample Size Calculator</div>
+<h1>A/B Test Sample Size Calculator</h1>
+<p class="lede">Decide before you start how many visitors a test needs - so you do not stop early and ship a false winner.</p>
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="base">Baseline conversion rate</label>
+<div class="inp has-suf"><input id="base" type="text" inputmode="decimal" value="3" autocomplete="off"><span class="suf">%</span></div>
+</div>
+<div class="field"><label for="mde">Minimum detectable lift (relative)</label>
+<div class="inp has-suf"><input id="mde" type="text" inputmode="decimal" value="20" autocomplete="off"><span class="suf">%</span></div>
+<div class="hint">20% means detecting 3% -> 3.6%.</div></div></div>
+<div class="row2">
+<div class="field"><label for="conf">Significance level (confidence)</label>
+<div class="inp has-suf"><input id="conf" type="text" inputmode="decimal" value="95" autocomplete="off"><span class="suf">%</span></div>
+</div>
+<div class="field"><label for="power">Statistical power</label>
+<div class="inp has-suf"><input id="power" type="text" inputmode="decimal" value="80" autocomplete="off"><span class="suf">%</span></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="variants">Number of variants (incl. control)</label>
+<div class="inp"><input id="variants" type="text" inputmode="decimal" value="2" autocomplete="off"></div>
+</div>
+<div class="field"><label for="daily">Visitors per day in the test</label>
+<div class="inp"><input id="daily" type="text" inputmode="decimal" value="1000" autocomplete="off"></div>
+</div></div>
+</div>
+<div class="out">
+<div class="big-label">Visitors needed per variant</div><div class="big" id="o_n">-</div>
+<div class="stats"><div class="stat"><span>Total visitors</span><strong id="o_total">-</strong></div><div class="stat"><span>Test duration</span><strong id="o_days">-</strong></div><div class="stat"><span>Variant rate to detect</span><strong id="o_target">-</strong></div><div class="stat"><span>Conversions per variant (expected)</span><strong id="o_conv">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>The sample size formula</h2>
+<p>This calculator uses the standard two-sided test for the difference between two proportions:</p>
+<div class="formula">n per variant = ( z(1-a/2) x sqrt(2 x p x (1-p)) + z(power) x sqrt(p1(1-p1) + p2(1-p2)) )^2 / (p2 - p1)^2</div>
+<p>where p1 is the baseline conversion rate, p2 is the rate you want to be able to detect (baseline x (1 + lift)), p is their average, a is 1 minus the confidence level, and z(...) is the standard normal quantile - 1.96 for 95% confidence and 0.84 for 80% power.</p>
+<h2>Worked example</h2>
+<p>A product page converts at 3% and you want to reliably detect a 20% relative lift - from 3% to 3.6%. At 95% confidence and 80% power the formula gives <b>13,914 visitors per variant</b>, or 27,828 for an A/B test. With 1,000 visitors a day the test needs <b>28 days</b>. Each variant will see roughly 417 conversions over that time.</p>
+<h2>Why the lift you choose matters so much</h2>
+<p>Sample size grows with the square of the smaller difference. Halve the lift you want to detect and you need roughly four times the traffic:</p>
+<div class="tscroll"><table class="t"><tr><th>Baseline</th><th>Lift to detect</th><th>Visitors per variant (95% / 80%)</th></tr><tr><td>3%</td><td>10%</td><td>~53,200</td></tr><tr><td>3%</td><td>20%</td><td>~13,900</td></tr><tr><td>3%</td><td>30%</td><td>~6,500</td></tr><tr><td>10%</td><td>10%</td><td>~14,800</td></tr><tr><td>10%</td><td>20%</td><td>~3,800</td></tr></table></div>
+<p>That is why low-traffic sites should test bold changes - a new offer, a new page layout, a different price - rather than button colours. Small tweaks produce small lifts that need huge samples to prove.</p>
+<h2>Rules for a clean test</h2>
+<ul><li><b>Fix the sample size before you start</b>, and stop only when you reach it. Checking daily and stopping at the first "significant" result inflates false positives dramatically.</li><li><b>Run whole weeks.</b> Weekday and weekend visitors behave differently; a test should cover at least one, preferably two, full weekly cycles.</li><li><b>Split traffic evenly and randomly</b>, and keep returning visitors in the same variant.</li><li><b>Pick one primary metric</b> before launch. Looking at ten metrics guarantees one of them will look significant by chance.</li><li><b>Adding variants costs traffic.</b> An A/B/C/D test needs twice the total visitors of an A/B test.</li></ul>
+<p>When the test finishes, check the result with the <a href="/ab-test-significance-calculator/">A/B test significance calculator</a>, and translate the lift into money with the <a href="/conversion-rate-calculator/">conversion rate calculator</a>.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>How many visitors do I need for an A/B test?</summary><p>It depends on your baseline conversion rate and the smallest lift you care about. A 3% baseline and a 20% relative lift needs about 13,900 visitors per variant at 95% confidence and 80% power.</p></details><details><summary>What is statistical power?</summary><p>The probability that the test detects a real effect of the size you specified. 80% power means that if the variant truly is 20% better, the test will show a significant result 8 times out of 10.</p></details><details><summary>Can I stop a test early if it is already significant?</summary><p>Not with this fixed-sample method. Repeatedly checking and stopping at the first significant result greatly increases the chance of a false winner. Decide the sample size up front and wait for it, or use a sequential testing method designed for peeking.</p></details></div></article>
+
+<section class="signup"><div><strong>Get new calculators first</strong><p>One short email when we add a tool or guide. No spam, unsubscribe any time.</p></div>
+<form class="signup-form" action="https://formsubmit.co/trafficgoathq@gmail.com" method="POST" data-ajax="https://formsubmit.co/ajax/trafficgoathq@gmail.com">
+<input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" autocomplete="email">
+<input type="hidden" name="_subject" value="GrowthMath signup"><input type="hidden" name="source" value="ab-test-sample-size-calculator">
+<input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://growthmath.io/?subscribed=1">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+<button class="btn" type="submit">Subscribe</button><span class="signup-msg" role="status"></span></form></section>
+<h2>Related tools</h2><div class="grid"><a class="card" href="/ab-test-significance-calculator/"><span class="tag">Testing & CRO</span><b>A/B Test Significance Calculator</b><span>Is your winning variant real or noise? Get confidence and uplift.</span></a><a class="card" href="/conversion-rate-calculator/"><span class="tag">Testing & CRO</span><b>Conversion Rate Calculator</b><span>Conversion rate, revenue per visitor and what a higher rate is worth.</span></a><a class="card" href="/cpm-cpc-cpa-calculator/"><span class="tag">Paid ads</span><b>CPM, CPC &amp; CPA Calculator</b><span>All your ad cost metrics - CPM, CPC, CTR, CPA, conversion rate - at once.</span></a></div>
+
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
+<script src="/app.js"></script>
+<script>// Inverse standard normal CDF (Acklam's rational approximation, error < 1.2e-9).
+function qnorm(p) {
+  const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.357751867269, -30.66479806614716, 2.506628277459239],
+    b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572],
+    c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783],
+    d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416], pl = 0.02425;
+  if (p < pl) { const q = Math.sqrt(-2 * Math.log(p)); return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1); }
+  if (p > 1 - pl) return -qnorm(1 - p);
+  const q = p - 0.5, r = q * q;
+  return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+}
+live(() => {
+  const p1 = num('base') / 100, m = num('mde') / 100, cf = num('conf') / 100, pw = num('power') / 100, k = num('variants'), daily = num('daily');
+  if (!ok(p1, m, cf, pw) || p1 <= 0 || p1 >= 1 || m <= 0 || cf <= 0.5 || cf >= 1 || pw <= 0.5 || pw >= 1) { set('o_v', 'Enter a baseline between 0 and 100%, a lift above 0, and confidence and power between 50% and 100%.'); return; }
+  const p2 = p1 * (1 + m);
+  if (p2 >= 1) { set('o_v', 'Baseline x (1 + lift) must stay below 100%.'); return; }
+  const za = qnorm(1 - (1 - cf) / 2), zb = qnorm(pw), pb = (p1 + p2) / 2;
+  const n = Math.ceil(Math.pow(za * Math.sqrt(2 * pb * (1 - pb)) + zb * Math.sqrt(p1 * (1 - p1) + p2 * (1 - p2)), 2) / Math.pow(p2 - p1, 2));
+  const kk = ok(k) && k >= 2 ? Math.round(k) : 2, total = n * kk;
+  set('o_n', fnum(n, 0)); set('o_total', fnum(total, 0)); set('o_target', pct(p2 * 100, 2)); set('o_conv', fnum(Math.round(n * p1), 0));
+  const days = ok(daily) && daily > 0 ? Math.ceil(total / daily) : NaN;
+  set('o_days', ok(days) ? fnum(days, 0) + (days === 1 ? ' day' : ' days') : '-');
+  set('o_v', !ok(days) ? 'Add daily visitors to see how long the test must run.' : days > 56 ? 'Over 8 weeks is too long - results drift as seasons and traffic change. Test a bolder change (bigger lift) or a higher-traffic page.' : days < 7 ? 'Run it for at least 7 full days anyway, so every weekday is covered.' : 'A realistic test. Decide the end date now and do not stop early when one variant pulls ahead.');
+});</script>
+<script>document.querySelectorAll('.signup-form').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
+if(/[?&]subscribed=1/.test(location.search))m.textContent='Thanks - you are on the list.';
+f.addEventListener('submit',function(e){e.preventDefault();if(f._honey.value)return;b.disabled=true;m.textContent='Sending...';
+fetch(f.dataset.ajax,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({email:f.email.value,source:f.source.value,_subject:f._subject.value,_template:'table',_captcha:'false'})})
+.then(function(r){return r.json().then(function(j){if(!r.ok||String(j.success)==='false')throw 0;})}).then(function(){f.email.value='';m.textContent='Thanks - you are on the list.';if(window.gtag)gtag('event','sign_up',{method:'newsletter',source:f.source.value});})
+.catch(function(){m.textContent='Something went wrong - please try again.';}).finally(function(){b.disabled=false;});});});</script>
+</body></html>

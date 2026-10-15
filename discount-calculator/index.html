@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discount Profit Calculator - Sales Increase Needed to Break Even on a Discount</title>
+<meta name="description" content="Free discount calculator for stores. Enter price, unit cost and discount to see the new margin and how much sales must rise to make the same gross profit as before.">
+<link rel="canonical" href="https://growthmath.io/discount-calculator/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="GrowthMath">
+<meta property="og:title" content="Discount Profit Calculator - Sales Increase Needed to Break Even on a Discount"><meta property="og:description" content="Free discount calculator for stores. Enter price, unit cost and discount to see the new margin and how much sales must rise to make the same gross profit as before."><meta property="og:url" content="https://growthmath.io/discount-calculator/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b6e4f">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5619164579775107" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Discount Profit Calculator","url":"https://growthmath.io/discount-calculator/","description":"Free discount calculator for stores. Enter price, unit cost and discount to see the new margin and how much sales must rise to make the same gross profit as before.","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much do sales need to increase to cover a discount?","acceptedAnswer":{"@type":"Answer","text":"Divide your profit per unit before the discount by your profit per unit after it, then subtract 1. At a 40% margin, a 20% discount needs a 100% increase in units to earn the same gross profit."}},{"@type":"Question","name":"Is a 20% discount the same as a 20% loss of profit?","acceptedAnswer":{"@type":"Answer","text":"No - it is usually much more. The discount comes out of the margin, so on a 40% margin product a 20% discount cuts profit per unit in half."}},{"@type":"Question","name":"Does this include fixed costs?","acceptedAnswer":{"@type":"Answer","text":"No. It compares gross profit (price minus unit cost), which is the right view for a short promotion where fixed costs do not change."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://growthmath.io/"},{"@type":"ListItem","position":2,"name":"Discount Profit Calculator","item":"https://growthmath.io/discount-calculator/"}]}</script>
+</head><body>
+<header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>GrowthMath</a>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a class="nav-ext" href="/affiliate-link-checker-extension/">Extension</a><a href="/about/">About</a></nav></div></header>
+<main class="wrap">
+<div class="crumbs"><a href="/">Home</a> / <a href="/#ecom">E-commerce & business</a> / Discount Profit Calculator</div>
+<h1>Discount Profit Calculator</h1>
+<p class="lede">Before you run a sale, see how many extra orders it needs just to earn what you earn today.</p>
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="price">Normal price</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="price" type="text" inputmode="decimal" value="100" autocomplete="off"></div>
+</div>
+<div class="field"><label for="cost">Cost per unit</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="cost" type="text" inputmode="decimal" value="60" autocomplete="off"></div>
+<div class="hint">Product + shipping + fees per unit.</div></div></div>
+<div class="row2">
+<div class="field"><label for="disc">Discount</label>
+<div class="inp has-suf"><input id="disc" type="text" inputmode="decimal" value="20" autocomplete="off"><span class="suf">%</span></div>
+</div>
+<div class="field"><label for="units">Units you normally sell</label>
+<div class="inp"><input id="units" type="text" inputmode="decimal" value="200" autocomplete="off"></div>
+<div class="hint">In the period the sale will run.</div></div></div>
+</div>
+<div class="out">
+<div class="big-label">Sales increase needed to break even</div><div class="big" id="o_need">-</div>
+<div class="stats"><div class="stat"><span>Sale price</span><strong id="o_np">-</strong></div><div class="stat"><span>Profit per unit on sale</span><strong id="o_pu">-</strong></div><div class="stat"><span>Margin on sale</span><strong id="o_m">-</strong></div><div class="stat"><span>Units needed on sale</span><strong id="o_units">-</strong></div><div class="stat"><span>Gross profit at normal price</span><strong id="o_gp">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+
+<article class="content narrow">
+<h2>The discount formula</h2>
+<div class="formula">Sales increase needed = Profit per unit before / Profit per unit after discount - 1</div>
+<div class="formula">Profit per unit after = Price x (1 - Discount) - Cost per unit</div>
+<p>The discount comes entirely out of your margin, not out of the price, so the profit per unit falls much faster than the price does.</p>
+<h2>Worked example</h2>
+<p>A product sells for $100 and costs $60, so it makes $40 a unit (a 40% margin). A 20% discount brings the price to $80, but the cost is still $60, so profit per unit halves to $20 - a 25% margin. To make the same $8,000 gross profit you make from 200 units at full price, you need to sell <b>400 units</b> on sale: a <b>100% increase</b> in volume, just to stand still.</p>
+<h2>Discount vs. margin table</h2>
+<p>Sales increase needed to keep the same gross profit:</p>
+<div class="tscroll"><table class="t"><tr><th>Discount</th><th>30% margin</th><th>40% margin</th><th>50% margin</th><th>60% margin</th></tr><tr><td>5%</td><td>20%</td><td>14.3%</td><td>11.1%</td><td>9.1%</td></tr><tr><td>10%</td><td>50%</td><td>33.3%</td><td>25%</td><td>20%</td></tr><tr><td>15%</td><td>100%</td><td>60%</td><td>42.9%</td><td>33.3%</td></tr><tr><td>20%</td><td>200%</td><td>100%</td><td>66.7%</td><td>50%</td></tr><tr><td>25%</td><td>500%</td><td>166.7%</td><td>100%</td><td>71.4%</td></tr><tr><td>30%</td><td>Loss</td><td>300%</td><td>150%</td><td>100%</td></tr></table></div>
+<p>Lower-margin businesses get hurt fastest. At a 30% margin, a 30% discount means selling at cost - every order is work for nothing.</p>
+<h2>When a discount can still make sense</h2>
+<ul><li><b>Clearing dead stock.</b> If the alternative is writing it off, any price above the cost of selling it is a gain.</li><li><b>Acquiring customers who come back.</b> A first-order discount can pay off if repeat purchases follow - check it with the <a href="/customer-ltv-calculator/">LTV calculator</a>.</li><li><b>Raising order value.</b> "10% off orders over $150" protects margin better than a sitewide discount, because it only applies to bigger baskets.</li></ul>
+<h2>Alternatives to a straight discount</h2>
+<p>Free shipping thresholds, gifts with purchase, bundles and limited-time bonuses often lift sales while costing less than a percentage off, because the perceived value is higher than the cost to you. Whatever you choose, run the numbers first - and check your <a href="/break-even-point-calculator/">break-even point</a> at the sale price.</p>
+<h2>Frequently asked questions</h2><div class="faq"><details><summary>How much do sales need to increase to cover a discount?</summary><p>Divide your profit per unit before the discount by your profit per unit after it, then subtract 1. At a 40% margin, a 20% discount needs a 100% increase in units to earn the same gross profit.</p></details><details><summary>Is a 20% discount the same as a 20% loss of profit?</summary><p>No - it is usually much more. The discount comes out of the margin, so on a 40% margin product a 20% discount cuts profit per unit in half.</p></details><details><summary>Does this include fixed costs?</summary><p>No. It compares gross profit (price minus unit cost), which is the right view for a short promotion where fixed costs do not change.</p></details></div></article>
+
+<section class="signup"><div><strong>Get new calculators first</strong><p>One short email when we add a tool or guide. No spam, unsubscribe any time.</p></div>
+<form class="signup-form" action="https://formsubmit.co/trafficgoathq@gmail.com" method="POST" data-ajax="https://formsubmit.co/ajax/trafficgoathq@gmail.com">
+<input type="email" name="email" required placeholder="you@company.com" aria-label="Email address" autocomplete="email">
+<input type="hidden" name="_subject" value="GrowthMath signup"><input type="hidden" name="source" value="discount-calculator">
+<input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://growthmath.io/?subscribed=1">
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+<button class="btn" type="submit">Subscribe</button><span class="signup-msg" role="status"></span></form></section>
+<h2>Related tools</h2><div class="grid"><a class="card" href="/profit-margin-calculator/"><span class="tag">E-commerce & business</span><b>Profit Margin &amp; Markup Calculator</b><span>Margin, markup and profit from cost and price - or the price for a target margin.</span></a><a class="card" href="/break-even-point-calculator/"><span class="tag">E-commerce & business</span><b>Break-Even Point Calculator</b><span>Units and revenue you need to cover fixed costs - and to hit a profit goal.</span></a><a class="card" href="/shopify-profit-calculator/"><span class="tag">E-commerce & business</span><b>Shopify Profit Calculator</b><span>Real monthly profit after product, shipping, payment fees, ads and apps.</span></a></div>
+
+</main>
+<footer class="site-foot"><div class="wrap"><div><b>GrowthMath</b> - free calculators for marketers, affiliates and store owners. &copy; 2026</div>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
+<script src="/app.js"></script>
+<script>live(() => {
+  const p = num('price'), c = num('cost'), d = num('disc') / 100, u = num('units');
+  if (!ok(p, c, d) || p <= 0 || d >= 1) return;
+  const np = p * (1 - d), old = p - c, nw = np - c;
+  set('o_np', money(np)); set('o_pu', money(nw)); set('o_m', pct(nw / np * 100, 1));
+  if (ok(u)) set('o_gp', money(old * u, 0));
+  if (old <= 0) { set('o_v', 'You already lose money on each unit at the normal price.'); return; }
+  if (nw <= 0) { set('o_v', 'At this discount every unit sells at a loss - no amount of extra volume makes it profitable.'); $('o_need').classList.add('bad'); return; }
+  $('o_need').classList.remove('bad');
+  const inc = old / nw - 1;
+  set('o_need', pct(inc * 100, 1));
+  if (ok(u)) set('o_units', fnum(Math.ceil(u * old / nw - 1e-9), 0));
+  set('o_v', 'A ' + pct(d * 100, 0) + ' discount turns ' + money(old) + ' of profit per unit into ' + money(nw) + '. You must sell ' + fnum(old / nw, 2) + 'x as many units to earn the same gross profit.');
+});</script>
+<script>document.querySelectorAll('.signup-form').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
+if(/[?&]subscribed=1/.test(location.search))m.textContent='Thanks - you are on the list.';
+f.addEventListener('submit',function(e){e.preventDefault();if(f._honey.value)return;b.disabled=true;m.textContent='Sending...';
+fetch(f.dataset.ajax,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({email:f.email.value,source:f.source.value,_subject:f._subject.value,_template:'table',_captcha:'false'})})
+.then(function(r){return r.json().then(function(j){if(!r.ok||String(j.success)==='false')throw 0;})}).then(function(){f.email.value='';m.textContent='Thanks - you are on the list.';if(window.gtag)gtag('event','sign_up',{method:'newsletter',source:f.source.value});})
+.catch(function(){m.textContent='Something went wrong - please try again.';}).finally(function(){b.disabled=false;});});});</script>
+</body></html>
