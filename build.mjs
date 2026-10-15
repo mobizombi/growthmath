@@ -64,7 +64,7 @@ ${ADSENSE ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/
 ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
 </head><body>
 <header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>${NAME}</a>
-<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/affiliate-link-checker-extension/">Chrome extension</a><a href="/about/">About</a></nav></div></header>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a class="nav-ext" href="/affiliate-link-checker-extension/">Extension</a><a href="/about/">About</a></nav></div></header>
 <main class="wrap">${body}</main>
 <footer class="site-foot"><div class="wrap"><div><b>${NAME}</b> - free calculators for marketers, affiliates and store owners. &copy; ${YEAR}</div>
 <div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
