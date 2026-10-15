@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Affiliate Link Checker</title><link rel="stylesheet" href="popup.css"></head>
+<body>
+<header><span class="mark">g/m</span><div><b>Affiliate Link Checker</b><span id="page" class="muted"></span></div></header>
+<main>
+  <div id="msg" class="msg">Scanning this page...</div>
+  <div id="res" hidden>
+    <div class="kpis">
+      <div><span>Affiliate links</span><b id="k_links">-</b></div>
+      <div><span>Networks</span><b id="k_nets">-</b></div>
+      <div><span>Missing rel</span><b id="k_rel">-</b></div>
+    </div>
+    <div id="disc" class="disc"></div>
+    <div id="nets" class="nets"></div>
+    <div class="bar">
+      <label class="check"><input id="hl" type="checkbox"> Highlight on page</label>
+      <select id="filter" aria-label="Filter links"><option value="all">All links</option><option value="bad">Missing rel</option></select>
+      <button id="csv">Export CSV</button>
+    </div>
+    <ul id="list"></ul>
+    <p id="none" class="muted" hidden>No affiliate links found on this page. Cloaked links that redirect through another domain may not be detectable without clicking them.</p>
+  </div>
+</main>
+<footer>
+  <a href="https://growthmath.io/affiliate-commission-calculator/?utm_source=affiliate_checker&amp;utm_medium=extension&amp;utm_campaign=footer" target="_blank" rel="noopener">What's each click worth? EPC calculator</a>
+  <a href="https://growthmath.io/affiliate-link-checker-extension/?utm_source=affiliate_checker&amp;utm_medium=extension&amp;utm_campaign=footer_help" target="_blank" rel="noopener">How to read the results</a>
+</footer>
+<script src="scan.js"></script>
+<script src="popup.js"></script>
+</body></html>
