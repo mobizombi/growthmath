@@ -123,3 +123,8 @@ footer.site-foot a{color:var(--muted);margin-right:16px}
 .signup-form .btn{border:0;cursor:pointer;font:inherit;font-weight:700}
 .signup-msg{flex-basis:100%;font-size:14px;color:var(--accent);min-height:1em}
 .signup .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.ext-hero{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:center;margin:20px 0 8px}
+.ext-hero img{width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.ext-cta .btn{font-size:16px;padding:13px 20px}
+@media (max-width:760px){.ext-hero{grid-template-columns:1fr}}
+.ext-promo{text-decoration:none;color:#fff}

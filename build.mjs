@@ -64,10 +64,10 @@ ${ADSENSE ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/
 ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
 </head><body>
 <header class="site-head"><div class="wrap"><a class="logo" href="/"><span class="logo-mark">g/m</span>${NAME}</a>
-<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/about/">About</a></nav></div></header>
+<nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a href="/affiliate-link-checker-extension/">Chrome extension</a><a href="/about/">About</a></nav></div></header>
 <main class="wrap">${body}</main>
 <footer class="site-foot"><div class="wrap"><div><b>${NAME}</b> - free calculators for marketers, affiliates and store owners. &copy; ${YEAR}</div>
-<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div></div></footer>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
 ${scripts}
 ${SIGNUP_TO ? `<script>document.querySelectorAll('.signup-form').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
 if(/[?&]subscribed=1/.test(location.search))m.textContent='Thanks - you are on the list.';
@@ -125,6 +125,7 @@ function home() {
   const body = `
 <section class="hero"><h1>The numbers behind your marketing, calculated in seconds.</h1>
 <p class="lede">Free, no-signup calculators for ROAS, CPA, affiliate earnings, LTV, CAC, churn, store profit, YouTube earnings, UTM links and A/B tests. Everything runs in your browser - your data never leaves your device.</p></section>
+<a class="cta ext-promo" href="/affiliate-link-checker-extension/"><div><strong>New: free Affiliate Link Checker for Chrome</strong><p>See every affiliate link on a page - network, tracking ID, rel="sponsored" and disclosure - in one click.</p></div><span class="btn">Get the extension</span></a>
 <div id="tools">${sections}</div>
 ${signup('home')}
 <h3 class="cat-h" id="guides">Guides</h3><div class="grid">${guides.map(guideCard).join('')}</div>
@@ -176,6 +177,14 @@ function guidesIndex() {
 
 const staticPage = (path, title, desc, html) => layout({ title: `${title} - ${NAME}`, desc, path, body: `<article class="content narrow"><h1>${title}</h1>${html}</article>` });
 
+const EXT_VERSION = JSON.parse(readFileSync('extension-affiliate/manifest.json', 'utf8')).version;
+const EXT_FAQ = [
+  ['Is the Affiliate Link Checker free?', 'Yes. It is free, needs no account, and has no paid tier.'],
+  ['Do affiliate links need rel="sponsored"?', 'Google asks that links you are paid for, including affiliate links, are marked rel="sponsored" or rel="nofollow". Unmarked paid links can be treated as a link scheme.'],
+  ['Does it detect every affiliate link?', 'It detects links by network domain, URL pattern and common affiliate parameters, which covers most programs. Links that hide behind an unrelated redirect domain cannot be identified without following them, so treat the count as a minimum.'],
+  ['Does the extension send my data anywhere?', 'No. It runs only when you click it, reads the current page locally, makes no network requests and stores nothing.'],
+];
+const table = (head, rows) => `<div class="tscroll"><table class="t"><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</table></div>`;
 const pages = {
   '/about/': staticPage('/about/', 'About GrowthMath', 'About GrowthMath, a collection of free calculators for marketers, affiliates and online store owners.', `
 <p>GrowthMath is a small collection of free calculators for people who buy traffic, run affiliate programs or sell online. It is built by people who work hands-on in affiliate marketing, paid acquisition and conversion optimisation.</p>
@@ -200,6 +209,36 @@ const pages = {
 <p>Our hosting provider may record standard technical logs (IP address, browser type, pages requested) for security and reliability. We do not use these to identify individuals.</p>
 <h2>Contact</h2>
 <p>Privacy questions: <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>`),
+  '/affiliate-link-checker-extension/': layout({ title: 'Affiliate Link Checker - Free Chrome Extension to Audit Affiliate Links', desc: 'Free Chrome extension that finds every affiliate link on a page, names the network and tracking ID, flags links missing rel="sponsored" and checks for an FTC disclosure. Export to CSV.', path: '/affiliate-link-checker-extension/', schema: [
+    { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Affiliate Link Checker by GrowthMath', applicationCategory: 'BrowserApplication', operatingSystem: 'Chrome', url: SITE + '/affiliate-link-checker-extension/', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: EXT_FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }],
+    body: `
+<div class="crumbs"><a href="/">Home</a> / Chrome extension</div>
+<h1>Affiliate Link Checker for Chrome</h1>
+<p class="lede">Click once on any page to see every affiliate link on it: which network, which tracking ID, whether it carries rel="sponsored", and whether the page has a disclosure. Free, no account, nothing leaves your browser.</p>
+<div class="ext-hero"><img src="/img/affiliate-link-checker.jpg" width="800" height="512" alt="Affiliate Link Checker popup listing 13 affiliate links by network, with links missing rel=sponsored outlined in red on the page" loading="eager">
+<div class="ext-cta"><a class="btn" href="/downloads/affiliate-link-checker-${EXT_VERSION}.zip" download>Download for Chrome (v${EXT_VERSION})</a><p class="small muted">Chrome Web Store listing coming soon. Until then, install it in 30 seconds with the steps below - it works in Chrome, Edge, Brave and Arc.</p></div></div>
+<article class="content narrow">
+<h2>What it checks</h2>
+<ul><li><b>Every affiliate link, by network.</b> Amazon Associates, Impact, CJ, Awin, Rakuten, ShareASale, ClickBank, eBay Partner Network, Partnerize, Skimlinks, Sovrn, AvantLink, FlexOffers, Digistore24, Booking.com, SaaS referral programs (Rewardful, FirstPromoter, PartnerStack) and more - plus cloaked links like <code>/go/</code> and <code>/recommends/</code>.</li>
+<li><b>Tracking IDs.</b> See the Amazon tag, Impact or CJ publisher ID, Awin affiliate ID and others on every link. Catch a missing or wrong tag before it costs you commissions.</li>
+<li><b>rel="sponsored".</b> Google asks for paid and affiliate links to carry <code>rel="sponsored"</code> (or <code>nofollow</code>). Links without it are counted and outlined in red on the page.</li>
+<li><b>Disclosure.</b> Finds wording like "As an Amazon Associate" or "we may earn a commission", and warns you if it only appears after the first affiliate link.</li>
+<li><b>Export to CSV</b> for audits, client reports or competitor research.</li></ul>
+<h2>Who it is for</h2>
+<ul><li><b>Affiliate publishers and bloggers:</b> audit your own pages for broken tags, missing rel attributes and disclosure placement.</li>
+<li><b>Affiliate managers:</b> check how partners link to you, and spot which networks and competitors a publisher already works with before you pitch them.</li>
+<li><b>SEO agencies:</b> run a link-attribute compliance check on a client's money pages in seconds.</li></ul>
+<h2>How to install (while the Web Store listing is in review)</h2>
+<ol><li>Download the zip above and unzip it.</li><li>Open <code>chrome://extensions</code> and switch on <b>Developer mode</b> (top right).</li><li>Click <b>Load unpacked</b> and choose the unzipped folder.</li><li>Pin the extension from the puzzle-piece menu, open any page and click the icon.</li></ol>
+<h2>How to read the results</h2>
+${table(['You see', 'What it means', 'What to do'], [['Red "no rel" tag', 'The link has neither rel="sponsored" nor rel="nofollow"', 'Add rel="sponsored" (most affiliate plugins have a setting for it)'], ['"hidden" tag', 'The link exists in the page code but is not visible', 'Check it is intentional - hidden affiliate links can look like cookie stuffing'], ['Disclosure "only after the first link"', 'Readers can click before they see the disclosure', 'Move a short disclosure above the first affiliate link'], ['Cloaked redirect', 'A link on your own domain like /go/product that likely redirects to an affiliate URL', 'Make sure the redirect target carries your tracking ID'], ['Amazon (short link)', 'An amzn.to link - the tag is inside the redirect', 'Open it once to confirm your tag is applied']])}
+<h2>Privacy</h2>
+<p>The extension only reads a page when you click its icon, uses Chrome's <code>activeTab</code> permission (no access to your browsing otherwise), makes no network requests, stores nothing and contains no analytics. The source is a few small, readable files.</p>
+<p>Want to know what those links are worth? Use the <a href="/affiliate-commission-calculator/">affiliate EPC calculator</a>, or find inactive partners with the <a href="/dormant-affiliate-finder/">dormant affiliate finder</a>.</p>
+<h2>Frequently asked questions</h2><div class="faq">${EXT_FAQ.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>
+</article>
+${signup('extension')}` }),
   '/terms/': staticPage('/terms/', 'Terms of Use', 'GrowthMath terms of use.', `
 <p>The tools on GrowthMath are provided free of charge, as-is, for general information and planning. Results are estimates based on the numbers you enter and standard formulas; they are not financial, legal or tax advice. Always verify important decisions with your own data and, where appropriate, a qualified professional.</p>
 <p>We may change or remove tools at any time. By using the site you agree not to misuse it, attempt to disrupt it, or scrape it at scale.</p>`),
@@ -219,6 +258,8 @@ write('/404.html', staticPage('/404.html', 'Page not found', 'Page not found.', 
 
 copyFileSync('src/style.css', OUT + '/style.css');
 copyFileSync('src/app.js', OUT + '/app.js');
+mkdirSync(OUT + '/img', { recursive: true }); copyFileSync('src/img/affiliate-link-checker.jpg', OUT + '/img/affiliate-link-checker.jpg');
+mkdirSync(OUT + '/downloads', { recursive: true }); copyFileSync(`brand/extension/affiliate-link-checker-${EXT_VERSION}.zip`, OUT + `/downloads/affiliate-link-checker-${EXT_VERSION}.zip`);
 writeFileSync(OUT + '/favicon.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#15171a"/><text x="32" y="42" font-family="monospace" font-size="26" font-weight="700" fill="#fff" text-anchor="middle">g/m</text></svg>`);
 if (ADSENSE && !TEMP) writeFileSync(OUT + '/ads.txt', `google.com, ${ADSENSE.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n`);
 writeFileSync(OUT + '/robots.txt', TEMP ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
