@@ -2,16 +2,16 @@
 
 Goal: backlinks and first real users, so AdSense sees traffic + indexed depth before we ask for a re-review.
 Rule: Adam logs in / creates each account himself; Claude fills the form; nothing is submitted without Adam's yes for that listing.
-Public byline = "Adam S." only. Contact email = hello@growthmath.io.
+Public identity = Traffic Goat / GrowthMath brands only; never name any other company. Contact email = hello@growthmath.io.
 
 ## Wave 1 - free directories (submit these first)
 | # | Directory | Submit as | Status |
 |---|---|---|---|
 | 1 | AlternativeTo | GrowthMath, listed as an alternative to Omni Calculator / paid ROAS tools | SUBMITTED 2026-10-20 (free queue, very slow; alt = Omni Calculator; account TrafficGoat) |
 | 2 | SaaSHub | GrowthMath.io ("GrowthMath" name was taken) - Marketing, Advertising, Affiliate Marketing | SUBMITTED 2026-10-20 (free, 1-12 wks; competitors Omni Calculator, calculator.net, UTM.io; notify trafficgoathq@gmail.com) |
-| 3 | Uneed | GrowthMath (free queue) | todo |
-| 4 | Microlaunch | GrowthMath | todo |
-| 5 | Fazier | GrowthMath | todo |
+| 3 | Uneed | GrowthMath (free queue) | SCHEDULED - launches 2027-01-19 (uneed.best/tool/growthmath). Needs upvote score 10 that day to stay published, 20 for dofollow; under 10 = back to draft, no free re-queue. Rally voters the week before. |
+| 4 | Microlaunch | GrowthMath | todo - account ready (maker shows "Adam Sch", fine) |
+| 5 | Fazier | GrowthMath | SKIPPED for now - free tier needs 3 public comments + a Fazier badge on our site; Lite is $29 |
 | 6 | Peerlist Launchpad | GrowthMath | todo |
 | 7 | TinyLaunch | GrowthMath | todo |
 | 8 | Launching Next | GrowthMath | todo |
