@@ -144,10 +144,10 @@ Checked 2026-10-20: none of these pages has its own calculator. Skipped: Trendtr
 | A2 | Newsfeed.org | | | | |
 | A3 | Influee | | | | |
 | A4 | Sedona Chamber | | | | |
-| A5 | Racklify | | | | |
-| A6 | Rooster | | | | |
-| A7 | Jaywing | | | | |
-| A8 | Adwave | | | | |
+| A5 | Racklify | SKIPPED - only contact is a 3PL sales funnel | | | |
+| A6 | Rooster | Adam to send (form needs a phone number) | | | |
+| A7 | Jaywing | Adam to send (terms + reCAPTCHA) | | | |
+| A8 | Adwave | 2026-10-20 (contact form, by Claude with Adam's OK) | | | |
 | B1 | Diggity Marketing | | | | |
 | B2 | Make Influence | | | | |
 | B3 | Recharge | | | | |
