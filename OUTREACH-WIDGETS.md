@@ -140,17 +140,17 @@ Checked 2026-10-20: none of these pages has its own calculator. Skipped: Trendtr
 ## Tracker
 | # | Site | Sent (date) | Reply | Embedded? | Link live |
 |---|---|---|---|---|---|
-| A1 | Relevant Audience | | | | |
-| A2 | Newsfeed.org | | | | |
-| A3 | Influee | | | | |
-| A4 | Sedona Chamber | | | | |
+| A1 | Relevant Audience | 2026-10-20 (email, Adam) | | | |
+| A2 | Newsfeed.org | 2026-10-20 (email, Adam) | | | |
+| A3 | Influee | 2026-10-20 (email, Adam) | | | |
+| A4 | Sedona Chamber | 2026-10-20 (email, Adam) | | | |
 | A5 | Racklify | SKIPPED - only contact is a 3PL sales funnel | | | |
-| A6 | Rooster | Adam to send (form needs a phone number) | | | |
-| A7 | Jaywing | Adam to send (terms + reCAPTCHA) | | | |
+| A6 | Rooster | 2026-10-20 (contact form, Adam) | | | |
+| A7 | Jaywing | 2026-10-20 (contact form, Adam) | | | |
 | A8 | Adwave | 2026-10-20 (contact form, by Claude with Adam's OK) | | | |
 | B1 | Diggity Marketing | | | | |
 | B2 | Make Influence | | | | |
 | B3 | Recharge | | | | |
 | B4 | Brandwatch | | | | |
 
-Follow up once after 5-7 days with no reply, then stop. Batch 2 next week: YouTube RPM posts (youtube-earnings-calculator), Shopify margin posts (shopify-profit-calculator), churn posts from small SaaS founders.
+Follow up once after 5-7 days with no reply, then stop. Batch 1 A-list all sent 2026-10-20, so follow-ups are due ~2026-10-27. Batch 2 next week: YouTube RPM posts (youtube-earnings-calculator), Shopify margin posts (shopify-profit-calculator), churn posts from small SaaS founders.
