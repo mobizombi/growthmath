@@ -16,7 +16,7 @@ Public identity = Traffic Goat / GrowthMath brands only; never name any other co
 | 7 | TinyLaunch | GrowthMath | SCHEDULED - free Standard launch Mon 2026-11-23 (launch id 26561, pending review <24h). Backlink only if top 3 AND the TinyLaunch badge is embedded on our site; rally upvotes that day. |
 | 8 | Launching Next | GrowthMath | SUBMITTED 2026-10-20 (free queue, est. 4 months; notify trafficgoathq@gmail.com, newsletter opt-out) |
 | 9 | SideProjectors | GrowthMath (showcase, not for sale) | todo |
-| 10 | SaaSworthy | GrowthMath (free listing) | todo - vendor portal uses email OTP login, not completed yet |
+| 10 | SaaSworthy | GrowthMath | SKIPPED - vendor portal needs a separate OTP login; the 'free' listing path is a sales lead form (phone, budget, reCAPTCHA). Not worth it. |
 | 11 | Startup Stash | GrowthMath | todo |
 | 12 | BetaList | GrowthMath | todo |
 | 13 | Hacker News (Show HN) | "Show HN: Free marketing calculators you can embed on your own site" | todo - weekday 15:00-17:00 IL |
