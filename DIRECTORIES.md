@@ -12,7 +12,7 @@ Public identity = Traffic Goat / GrowthMath brands only; never name any other co
 | 3 | Uneed | GrowthMath (free queue) | SCHEDULED - launches 2027-01-19 (uneed.best/tool/growthmath). Needs upvote score 10 that day to stay published, 20 for dofollow; under 10 = back to draft, no free re-queue. Rally voters the week before. |
 | 4 | Microlaunch | GrowthMath | SKIPPED - no free launch anymore (checked 2026-10-20): "New Launch" only offers Pro, $39-$149 one-off. Account exists. |
 | 5 | Fazier | GrowthMath | SKIPPED for now - free tier needs 3 public comments + a Fazier badge on our site; Lite is $29 |
-| 6 | Peerlist Launchpad | GrowthMath | PROFILE CREATED (peerlist.io/trafficgoathq) - launches open Mondays only (next 2026-10-26); profile at 20%, must be completed before it can interact/launch |
+| 6 | Peerlist Launchpad | GrowthMath | PROJECT LIVE (peerlist.io/trafficgoathq/project/growthmath, 100% complete). Launch needs a VERIFIED profile: free workplace verification (Traffic Goat + a work email such as adam@traffic-goat.com) or paid ID check - Adam's step. Launchpad weeks run Mon-Sun. |
 | 7 | TinyLaunch | GrowthMath | SCHEDULED - free Standard launch Mon 2026-11-23 (launch id 26561, pending review <24h). Backlink only if top 3 AND the TinyLaunch badge is embedded on our site; rally upvotes that day. |
 | 8 | Launching Next | GrowthMath | SUBMITTED 2026-10-20 (free queue, est. 4 months; notify trafficgoathq@gmail.com, newsletter opt-out) |
 | 9 | SideProjectors | GrowthMath (showcase, not for sale) | todo |
