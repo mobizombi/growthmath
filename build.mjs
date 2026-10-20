@@ -317,6 +317,9 @@ write('/404.html', staticPage('/404.html', 'Page not found', 'Page not found.', 
 copyFileSync('src/style.css', OUT + '/style.css');
 copyFileSync('src/app.js', OUT + '/app.js');
 mkdirSync(OUT + '/img', { recursive: true }); copyFileSync('src/img/affiliate-link-checker.jpg', OUT + '/img/affiliate-link-checker.jpg');
+// Logo + screenshots at stable public URLs, for directory listings that upload images by URL.
+copyFileSync('brand/logo-400.png', OUT + '/img/logo-400.png');
+for (const s of ['home', 'roas', 'ltv', 'ab', 'dormant']) copyFileSync(`brand/ph/${s}.png`, OUT + `/img/screen-${s}.png`);
 mkdirSync(OUT + '/downloads', { recursive: true }); copyFileSync(`brand/extension/affiliate-link-checker-${EXT_VERSION}.zip`, OUT + `/downloads/affiliate-link-checker-${EXT_VERSION}.zip`);
 writeFileSync(OUT + '/favicon.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#15171a"/><text x="32" y="42" font-family="monospace" font-size="26" font-weight="700" fill="#fff" text-anchor="middle">g/m</text></svg>`);
 if (ADSENSE && !TEMP) writeFileSync(OUT + '/ads.txt', `google.com, ${ADSENSE.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n`);
