@@ -147,6 +147,7 @@ gtag('js',new Date());gtag('config','${GA4}',{embed_host:document.referrer?new U
 <section class="tool${t.single ? ' single' : ''}">${t.tool}</section>
 <div class="embed-foot"><a href="${back}" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> ${esc(t.name)}</a><a href="${back}" target="_blank" rel="noopener">Formula and guide</a></div>
 <script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
 <script>${t.js}</script>
 <script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:${JSON.stringify(t.slug)},h:h},'*');}}
 if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
