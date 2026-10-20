@@ -159,7 +159,7 @@ function embedHub() {
 <div class="crumbs"><a href="/">Home</a> / Embed</div>
 <h1>Free calculator widgets for your website</h1>
 <p class="lede">Add any GrowthMath calculator to your blog, course, newsletter landing page or client site - free, no signup, no ads inside the widget. Copy the code, paste it into an HTML block, done.</p>
-<section class="tool single embed-demo"><iframe src="/embed/roas-calculator/" title="ROAS Calculator demo" data-gm="roas-calculator" width="100%" height="620" style="border:0" loading="lazy"></iframe></section>
+<section class="tool single embed-demo"><iframe src="/embed/roas-calculator/" title="ROAS Calculator demo" data-gm="roas-calculator" width="100%" height="620" style="border:0"></iframe></section>
 <script>window.addEventListener('message',function(e){var d=e.data;if(e.origin===location.origin&&d&&d.gm==='h')document.querySelectorAll('iframe[data-gm="'+d.slug+'"]').forEach(function(f){f.style.height=d.h+'px'})});</script>
 <article class="content narrow">
 <h2>How to embed a calculator</h2>
