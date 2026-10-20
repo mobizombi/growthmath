@@ -67,7 +67,7 @@ ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</sc
 <nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a class="nav-ext" href="/affiliate-link-checker-extension/">Extension</a><a href="/about/">About</a></nav></div></header>
 <main class="wrap">${body}</main>
 <footer class="site-foot"><div class="wrap"><div><b>${NAME}</b> - free calculators for marketers, affiliates and store owners. &copy; ${YEAR}</div>
-<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/embed/">Embed our calculators</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
 ${scripts}
 ${SIGNUP_TO ? `<script>document.querySelectorAll('.signup-form').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
 if(/[?&]subscribed=1/.test(location.search))m.textContent='Thanks - you are on the list.';
@@ -101,7 +101,8 @@ function toolPage(t0) {
 <section class="tool${t.single ? ' single' : ''}">${t.tool}</section>
 ${adUnit()}
 <article class="content narrow">${t.content}
-<h2>Frequently asked questions</h2><div class="faq">${faqHtml}</div></article>
+<h2>Frequently asked questions</h2><div class="faq">${faqHtml}</div>
+${embedBox(t)}</article>
 ${cta}
 ${signup(t.slug)}
 <h2>Related tools</h2><div class="grid">${related}</div>
@@ -115,6 +116,61 @@ ${adUnit()}`;
       { '@type': 'ListItem', position: 2, name: t.name, item: SITE + path } ] },
   ];
   return layout({ title: t.title, desc: t.desc, path, body, schema, scripts: `<script src="/app.js"></script>\n<script>${t.js}</script>` });
+}
+
+// ---- embeddable widgets: /embed/<slug>/ is the bare tool (noindex, canonical -> tool page).
+// The snippet keeps the credit link OUTSIDE the iframe so it counts as a backlink on the host page.
+const embedSnippet = (t) => `<iframe src="${SITE}/embed/${t.slug}/" title="${esc(t.name)}" data-gm="${t.slug}" width="100%" height="620" style="border:0;max-width:820px" loading="lazy" allow="clipboard-write"></iframe>
+<p style="font-size:13px;margin:4px 0 0"><a href="${SITE}/${t.slug}/">${esc(t.name)}</a> by GrowthMath</p>
+<script>window.addEventListener('message',function(e){var d=e.data;if(e.origin==='${new URL(SITE).origin}'&&d&&d.gm==='h')document.querySelectorAll('iframe[data-gm="'+d.slug+'"]').forEach(function(f){f.style.height=d.h+'px'})});</script>`;
+
+const embedBox = (t, open = false) => `<details class="embed-box"${open ? ' open' : ''}><summary>Embed this calculator on your site</summary>
+<p>Free for blogs, newsletters and client sites. Paste this HTML where you want the calculator - it resizes itself and works on any device. Please keep the credit line.</p>
+<textarea class="embed-code" readonly rows="6" aria-label="Embed code for the ${esc(t.name)}">${esc(embedSnippet(t))}</textarea>
+<button class="btn ghost" type="button" onclick="copyText(this.previousElementSibling.value,this)">Copy embed code</button></details>`;
+
+function embedPage(t) {
+  const back = `${SITE}/${t.slug}/`;
+  return `<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(t.name)} - ${NAME}</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="${back}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+${GA4 && !TEMP ? `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:${JSON.stringify(EEA)},wait_for_update:500});
+gtag('js',new Date());gtag('config','${GA4}',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=${GA4}"></script>` : ''}
+</head><body class="embed">
+<section class="tool${t.single ? ' single' : ''}">${t.tool}</section>
+<div class="embed-foot"><a href="${back}" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> ${esc(t.name)}</a><a href="${back}" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>${t.js}</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:${JSON.stringify(t.slug)},h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>`;
+}
+
+function embedHub() {
+  const rows = tools.map((t) => `<div class="embed-item"><h3><a href="/${t.slug}/">${esc(t.name)}</a></h3><p>${esc(t.short)}</p>${embedBox(t)}</div>`).join('');
+  const body = `
+<div class="crumbs"><a href="/">Home</a> / Embed</div>
+<h1>Free calculator widgets for your website</h1>
+<p class="lede">Add any GrowthMath calculator to your blog, course, newsletter landing page or client site - free, no signup, no ads inside the widget. Copy the code, paste it into an HTML block, done.</p>
+<section class="tool single embed-demo"><iframe src="/embed/roas-calculator/" title="ROAS Calculator demo" data-gm="roas-calculator" width="100%" height="620" style="border:0" loading="lazy"></iframe></section>
+<script>window.addEventListener('message',function(e){var d=e.data;if(e.origin===location.origin&&d&&d.gm==='h')document.querySelectorAll('iframe[data-gm="'+d.slug+'"]').forEach(function(f){f.style.height=d.h+'px'})});</script>
+<article class="content narrow">
+<h2>How to embed a calculator</h2>
+<ol><li>Pick a calculator below and click <b>Embed this calculator</b>.</li><li>Copy the code.</li><li>In WordPress, add a <b>Custom HTML</b> block and paste it. In Webflow, Ghost, Squarespace or Wix, use the "Embed" or "HTML" element.</li></ol>
+<p>The widget resizes itself to fit, works on mobile, and runs entirely in your visitor's browser - nothing they type is sent anywhere. If your platform strips scripts, the iframe still works; it just keeps a fixed height, so raise the <code>height</code> value if it gets cut off.</p>
+<h2>Terms</h2>
+<p>Widgets are free for any site, commercial or not. Please keep the credit line under the calculator and do not frame the widget inside a page that misrepresents what it does.</p>
+</article>
+<h2>All embeddable calculators</h2>
+<div class="embed-list">${rows}</div>`;
+  return layout({ title: `Free Embeddable Marketing Calculators - Widgets for Your Site - ${NAME}`, desc: 'Free calculator widgets you can embed on any website: ROAS, CPA, affiliate EPC, LTV, CAC, churn, profit margin, A/B test and more. Copy, paste, done.', path: '/embed/', body, scripts: '<script src="/app.js"></script>' });
 }
 
 function home() {
@@ -251,6 +307,8 @@ const write = (p, s) => { s = rebase(s); const file = OUT + (p.endsWith('/') ? p
 
 write('/', home());
 for (const t of tools) write(`/${t.slug}/`, toolPage(t));
+for (const t of tools) write(`/embed/${t.slug}/`, embedPage(t));
+write('/embed/', embedHub());
 write('/guides/', guidesIndex());
 for (const g of guides) write(`/guides/${g.slug}/`, guidePage(g));
 for (const [p, html] of Object.entries(pages)) write(p, html);
@@ -264,7 +322,7 @@ writeFileSync(OUT + '/favicon.svg', `<svg xmlns="http://www.w3.org/2000/svg" vie
 if (ADSENSE && !TEMP) writeFileSync(OUT + '/ads.txt', `google.com, ${ADSENSE.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n`);
 writeFileSync(OUT + '/robots.txt', TEMP ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 const today = new Date().toISOString().slice(0, 10);
-const urls = ['/', ...tools.map((t) => `/${t.slug}/`), '/guides/', ...guides.map((g) => `/guides/${g.slug}/`), ...Object.keys(pages)];
+const urls = ['/', ...tools.map((t) => `/${t.slug}/`), '/guides/', ...guides.map((g) => `/guides/${g.slug}/`), '/embed/', ...Object.keys(pages)];
 writeFileSync(OUT + '/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 if (!TEMP) writeFileSync(OUT + '/CNAME', HOST + '\n');
 // IndexNow key (Bing/Yandex instant crawl). Submit with: node indexnow.mjs
