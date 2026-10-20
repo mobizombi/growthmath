@@ -10,7 +10,7 @@ Public identity = Traffic Goat / GrowthMath brands only; never name any other co
 | 1 | AlternativeTo | GrowthMath, listed as an alternative to Omni Calculator / paid ROAS tools | SUBMITTED 2026-10-20 (free queue, very slow; alt = Omni Calculator; account TrafficGoat) |
 | 2 | SaaSHub | GrowthMath.io ("GrowthMath" name was taken) - Marketing, Advertising, Affiliate Marketing | SUBMITTED 2026-10-20 (free, 1-12 wks; competitors Omni Calculator, calculator.net, UTM.io; notify trafficgoathq@gmail.com) |
 | 3 | Uneed | GrowthMath (free queue) | SCHEDULED - launches 2027-01-19 (uneed.best/tool/growthmath). Needs upvote score 10 that day to stay published, 20 for dofollow; under 10 = back to draft, no free re-queue. Rally voters the week before. |
-| 4 | Microlaunch | GrowthMath | todo - account ready (maker shows "Adam Sch", fine) |
+| 4 | Microlaunch | GrowthMath | SKIPPED - no free launch anymore (checked 2026-10-20): "New Launch" only offers Pro, $39-$149 one-off. Account exists. |
 | 5 | Fazier | GrowthMath | SKIPPED for now - free tier needs 3 public comments + a Fazier badge on our site; Lite is $29 |
 | 6 | Peerlist Launchpad | GrowthMath | todo |
 | 7 | TinyLaunch | GrowthMath | todo |
