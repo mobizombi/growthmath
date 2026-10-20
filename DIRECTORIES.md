@@ -7,8 +7,8 @@ Public byline = "Adam S." only. Contact email = hello@growthmath.io.
 ## Wave 1 - free directories (submit these first)
 | # | Directory | Submit as | Status |
 |---|---|---|---|
-| 1 | AlternativeTo | GrowthMath, listed as an alternative to Omni Calculator / paid ROAS tools | todo |
-| 2 | SaaSHub | GrowthMath (Marketing > Analytics) | todo |
+| 1 | AlternativeTo | GrowthMath, listed as an alternative to Omni Calculator / paid ROAS tools | SUBMITTED 2026-10-20 (free queue, very slow; alt = Omni Calculator; account TrafficGoat) |
+| 2 | SaaSHub | GrowthMath.io ("GrowthMath" name was taken) - Marketing, Advertising, Affiliate Marketing | SUBMITTED 2026-10-20 (free, 1-12 wks; competitors Omni Calculator, calculator.net, UTM.io; notify trafficgoathq@gmail.com) |
 | 3 | Uneed | GrowthMath (free queue) | todo |
 | 4 | Microlaunch | GrowthMath | todo |
 | 5 | Fazier | GrowthMath | todo |
@@ -38,7 +38,8 @@ Every tool shows the formula, benchmarks and what the result means - not just a 
 **Categories / tags:** Marketing, Analytics, Affiliate marketing, E-commerce, Calculators, Free tools
 **Pricing:** Free
 **Screenshots:** brand/ph/ (5 gallery shots)
-**Logo:** g/m mark (favicon.svg) - brand/ folder
+**Logo:** https://growthmath.io/img/logo-400.png
+**Screenshot URLs:** https://growthmath.io/img/screen-{home,roas,ltv,ab,dormant}.png
 
 ## Wave 2 - widget outreach (the real backlink engine)
 Targets: blog posts that explain a formula we have a calculator for but have no calculator on the page.
