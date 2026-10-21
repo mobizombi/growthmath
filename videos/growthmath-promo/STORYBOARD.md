@@ -5,7 +5,7 @@ message: "Know if your marketing actually makes money - free calculators that ex
 arc: Demo Loop (question → product intro → demo → breadth → embed → CTA)
 audience: marketers, media buyers, affiliates and store owners who look at ROAS/CPA dashboards
 mode: autonomous
-music: none (silent build; HeyGen offline) - the video must read fully with sound off
+music: calm modern light electronic, optimistic tech, clean beat, no vocals
 captions: skipped (wordless video - all copy is on-screen kinetic type, no voiceover)
 ---
 

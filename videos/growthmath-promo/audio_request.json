@@ -1,0 +1,11 @@
+{
+  "provider": "auto",
+  "speed": "1.0",
+  "lines": [],
+  "bgm": {
+    "mode": "retrieve",
+    "query": "calm modern light electronic, optimistic tech, clean beat, no vocals",
+    "blob": "Know if your marketing actually makes money - free calculators that explain the math",
+    "arc": "Demo Loop (question → product intro → demo → breadth → embed → CTA)"
+  }
+}
