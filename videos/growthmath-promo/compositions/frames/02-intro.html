@@ -1,0 +1,160 @@
+<template>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/captured-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2");
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: block;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+      color: #15171a;
+    }
+    #intro02-bg {
+      position: absolute;
+      inset: 0;
+      background: #f7f6f2;
+    }
+    #intro02-stage {
+      position: absolute;
+      inset: 0;
+      transform-origin: 50% 42%;
+    }
+    /* Tile: 176px (~16% of frame height). Final lockup left edge 561px; tile starts at frame centre via x offset. */
+    #intro02-tile {
+      position: absolute;
+      left: 561px;
+      top: 360px;
+      width: 176px;
+      height: 176px;
+      transform-origin: 50% 50%;
+    }
+    #intro02-tile img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    /* Mask strip in the tile's own colour over the real PNG underline; it retracts to reveal the underline left to right. */
+    #intro02-underline-mask {
+      position: absolute;
+      left: 26.5%;
+      top: 72%;
+      width: 47%;
+      height: 5.5%;
+      background: #15171a;
+      transform-origin: 100% 50%;
+    }
+    #intro02-wordmark {
+      position: absolute;
+      left: 781px;
+      top: 396px;
+      height: 104px;
+      display: flex;
+      font-size: 96px;
+      font-weight: 800;
+      line-height: 104px;
+      letter-spacing: -0.02em;
+      color: #15171a;
+      white-space: nowrap;
+    }
+    .intro02-ch-wrap {
+      display: inline-block;
+      overflow: hidden;
+      height: 120px;
+      margin-top: -8px;
+      padding-top: 8px;
+    }
+    .intro02-ch {
+      display: inline-block;
+    }
+    #intro02-sub {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 590px;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: #5d636b;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-intro" data-width="1920" data-height="1080" data-start="0" data-duration="4">
+    <div id="intro02-bg" class="clip" data-start="0" data-duration="4" data-track-index="0"></div>
+    <div id="intro02-stage" class="clip" data-start="0" data-duration="4" data-track-index="1">
+      <div id="intro02-tile">
+        <img src="assets/logo-gm.png" alt="GrowthMath logo" />
+        <div id="intro02-underline-mask"></div>
+      </div>
+      <div id="intro02-wordmark">
+        <span class="intro02-ch-wrap"><span class="intro02-ch">G</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">r</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">o</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">w</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">t</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">h</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">M</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">a</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">t</span></span><span class="intro02-ch-wrap"><span class="intro02-ch">h</span></span>
+      </div>
+      <div id="intro02-sub">Free calculators that explain the math</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const root = document.querySelector('[data-composition-id="02-intro"]');
+      const q = (s) => root.querySelector(s);
+      const qa = (s) => Array.prototype.slice.call(root.querySelectorAll(s));
+
+      // Tile centre at frame centre (960) vs final lockup slot (561 + 88 = 649).
+      const TILE_START_X = 311;
+
+      // Life in the hold: near-imperceptible push across the whole shot.
+      tl.fromTo(q("#intro02-stage"), { scale: 1 }, { scale: 1.025, duration: 3.5, ease: "none" }, 0);
+
+      // Scene 1 (0.0-1.1s): logo tile blooms from zero at centre, underline draws left to right.
+      tl.fromTo(
+        q("#intro02-tile"),
+        { x: TILE_START_X, scale: 0, opacity: 0, rotation: -6 },
+        { x: TILE_START_X, scale: 1, opacity: 1, rotation: 0, duration: 0.7, ease: "power3.out" },
+        0.05
+      );
+      tl.fromTo(
+        q("#intro02-underline-mask"),
+        { scaleX: 1 },
+        { scaleX: 0, duration: 0.45, ease: "power2.inOut" },
+        0.55
+      );
+
+      // Scene 2 (1.1-2.2s): tile glides left, wordmark letter-cascades in to its right.
+      tl.fromTo(
+        q("#intro02-tile"),
+        { x: TILE_START_X },
+        { x: 0, duration: 0.75, ease: "power3.inOut", immediateRender: false },
+        1.1
+      );
+      qa(".intro02-ch").forEach(function (el, i) {
+        tl.fromTo(
+          el,
+          { yPercent: 105, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+          1.3 + i * 0.045
+        );
+      });
+
+      // Scene 3 (2.2-3.5s): sub-line slides up under the lockup, then hold.
+      tl.fromTo(
+        q("#intro02-sub"),
+        { y: 28, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+        2.2
+      );
+
+      window.__timelines["02-intro"] = tl;
+    })();
+  </script>
+</template>

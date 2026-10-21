@@ -1,0 +1,187 @@
+<template>
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("assets/fonts/captured-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("assets/fonts/captured-tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      color: #15171A;
+    }
+
+    /* full-bleed ground: cream + faint concentric closing rings (closing-frame atmosphere) */
+    #cta06-bg {
+      position: absolute;
+      inset: 0;
+      background: #F7F6F2;
+    }
+    .cta06-ring {
+      position: absolute;
+      left: 50%;
+      top: 520px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(11, 110, 79, 0.08);
+    }
+    .cta06-ring.r1 { width: 560px; height: 560px; margin-left: -280px; margin-top: -280px; }
+    .cta06-ring.r2 { width: 860px; height: 860px; margin-left: -430px; margin-top: -430px; border-color: rgba(11, 110, 79, 0.06); }
+    .cta06-ring.r3 { width: 1180px; height: 1180px; margin-left: -590px; margin-top: -590px; border-color: rgba(11, 110, 79, 0.04); }
+
+    /* Scene 1: chip row */
+    #cta06-chips {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 470px;
+      height: 96px;
+    }
+    .cta06-chip-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      height: 100%;
+    }
+    .cta06-chip {
+      display: inline-flex;
+      align-items: center;
+      height: 88px;
+      padding: 0 44px;
+      border-radius: 100px;
+      background: rgba(11, 110, 79, 0.08);
+      border: 1.5px solid rgba(11, 110, 79, 0.2);
+      color: #0B6E4F;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 40px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    /* Scene 2: logo + URL lockup */
+    #cta06-lockup {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 470px;
+      height: 220px;
+    }
+    .cta06-lockup-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 52px;
+      height: 100%;
+    }
+    .cta06-logo {
+      width: 200px;
+      height: 200px;
+      border-radius: 14px;
+      display: block;
+    }
+    .cta06-url-wrap {
+      position: relative;
+      padding-bottom: 26px;
+    }
+    .cta06-url {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 104px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #15171A;
+      white-space: nowrap;
+    }
+    .cta06-underline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 8px;
+      border-radius: 6px;
+      background: #0B6E4F;
+      transform-origin: 0% 50%;
+    }
+
+    /* final-frame soft fade to paper */
+    #cta06-veil {
+      position: absolute;
+      inset: 0;
+      background: #FFFFFF;
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-cta" data-width="1920" data-height="1080" data-start="0" data-duration="4">
+    <div id="cta06-bg" class="clip" data-start="0" data-duration="4" data-track-index="0">
+      <div class="cta06-ring r3"></div>
+      <div class="cta06-ring r2"></div>
+      <div class="cta06-ring r1"></div>
+    </div>
+
+    <div id="cta06-chips" class="clip" data-start="0" data-duration="4" data-track-index="1">
+      <div class="cta06-chip-row" id="cta06-chip-row">
+        <span class="cta06-chip" id="cta06-chip-1">Free</span>
+        <span class="cta06-chip" id="cta06-chip-2">No signup</span>
+        <span class="cta06-chip" id="cta06-chip-3">Runs in your browser</span>
+      </div>
+    </div>
+
+    <div id="cta06-lockup" class="clip" data-start="0" data-duration="4" data-track-index="2">
+      <div class="cta06-lockup-row" id="cta06-lockup-row">
+        <img class="cta06-logo" id="cta06-logo" src="assets/logo-gm.png" alt="GrowthMath logo" />
+        <div class="cta06-url-wrap">
+          <div class="cta06-url" id="cta06-url">growthmath.io</div>
+          <div class="cta06-underline" id="cta06-underline"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cta06-veil" class="clip" data-start="0" data-duration="4" data-track-index="3"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // initial states (immediate gsap.set, outside the timeline)
+      gsap.set("#cta06-lockup-row", { opacity: 0, y: 70 });
+      gsap.set("#cta06-underline", { scaleX: 0 });
+      gsap.set("#cta06-veil", { opacity: 0 });
+
+      // Scene 1 (0.0-1.4s): three chips reveal left to right on the VO beats
+      tl.fromTo("#cta06-chip-1", { opacity: 0, y: 36, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 0.1);
+      tl.fromTo("#cta06-chip-2", { opacity: 0, y: 36, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 0.42);
+      tl.fromTo("#cta06-chip-3", { opacity: 0, y: 36, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 0.74);
+
+      // Scene 2 (1.4-2.4s): chips slide up + shrink; lockup slide-up crossfades in; underline draws on
+      tl.fromTo("#cta06-chip-row", { y: 0, scale: 1 }, { y: -190, scale: 0.72, duration: 0.65, ease: "power2.inOut" }, 1.4);
+      tl.fromTo("#cta06-lockup-row", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 1.5);
+      tl.fromTo("#cta06-underline", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 1.95);
+
+      // Scene 3 (2.4-4.0s): still hold with a barely-perceptible drift, then soft fade to paper
+      tl.fromTo("#cta06-lockup", { scale: 1 }, { scale: 1.015, duration: 1.5, ease: "sine.inOut" }, 2.2);
+      tl.fromTo("#cta06-veil", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 3.7);
+
+      window.__timelines["06-cta"] = tl;
+    })();
+  </script>
+</template>

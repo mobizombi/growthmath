@@ -1,0 +1,231 @@
+<template>
+  <style>
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: block;
+      src: url("assets/fonts/captured-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: block;
+      src: url("assets/fonts/captured-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: block;
+      src: url("assets/fonts/captured-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: block;
+      src: url("assets/fonts/captured-tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: block;
+      src: url("assets/fonts/captured-tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      color: #15171A;
+    }
+    #tg04-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 38%, rgba(11, 110, 79, 0.05), rgba(11, 110, 79, 0) 70%),
+        #F7F6F2;
+    }
+    #tg04-stage {
+      position: absolute;
+      inset: 0;
+    }
+    #tg04-grid {
+      position: absolute;
+      left: 96px;
+      top: 78px;
+      width: 1728px;
+      height: 672px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 28px;
+      transform-origin: 50% 50%;
+    }
+    .tg04-card {
+      position: relative;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(11, 110, 79, 0.2);
+      border-radius: 14px;
+      padding: 26px 30px 24px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      will-change: transform, opacity;
+    }
+    .tg04-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0B6E4F;
+    }
+    .tg04-name {
+      font-weight: 700;
+      font-size: 31px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: #15171A;
+    }
+    .tg04-desc {
+      font-weight: 400;
+      font-size: 21px;
+      line-height: 1.45;
+      color: #5D636B;
+      margin-top: auto;
+    }
+    #tg04-veil {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 52% 46% at 50% 44%, rgba(247, 246, 242, 0.96) 0%, rgba(247, 246, 242, 0.82) 55%, rgba(247, 246, 242, 0.35) 100%);
+      opacity: 0;
+    }
+    #tg04-payoff {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 34px;
+    }
+    #tg04-pill {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 26px 56px 26px 44px;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(11, 110, 79, 0.2);
+      border-radius: 100px;
+    }
+    #tg04-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 132px;
+      line-height: 1;
+      color: #0B6E4F;
+      min-width: 170px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    #tg04-label {
+      font-weight: 700;
+      font-size: 76px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #15171A;
+    }
+    #tg04-line {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 30px;
+      letter-spacing: 0.02em;
+      color: #5D636B;
+      white-space: nowrap;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-tool-grid" data-width="1920" data-height="1080" data-duration="5.5">
+    <div id="tg04-bg" class="clip" data-start="0" data-duration="5.5" data-track-index="0"></div>
+
+    <div id="tg04-stage" class="clip" data-start="0" data-duration="5.5" data-track-index="1">
+      <div id="tg04-grid">
+        <div class="tg04-card" data-wave="0" data-depth="0"><div class="tg04-tag">Paid ads</div><div class="tg04-name">ROAS Calculator</div><div class="tg04-desc">Break-even ROAS from your margin.</div></div>
+        <div class="tg04-card" data-wave="0" data-depth="1"><div class="tg04-tag">Paid ads</div><div class="tg04-name">CPM/CPC/CPA Calculator</div><div class="tg04-desc">Every ad cost metric at once.</div></div>
+        <div class="tg04-card" data-wave="0" data-depth="2"><div class="tg04-tag">Paid ads</div><div class="tg04-name">Break-even CPA</div><div class="tg04-desc">The most you can pay per customer.</div></div>
+        <div class="tg04-card" data-wave="1" data-depth="1"><div class="tg04-tag">Affiliate</div><div class="tg04-name">Affiliate EPC Calculator</div><div class="tg04-desc">Earnings, EPC and traffic needed.</div></div>
+
+        <div class="tg04-card" data-wave="1" data-depth="2"><div class="tg04-tag">Affiliate</div><div class="tg04-name">Affiliate Revenue Leak</div><div class="tg04-desc">What dormant partners cost you.</div></div>
+        <div class="tg04-card" data-wave="1" data-depth="0"><div class="tg04-tag">Affiliate</div><div class="tg04-name">Dormant Affiliate Finder</div><div class="tg04-desc">Flag inactive partners by tier.</div></div>
+        <div class="tg04-card" data-wave="2" data-depth="1"><div class="tg04-tag">E-commerce</div><div class="tg04-name">Customer LTV</div><div class="tg04-desc">LTV, LTV:CAC and payback.</div></div>
+        <div class="tg04-card" data-wave="2" data-depth="2"><div class="tg04-tag">E-commerce</div><div class="tg04-name">CAC Calculator</div><div class="tg04-desc">Paid and fully loaded CAC.</div></div>
+
+        <div class="tg04-card" data-wave="2" data-depth="0"><div class="tg04-tag">E-commerce</div><div class="tg04-name">Churn Rate</div><div class="tg04-desc">Churn, MRR churn and retention.</div></div>
+        <div class="tg04-card" data-wave="2" data-depth="1"><div class="tg04-tag">E-commerce</div><div class="tg04-name">Shopify Profit</div><div class="tg04-desc">Real monthly profit after fees.</div></div>
+        <div class="tg04-card" data-wave="3" data-depth="2"><div class="tg04-tag">Creators &amp; testing</div><div class="tg04-name">YouTube Earnings</div><div class="tg04-desc">What a channel really earns.</div></div>
+        <div class="tg04-card" data-wave="3" data-depth="0"><div class="tg04-tag">Creators &amp; testing</div><div class="tg04-name">A/B Test Significance</div><div class="tg04-desc">Is your winner actually real?</div></div>
+      </div>
+
+      <div id="tg04-veil"></div>
+
+      <div id="tg04-payoff">
+        <div id="tg04-pill">
+          <div id="tg04-num">12</div>
+          <div id="tg04-label">free calculators</div>
+        </div>
+        <div id="tg04-line">ROAS · CPA · EPC · LTV · CAC · churn · A/B tests · UTM</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      var scope = document.querySelector('[data-composition-id="04-tool-grid"]');
+      var q = function (sel) { return scope.querySelectorAll(sel); };
+      var one = function (sel) { return scope.querySelector(sel); };
+
+      var tl = gsap.timeline({ paused: true });
+
+      // Scene 1 (0.0-2.6s): four staggered waves, one per category cue, 3 depth layers.
+      // Layer 0 = near (starts large + blurred), 1 = mid (rises from below), 2 = far (grows from small).
+      var layerFrom = [
+        { scale: 1.14, y: -14, filter: 'blur(8px)' },
+        { scale: 0.96, y: 46, filter: 'blur(0px)' },
+        { scale: 0.82, y: 18, filter: 'blur(3px)' }
+      ];
+      var waveStart = [0.12, 0.72, 1.32, 1.98];
+      var cards = q('.tg04-card');
+      var waveCount = [0, 0, 0, 0];
+      cards.forEach(function (card) {
+        var w = parseInt(card.getAttribute('data-wave'), 10);
+        var l = parseInt(card.getAttribute('data-depth'), 10);
+        var f = layerFrom[l];
+        var at = waveStart[w] + waveCount[w] * 0.08;
+        waveCount[w] += 1;
+        tl.fromTo(card,
+          { opacity: 0, scale: f.scale, y: f.y, filter: f.filter },
+          { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', duration: 0.55, ease: 'power3.out' },
+          at);
+        // per-layer parallax drift through the hold (deterministic, no repeat)
+        var drift = [-10, -5, -2][l];
+        tl.fromTo(card, { x: 0 }, { x: drift, duration: 5 - (at + 0.55), ease: 'none' }, at + 0.55);
+      });
+
+      // slow camera push-in underneath the whole shot
+      tl.fromTo('#tg04-grid', { scale: 1 }, { scale: 1.035, duration: 5, ease: 'none' }, 0);
+
+      // Scene 2 (2.6-3.8s): grid dims, pill counter rises, 12 -> 21
+      tl.fromTo('#tg04-veil', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 2.6);
+      tl.fromTo('#tg04-grid', { opacity: 1 }, { opacity: 0.55, duration: 0.5, ease: 'power2.out' }, 2.6);
+      tl.fromTo('#tg04-pill',
+        { opacity: 0, y: 70, scale: 0.92 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.6)' }, 2.62);
+      var numEl = one('#tg04-num');
+      var counter = { v: 12 };
+      tl.fromTo(counter, { v: 12 }, {
+        v: 21, duration: 0.9, ease: 'power2.out',
+        onUpdate: function () { numEl.textContent = String(Math.round(counter.v)); }
+      }, 2.78);
+      tl.fromTo('#tg04-num', { scale: 1 }, { scale: 1.08, duration: 0.14, ease: 'power2.out' }, 3.62);
+      tl.fromTo('#tg04-num', { scale: 1.08 }, { scale: 1, duration: 0.3, ease: 'power2.inOut', immediateRender: false }, 3.76);
+
+      // Scene 3 (3.8-5.0s): muted list line wipes in left-to-right beneath the pill, then holds
+      tl.fromTo('#tg04-line',
+        { clipPath: 'inset(0% 100% 0% 0%)', opacity: 1, y: 8 },
+        { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.7, ease: 'power2.out' }, 3.82);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["04-tool-grid"] = tl;
+    })();
+  </script>
+</template>

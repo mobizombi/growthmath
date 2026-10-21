@@ -1,0 +1,476 @@
+<template>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: block;
+      src: url("assets/fonts/captured-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'JetBrains Mono';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: block;
+      src: url("assets/fonts/captured-tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2") format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      color: #15171A;
+    }
+
+    .fr05-embed-bg {
+      position: absolute;
+      inset: 0;
+      background: #F7F6F2;
+    }
+
+    .fr05-embed-world {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* ---------- blog page card (left 60%) ---------- */
+    .fr05-embed-page {
+      position: absolute;
+      left: 120px;
+      top: 104px;
+      width: 1010px;
+      height: 770px;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(11, 110, 79, 0.2);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .fr05-embed-chrome {
+      position: absolute;
+      left: 0; top: 0; right: 0;
+      height: 54px;
+      background: rgba(11, 110, 79, 0.04);
+      border-bottom: 1.5px solid rgba(11, 110, 79, 0.12);
+    }
+    .fr05-embed-dot {
+      position: absolute;
+      top: 21px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: rgba(21, 23, 26, 0.14);
+    }
+    .fr05-embed-urlbar {
+      position: absolute;
+      left: 110px; top: 15px;
+      width: 360px; height: 24px;
+      border-radius: 100px;
+      background: rgba(21, 23, 26, 0.06);
+    }
+    .fr05-embed-inner {
+      position: absolute;
+      left: 56px; top: 54px;
+      width: 898px;
+      height: 736px;
+    }
+    .fr05-embed-tag {
+      position: absolute;
+      left: 0; top: 34px;
+      padding: 7px 16px;
+      border-radius: 100px;
+      background: rgba(11, 110, 79, 0.08);
+      color: #0B6E4F;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .fr05-embed-title {
+      position: absolute;
+      left: 0; top: 84px;
+      width: 898px;
+      font-size: 46px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #15171A;
+      white-space: nowrap;
+    }
+    .fr05-embed-line {
+      position: absolute;
+      left: 0;
+      height: 15px;
+      border-radius: 6px;
+      background: rgba(21, 23, 26, 0.09);
+    }
+
+    /* slot where the chip / widget live */
+    .fr05-embed-slot {
+      position: absolute;
+      left: 0; top: 296px;
+      width: 898px;
+    }
+
+    .fr05-embed-chip {
+      position: absolute;
+      left: 0; top: 0;
+      width: 898px;
+      height: 86px;
+      box-sizing: border-box;
+      padding: 0 28px;
+      border-radius: 12px;
+      background: #15171A;
+      display: flex;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 500;
+      color: #9A9A9A;
+      white-space: pre;
+      transform-origin: 50% 0%;
+    }
+    .fr05-embed-code .t { color: #9A9A9A; }
+    .fr05-embed-code .a { color: #F7F6F2; }
+    .fr05-embed-code .v { color: #5FD3A6; }
+    .fr05-embed-caret {
+      display: inline-block;
+      width: 11px;
+      height: 26px;
+      margin-left: 2px;
+      background: #5FD3A6;
+      vertical-align: middle;
+    }
+    .fr05-embed-ripple {
+      position: absolute;
+      left: 0; top: 0;
+      width: 90px; height: 90px;
+      margin-left: -45px; margin-top: -45px;
+      border-radius: 50%;
+      border: 3px solid #0B6E4F;
+      opacity: 0;
+    }
+
+    /* mini ROAS widget */
+    .fr05-embed-widget {
+      position: absolute;
+      left: 0; top: 0;
+      width: 898px;
+      height: 300px;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 1.5px solid rgba(21, 23, 26, 0.12);
+      border-radius: 14px;
+      padding: 26px;
+      display: flex;
+      gap: 26px;
+      transform-origin: 50% 0%;
+    }
+    .fr05-embed-inputs {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .fr05-embed-field-label {
+      font-size: 17px;
+      font-weight: 600;
+      color: #15171A;
+      margin-bottom: 6px;
+    }
+    .fr05-embed-field {
+      height: 50px;
+      box-sizing: border-box;
+      border: 1.5px solid rgba(21, 23, 26, 0.16);
+      border-radius: 10px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 500;
+      color: #15171A;
+    }
+    .fr05-embed-field .u { color: #5D636B; }
+    .fr05-embed-result {
+      flex: 0 0 360px;
+      border-radius: 12px;
+      background: rgba(11, 110, 79, 0.08);
+      padding: 26px 28px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .fr05-embed-result-label {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5D636B;
+    }
+    .fr05-embed-result-num {
+      margin-top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 110px;
+      font-weight: 700;
+      line-height: 1;
+      color: #0B6E4F;
+      transform-origin: 0% 50%;
+    }
+    .fr05-embed-credit {
+      position: absolute;
+      left: 0; top: 314px;
+      font-size: 17px;
+      font-weight: 500;
+      color: #5D636B;
+    }
+    .fr05-embed-credit b {
+      color: #0B6E4F;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* trailing paragraph that reflows under the slot */
+    .fr05-embed-tail {
+      position: absolute;
+      left: 0; top: 296px;
+      width: 898px;
+    }
+
+    /* ---------- right captions (40%) ---------- */
+    .fr05-embed-cap-col {
+      position: absolute;
+      left: 1216px;
+      top: 320px;
+      width: 620px;
+    }
+    .fr05-embed-accent {
+      position: absolute;
+      left: 0; top: 0;
+      width: 60px; height: 4px;
+      border-radius: 2px;
+      background: #0B6E4F;
+      transform-origin: 0% 50%;
+    }
+    .fr05-embed-cap {
+      position: absolute;
+      left: 0; top: 34px;
+      width: 620px;
+      font-size: 54px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #15171A;
+    }
+    .fr05-embed-cap .w { display: inline-block; }
+    .fr05-embed-cap-b {
+      top: 186px;
+      color: #0B6E4F;
+    }
+
+    /* ---------- custom cursor ---------- */
+    .fr05-embed-cursor {
+      position: absolute;
+      left: 0; top: 0;
+      width: 40px; height: 48px;
+      transform-origin: 6px 4px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-embed" data-start="0" data-duration="6" data-width="1920" data-height="1080">
+    <div id="fr05-embed-bg" class="clip fr05-embed-bg" data-start="0" data-duration="6" data-track-index="0"></div>
+
+    <div id="fr05-embed-world" class="clip fr05-embed-world" data-start="0" data-duration="6" data-track-index="1">
+      <!-- blog page mock -->
+      <div class="fr05-embed-page">
+        <div class="fr05-embed-chrome">
+          <div class="fr05-embed-dot" style="left:24px"></div>
+          <div class="fr05-embed-dot" style="left:44px"></div>
+          <div class="fr05-embed-dot" style="left:64px"></div>
+          <div class="fr05-embed-urlbar"></div>
+        </div>
+        <div class="fr05-embed-inner">
+          <div class="fr05-embed-tag">Marketing</div>
+          <div class="fr05-embed-title">How to calculate break-even ROAS</div>
+          <div class="fr05-embed-line fr05-embed-pl" style="top:172px;width:898px"></div>
+          <div class="fr05-embed-line fr05-embed-pl" style="top:203px;width:850px"></div>
+          <div class="fr05-embed-line fr05-embed-pl" style="top:234px;width:876px"></div>
+          <div class="fr05-embed-line fr05-embed-pl" style="top:265px;width:560px"></div>
+
+          <div class="fr05-embed-slot">
+            <div class="fr05-embed-chip">
+              <span class="fr05-embed-code"></span><span class="fr05-embed-caret"></span>
+            </div>
+
+            <div class="fr05-embed-widget">
+              <div class="fr05-embed-inputs">
+                <div>
+                  <div class="fr05-embed-field-label">Ad spend</div>
+                  <div class="fr05-embed-field"><span><span class="u">$ </span>1,000</span></div>
+                </div>
+                <div>
+                  <div class="fr05-embed-field-label">Revenue from ads</div>
+                  <div class="fr05-embed-field"><span><span class="u">$ </span>3,500</span></div>
+                </div>
+                <div>
+                  <div class="fr05-embed-field-label">Gross margin</div>
+                  <div class="fr05-embed-field"><span>40</span><span class="u">%</span></div>
+                </div>
+              </div>
+              <div class="fr05-embed-result">
+                <div class="fr05-embed-result-label">Your ROAS</div>
+                <div class="fr05-embed-result-num">3.5x</div>
+              </div>
+            </div>
+            <div class="fr05-embed-credit">ROAS Calculator by <b>GrowthMath</b></div>
+            <div class="fr05-embed-ripple"></div>
+          </div>
+
+          <div class="fr05-embed-tail">
+            <div class="fr05-embed-line" style="top:30px;width:898px"></div>
+            <div class="fr05-embed-line" style="top:61px;width:812px"></div>
+            <div class="fr05-embed-line" style="top:92px;width:640px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right captions -->
+      <div class="fr05-embed-cap-col">
+        <div class="fr05-embed-accent"></div>
+        <div class="fr05-embed-cap fr05-embed-cap-1"><span class="w">Write</span> <span class="w">about</span> <span class="w">marketing?</span></div>
+        <div class="fr05-embed-cap fr05-embed-cap-2"><span class="w">Embed</span> <span class="w">any</span><br><span class="w">calculator</span> <span class="w">-</span> <span class="w">free.</span></div>
+        <div class="fr05-embed-cap fr05-embed-cap-b"><span class="w">One</span> <span class="w">line</span> <span class="w">of</span> <span class="w">HTML.</span></div>
+      </div>
+
+      <!-- custom cursor -->
+      <div class="fr05-embed-cursor"><svg width="40" height="48" viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 4 L6 38 L14.5 30 L20.5 43 L26.5 40.5 L20.5 27.5 L32 27.5 Z" fill="#15171A" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+      </svg></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var FID = "05-embed";
+      var scope = '[data-composition-id="05-embed"] ';
+      var q = function (s) { return document.querySelector(scope + s); };
+      var qa = function (s) { return document.querySelectorAll(scope + s); };
+
+      // ---- build the typed snippet (deterministic, synchronous) ----
+      var tokens = [
+        ["t", "<iframe "],
+        ["a", "src"],
+        ["t", "="],
+        ["v", "\"https://growthmath.io/embed/roas-calculator/\""],
+        ["t", "></iframe>"]
+      ];
+      var codeEl = q(".fr05-embed-code");
+      var chars = [];
+      tokens.forEach(function (tk) {
+        for (var i = 0; i < tk[1].length; i++) {
+          var s = document.createElement("span");
+          s.className = tk[0];
+          s.textContent = tk[1][i];
+          s.style.display = "none";
+          codeEl.appendChild(s);
+          chars.push(s);
+        }
+      });
+
+      // page coordinates (root space) for cursor targeting
+      // page left 120 + inner 56 = 176 ; page top 104 + inner 54 = 158 ; slot top +296 = 454
+      var SLOT_X = 176, SLOT_Y = 454;
+      var CHIP_CX = SLOT_X + 640, CHIP_CY = SLOT_Y + 43;
+
+      var tl = gsap.timeline({ paused: true });
+
+      // ---------- macro camera: slow push toward the post ----------
+      tl.fromTo(q(".fr05-embed-world"), { scale: 1, transformOrigin: "38% 50%" },
+        { scale: 1.035, duration: 5.5, ease: "none" }, 0);
+
+      // ---------- Scene 1 (0.0-1.4): page + first caption ----------
+      tl.fromTo(q(".fr05-embed-page"), { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 0);
+      tl.fromTo(q(".fr05-embed-tag"), { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.18);
+      tl.fromTo(q(".fr05-embed-title"), { y: 18, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 0.24);
+      tl.fromTo(qa(".fr05-embed-pl"), { scaleX: 0, transformOrigin: "0% 50%" },
+        { scaleX: 1, duration: 0.45, ease: "power2.out", stagger: 0.07 }, 0.42);
+      tl.fromTo(q(".fr05-embed-tail"), { opacity: 0 },
+        { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.62);
+
+      tl.fromTo(q(".fr05-embed-accent"), { scaleX: 0 },
+        { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.35);
+      tl.fromTo(qa(".fr05-embed-cap-1 .w"), { y: 40, opacity: 0, filter: "blur(8px)" },
+        { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.08 }, 0.45);
+
+      // ---------- Scene 2 (1.4-2.8): caption swap + chip + typing ----------
+      tl.to(qa(".fr05-embed-cap-1 .w"), { x: -30, opacity: 0, filter: "blur(10px)",
+        duration: 0.28, ease: "power2.in", stagger: 0.04 }, 1.4);
+      tl.fromTo(qa(".fr05-embed-cap-2 .w"), { x: 40, opacity: 0, filter: "blur(10px)" },
+        { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power3.out", stagger: 0.06 }, 1.58);
+
+      // chip enters, trailing paragraph reflows down
+      tl.fromTo(q(".fr05-embed-chip"), { scaleY: 0.4, opacity: 0 },
+        { scaleY: 1, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, 1.5);
+      tl.fromTo(q(".fr05-embed-tail"), { y: 0 },
+        { y: 110, duration: 0.4, ease: "power3.out" }, 1.5);
+
+      // typing 1.85 -> ~2.75
+      var typeStart = 1.85, step = 0.0135;
+      chars.forEach(function (c, i) {
+        tl.set(c, { display: "inline" }, typeStart + i * step);
+      });
+      var typeEnd = typeStart + chars.length * step;
+      var caret = q(".fr05-embed-caret");
+      tl.set(caret, { opacity: 0 }, typeEnd + 0.12);
+      tl.set(caret, { opacity: 1 }, typeEnd + 0.3);
+
+      // ---------- Scene 3 (2.8-4.2): cursor click -> widget ----------
+      var cursor = q(".fr05-embed-cursor");
+      tl.fromTo(cursor, { x: 1060, y: 980, opacity: 0, scale: 1 },
+        { x: 1000, y: 860, opacity: 1, duration: 0.2, ease: "power1.out" }, 2.6);
+      tl.to(cursor, { x: CHIP_CX - 6, y: CHIP_CY - 4, duration: 0.42, ease: "power3.inOut" }, 2.8);
+      // press
+      tl.to(cursor, { scale: 0.82, duration: 0.08, ease: "power2.in" }, 3.22);
+      tl.to(cursor, { scale: 1, duration: 0.22, ease: "back.out(3)" }, 3.30);
+      tl.to(q(".fr05-embed-chip"), { scale: 0.97, duration: 0.08, ease: "power2.in" }, 3.22);
+      tl.set(caret, { opacity: 0 }, 3.22);
+      var ripple = q(".fr05-embed-ripple");
+      tl.fromTo(ripple, { x: CHIP_CX - SLOT_X, y: CHIP_CY - SLOT_Y, scale: 0.2, opacity: 0 },
+        { opacity: 0.9, duration: 0.03, ease: "none" }, 3.24);
+      tl.to(ripple, { scale: 1.6, opacity: 0, duration: 0.45, ease: "power2.out" }, 3.27);
+
+      // chip collapses
+      tl.to(q(".fr05-embed-chip"), { scaleY: 0.05, scaleX: 0.98, opacity: 0, duration: 0.22, ease: "power3.in" }, 3.32);
+      // widget expands in its place
+      tl.fromTo(q(".fr05-embed-widget"), { scaleY: 0.27, scaleX: 0.98, opacity: 0 },
+        { scaleY: 1, scaleX: 1, opacity: 1, duration: 0.5, ease: "power3.out" }, 3.44);
+      tl.fromTo(q(".fr05-embed-tail"), { y: 110 },
+        { y: 350, duration: 0.5, ease: "power3.out", immediateRender: false }, 3.44);
+      tl.fromTo(qa(".fr05-embed-field"), { opacity: 0, x: -14 },
+        { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", stagger: 0.06 }, 3.62);
+      tl.fromTo(q(".fr05-embed-result-num"), { scale: 0.6, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.2)" }, 3.78);
+      tl.fromTo(q(".fr05-embed-credit"), { y: 10, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 3.95);
+      // cursor drifts off the widget to rest
+      tl.to(cursor, { x: 1090, y: 700, duration: 0.6, ease: "power2.inOut" }, 3.7);
+
+      // ---------- Scene 4 (4.2-5.5): second caption line rises; hold ----------
+      tl.fromTo(qa(".fr05-embed-cap-b .w"), { y: 50, opacity: 0, filter: "blur(8px)" },
+        { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.07 }, 4.25);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines[FID] = tl;
+    })();
+  </script>
+</template>

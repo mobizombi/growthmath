@@ -1,0 +1,316 @@
+<template>
+  <div id="root" data-composition-id="03-roas-demo" data-start="0" data-duration="7" data-width="1920" data-height="1080">
+    <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/captured-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        src: url("assets/fonts/captured-tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2") format("woff2");
+        font-weight: 100 800;
+        font-style: normal;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+        color: #15171A;
+      }
+      #root .clip {
+        position: absolute;
+        inset: 0;
+      }
+      .r03-bg {
+        background: #F7F6F2;
+      }
+      .r03-world {
+        position: absolute;
+        inset: 0;
+        transform-origin: 960px 500px;
+      }
+      .r03-card {
+        position: absolute;
+        left: 210px;
+        top: 118px;
+        width: 1500px;
+        height: 764px;
+        box-sizing: border-box;
+        padding: 46px 48px 48px;
+        background: #FFFFFF;
+        border: 1.5px solid rgba(11, 110, 79, 0.2);
+        border-radius: 14px;
+      }
+      .r03-title {
+        font-size: 46px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0 0 40px;
+      }
+      .r03-cols {
+        display: flex;
+        gap: 48px;
+        align-items: stretch;
+      }
+      .r03-inputs {
+        width: 610px;
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding-top: 6px;
+      }
+      .r03-label {
+        font-size: 27px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .r03-field {
+        position: relative;
+        height: 88px;
+        box-sizing: border-box;
+        border: 2px solid #D9DCDA;
+        border-radius: 12px;
+        background: #FFFFFF;
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 36px;
+        font-weight: 500;
+      }
+      .r03-prefix {
+        color: #5D636B;
+        margin-right: 18px;
+      }
+      .r03-suffix {
+        color: #5D636B;
+        margin-left: auto;
+      }
+      .r03-val {
+        white-space: pre;
+        font-variant-numeric: tabular-nums;
+      }
+      .r03-caret {
+        display: inline-block;
+        width: 3px;
+        height: 42px;
+        margin-left: 3px;
+        background: #0B6E4F;
+        opacity: 0;
+      }
+      .r03-panel {
+        flex: 1;
+        box-sizing: border-box;
+        background: #E3F1EC;
+        border-radius: 14px;
+        padding: 34px 32px 32px;
+        display: flex;
+        flex-direction: column;
+      }
+      .r03-eyebrow {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #3F5F55;
+      }
+      .r03-big-wrap {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        margin: 4px 0 18px;
+      }
+      .r03-big {
+        display: inline-block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 138px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: #0B6E4F;
+        font-variant-numeric: tabular-nums;
+        transform-origin: left center;
+      }
+      .r03-tiles {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .r03-tile {
+        flex: 1;
+        background: #FFFFFF;
+        border-radius: 10px;
+        padding: 22px 24px;
+      }
+      .r03-tile-label {
+        font-size: 23px;
+        font-weight: 500;
+        color: #5D636B;
+        margin-bottom: 10px;
+      }
+      .r03-tile-val {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 44px;
+        font-weight: 700;
+        line-height: 1;
+        color: #15171A;
+        font-variant-numeric: tabular-nums;
+      }
+      .r03-verdict {
+        box-sizing: border-box;
+        background: #FFF4EC;
+        border: 2px solid rgba(181, 71, 8, 0.35);
+        border-radius: 10px;
+        padding: 22px 24px;
+        font-size: 27px;
+        line-height: 1.35;
+        color: #15171A;
+        transform-origin: center center;
+      }
+      .r03-verdict b {
+        color: #B54708;
+        font-weight: 700;
+      }
+    </style>
+
+    <div class="clip r03-bg" data-start="0" data-duration="7" data-track-index="0"></div>
+
+    <div class="clip r03-stage" data-start="0" data-duration="7" data-track-index="1">
+      <div class="r03-world" id="r03-world">
+        <div class="r03-card" id="r03-card">
+          <div class="r03-title">ROAS Calculator</div>
+          <div class="r03-cols">
+            <div class="r03-inputs">
+              <div>
+                <div class="r03-label">Ad spend</div>
+                <div class="r03-field" id="r03-f1"><span class="r03-prefix">$</span><span class="r03-val" id="r03-v1"></span><span class="r03-caret" id="r03-c1"></span></div>
+              </div>
+              <div>
+                <div class="r03-label">Revenue from ads</div>
+                <div class="r03-field" id="r03-f2"><span class="r03-prefix">$</span><span class="r03-val" id="r03-v2"></span><span class="r03-caret" id="r03-c2"></span></div>
+              </div>
+              <div>
+                <div class="r03-label">Gross margin</div>
+                <div class="r03-field" id="r03-f3"><span class="r03-val" id="r03-v3"></span><span class="r03-caret" id="r03-c3"></span><span class="r03-suffix">%</span></div>
+              </div>
+            </div>
+            <div class="r03-panel" id="r03-panel">
+              <div class="r03-eyebrow">Your ROAS</div>
+              <div class="r03-big-wrap"><span class="r03-big" id="r03-big">-</span></div>
+              <div class="r03-tiles">
+                <div class="r03-tile" id="r03-t1">
+                  <div class="r03-tile-label">Break-even ROAS</div>
+                  <div class="r03-tile-val" id="r03-be">-</div>
+                </div>
+                <div class="r03-tile" id="r03-t2">
+                  <div class="r03-tile-label">Profit after ads</div>
+                  <div class="r03-tile-val" id="r03-pr">-</div>
+                </div>
+              </div>
+              <div class="r03-verdict" id="r03-verdict"><b>Losing money:</b> you need 3.33x ROAS at a 30% margin.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      (function () {
+        var FID = "03-roas-demo";
+        var DUR = 6.5;
+        var scope = document.querySelector('[data-composition-id="' + FID + '"]') || document;
+        function $(id) { return scope.querySelector("#" + id); }
+
+        var v1 = $("r03-v1"), v2 = $("r03-v2"), v3 = $("r03-v3");
+        var c1 = $("r03-c1"), c2 = $("r03-c2"), c3 = $("r03-c3");
+        var big = $("r03-big"), be = $("r03-be"), pr = $("r03-pr");
+
+        // Discrete keystroke states (seek-safe: reverse search by time).
+        var SEQ1 = [{ t: 0, s: "" }, { t: 1.05, s: "1" }, { t: 1.13, s: "10" }, { t: 1.21, s: "100" }, { t: 1.30, s: "1,000" }];
+        var SEQ2 = [{ t: 0, s: "" }, { t: 1.55, s: "3" }, { t: 1.63, s: "30" }, { t: 1.71, s: "300" }, { t: 1.80, s: "3,000" }];
+        var SEQ3 = [{ t: 0, s: "" }, { t: 2.12, s: "3" }, { t: 2.24, s: "30" }];
+        // Caret windows: [focus-in, focus-out, last keystroke]
+        var CAR = [
+          { el: c1, a: 0.98, b: 1.46, last: 1.30 },
+          { el: c2, a: 1.48, b: 1.98, last: 1.80 },
+          { el: c3, a: 2.00, b: 2.60, last: 2.24 }
+        ];
+
+        function stateAt(seq, t) {
+          for (var i = seq.length - 1; i >= 0; i--) if (t >= seq[i].t) return seq[i].s;
+          return "";
+        }
+        function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+        function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
+        function prog(t, a, b) { return easeOut(clamp01((t - a) / (b - a))); }
+
+        function render(t) {
+          v1.textContent = stateAt(SEQ1, t);
+          v2.textContent = stateAt(SEQ2, t);
+          v3.textContent = stateAt(SEQ3, t);
+          for (var i = 0; i < CAR.length; i++) {
+            var c = CAR[i], on = 0;
+            if (t >= c.a && t < c.b) {
+              // solid while typing, square-wave blink once idle
+              on = t <= c.last + 0.12 ? 1 : (Math.floor((t - c.last) / 0.22) % 2 === 0 ? 0 : 1);
+            }
+            c.el.style.opacity = on;
+          }
+          // Scene 3: ROAS 0.0x -> 3.0x
+          if (t < 2.6) big.textContent = "-";
+          else big.textContent = (3.0 * prog(t, 2.6, 3.4)).toFixed(1) + "x";
+          // Scene 4: break-even 3.33x, profit -$100
+          if (t < 3.6) { be.textContent = "-"; pr.textContent = "-"; }
+          else {
+            be.textContent = (3.33 * prog(t, 3.6, 4.35)).toFixed(2) + "x";
+            var p = Math.round(-100 * prog(t, 3.75, 4.45));
+            pr.textContent = p < 0 ? "-$" + Math.abs(p) : "$" + p;
+          }
+        }
+
+        window.__timelines = window.__timelines || {};
+        var tl = gsap.timeline({ paused: true });
+
+        // Text driver: one linear proxy spanning the whole shot.
+        var driver = { t: 0 };
+        render(0);
+        tl.to(driver, { t: DUR, duration: DUR, ease: "none", onUpdate: function () { render(driver.t); } }, 0);
+
+        // Camera: one slow continuous push keeping inputs + result co-visible.
+        tl.fromTo("#r03-world", { scale: 1 }, { scale: 1.035, duration: DUR, ease: "sine.inOut" }, 0);
+
+        // Scene 1: card rises in, result panel settles a beat later.
+        tl.fromTo("#r03-card", { y: 70, opacity: 0, scale: 0.97 }, { y: 0, opacity: 1, scale: 1, duration: 0.75, ease: "power3.out" }, 0);
+        tl.fromTo("#r03-panel", { x: 28, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.25);
+
+        // Scene 2: green border flash as each field completes.
+        [["#r03-f1", 1.30], ["#r03-f2", 1.80], ["#r03-f3", 2.24]].forEach(function (f) {
+          tl.fromTo(f[0],
+            { borderColor: "#0B6E4F", backgroundColor: "rgba(11, 110, 79, 0.07)" },
+            { borderColor: "#D9DCDA", backgroundColor: "rgba(255, 255, 255, 1)", duration: 0.6, ease: "power2.out", immediateRender: false },
+            f[1]);
+        });
+
+        // Scene 3: live sync - big result scales up while it counts.
+        tl.fromTo("#r03-big", { scale: 0.82 }, { scale: 1, duration: 0.8, ease: "power3.out", immediateRender: false }, 2.6);
+
+        // Scene 4: tiles pulse as their values land.
+        tl.fromTo(["#r03-t1", "#r03-t2"], { scale: 0.97 }, { scale: 1, duration: 0.5, ease: "back.out(2)", stagger: 0.15, immediateRender: false }, 3.6);
+
+        // Scene 5: verdict flips to warn-orange, strip springs in, hold.
+        tl.fromTo("#r03-big", { color: "#0B6E4F" }, { color: "#B54708", duration: 0.35, ease: "power1.inOut", immediateRender: false }, 4.6);
+        tl.fromTo("#r03-pr", { color: "#15171A" }, { color: "#B54708", duration: 0.35, ease: "power1.inOut", immediateRender: false }, 4.6);
+        tl.fromTo("#r03-verdict", { opacity: 0, y: 22, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.8)" }, 4.75);
+
+        window.__timelines[FID] = tl;
+      })();
+    </script>
+  </div>
+</template>
