@@ -21,7 +21,7 @@ Public identity = Traffic Goat / GrowthMath brands only; never name any other co
 | 12 | BetaList | GrowthMath | todo |
 | 13 | Hacker News (Show HN) | "Show HN: Free marketing calculators you can embed on your own site" | todo - weekday 15:00-17:00 IL |
 | 14 | Indie Hackers | product page already live - add the embed launch as a product update | todo |
-| 16 | ZOIPI (zoipi.com, AI-tools directory) | GrowthMath - Marketing & SEO AI > Analytics | LIVE 2026-10-21 https://zoipi.com/tool/growthmath - main 'Visit' button is DOFOLLOW; gallery links nofollow. Screenshots show 'Preview unavailable'; no video yet. |
+| 16 | ZOIPI (zoipi.com, AI-tools directory) | GrowthMath - Marketing & SEO AI > Analytics | LIVE 2026-10-21 https://zoipi.com/tool/growthmath - main 'Visit' button is DOFOLLOW; gallery links nofollow. Screenshots show 'Preview unavailable'; promo video added 2026-10-21. |
 | 15 | Product Hunt | relaunch only when the Chrome extension is on the Web Store | waiting on $5 dev account |
 
 Directories that are AI-only (Futurepedia, There's An AI For That, Toolify) are skipped - GrowthMath is not an AI product and would be rejected or listed under the wrong intent.
@@ -40,6 +40,7 @@ Every tool shows the formula, benchmarks and what the result means - not just a 
 **Pricing:** Free
 **Screenshots:** brand/ph/ (5 gallery shots)
 **Logo:** https://growthmath.io/img/logo-400.png
+**Promo video (28s, YouTube @growthmath-io):** https://youtu.be/Pun1d9Cqfj4 - source: videos/growthmath-promo/renders/growthmath-promo.mp4
 **Screenshot URLs:** https://growthmath.io/img/screen-{home,roas,ltv,ab,dormant}.png
 
 ## Wave 2 - widget outreach (the real backlink engine)
