@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shopify Profit Calculator - GrowthMath</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://growthmath.io/shopify-profit-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+</head><body class="embed">
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="price">Average order value</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="price" type="text" inputmode="decimal" value="60" autocomplete="off"></div>
+</div>
+<div class="field"><label for="orders">Orders per month</label>
+<div class="inp"><input id="orders" type="text" inputmode="decimal" value="500" autocomplete="off"></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="cogs">Product cost per order</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="cogs" type="text" inputmode="decimal" value="20" autocomplete="off"></div>
+</div>
+<div class="field"><label for="ship">Shipping + packaging per order</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="ship" type="text" inputmode="decimal" value="6" autocomplete="off"></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="pf">Payment fee</label>
+<div class="inp has-suf"><input id="pf" type="text" inputmode="decimal" value="2.9" autocomplete="off"><span class="suf">%</span></div>
+<div class="hint">Check your plan and country.</div></div>
+<div class="field"><label for="ff">Fixed fee per order</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="ff" type="text" inputmode="decimal" value="0.30" autocomplete="off"></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="ads">Ad spend per month</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="ads" type="text" inputmode="decimal" value="5000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="fixed">Shopify plan + apps per month</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="fixed" type="text" inputmode="decimal" value="200" autocomplete="off"></div>
+</div></div>
+</div>
+<div class="out">
+<div class="big-label">Net profit per month</div><div class="big" id="o_net">-</div>
+<div class="stats"><div class="stat"><span>Profit per order</span><strong id="o_po">-</strong></div><div class="stat"><span>Net margin</span><strong id="o_nm">-</strong></div><div class="stat"><span>Contribution per order (before ads)</span><strong id="o_gm">-</strong></div><div class="stat"><span>Break-even ROAS</span><strong id="o_beroas">-</strong></div><div class="stat"><span>Break-even orders / month</span><strong id="o_beo">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+<div class="embed-foot"><a href="https://growthmath.io/shopify-profit-calculator/" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> Shopify Profit Calculator</a><a href="https://growthmath.io/shopify-profit-calculator/" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
+<script>live(() => {
+  const p = num('price'), n = num('orders'), cogs = num('cogs'), sh = num('ship'), pf = num('pf') / 100, ff = num('ff'), ads0 = num('ads'), fx0 = num('fixed');
+  if (!ok(p, n, cogs, sh, pf, ff) || p <= 0 || n <= 0) return;
+  const ads = ok(ads0) ? ads0 : 0, fx = ok(fx0) ? fx0 : 0;
+  const cpo = p - cogs - sh - p * pf - ff, rev = p * n, net = cpo * n - ads - fx;
+  set('o_net', money(net)); set('o_po', money(net / n)); set('o_nm', pct(net / rev * 100, 1)); set('o_gm', money(cpo));
+  $('o_net').classList.toggle('bad', net < 0);
+  set('o_beroas', cpo > 0 ? fnum(p / cpo) + 'x' : '-');
+  set('o_beo', cpo > 0 ? fnum(Math.ceil((ads + fx) / cpo), 0) : '-');
+  set('o_v', cpo <= 0 ? 'Each order loses money before ads. Raise prices or cut product and shipping costs.' : net < 0 ? 'Losing money: you need ' + fnum(Math.ceil((ads + fx) / cpo), 0) + ' orders a month at this spend, or a higher contribution per order.' : 'Profitable: you keep ' + pct(net / rev * 100, 1) + ' of revenue after ads and fixed costs.');
+});</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:"shopify-profit-calculator",h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>

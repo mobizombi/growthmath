@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engagement Rate Calculator - GrowthMath</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://growthmath.io/engagement-rate-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+</head><body class="embed">
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="likes">Likes (total)</label>
+<div class="inp"><input id="likes" type="text" inputmode="decimal" value="4200" autocomplete="off"></div>
+</div>
+<div class="field"><label for="comments">Comments (total)</label>
+<div class="inp"><input id="comments" type="text" inputmode="decimal" value="180" autocomplete="off"></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="shares">Shares (total)</label>
+<div class="inp"><input id="shares" type="text" inputmode="decimal" value="90" autocomplete="off"></div>
+</div>
+<div class="field"><label for="saves">Saves (total)</label>
+<div class="inp"><input id="saves" type="text" inputmode="decimal" value="130" autocomplete="off"></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="posts">Number of posts</label>
+<div class="inp"><input id="posts" type="text" inputmode="decimal" value="5" autocomplete="off"></div>
+<div class="hint">How many posts the totals above cover.</div></div>
+<div class="field"><label for="followers">Followers</label>
+<div class="inp"><input id="followers" type="text" inputmode="decimal" value="50000" autocomplete="off"></div>
+</div></div>
+
+<div class="field"><label for="reach">Total reach of those posts (optional)</label>
+<div class="inp"><input id="reach" type="text" inputmode="decimal" value="60000" autocomplete="off"></div>
+<div class="hint">From your insights. Leave empty if you only have public numbers.</div></div>
+</div>
+<div class="out">
+<div class="big-label">Engagement rate by followers</div><div class="big" id="o_er">-</div>
+<div class="stats"><div class="stat"><span>Engagement rate by reach</span><strong id="o_err">-</strong></div><div class="stat"><span>Interactions per post</span><strong id="o_avg">-</strong></div><div class="stat"><span>Comments per 100 likes</span><strong id="o_cr">-</strong></div><div class="stat"><span>Reach as % of followers</span><strong id="o_rf">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+<div class="embed-foot"><a href="https://growthmath.io/engagement-rate-calculator/" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> Engagement Rate Calculator</a><a href="https://growthmath.io/engagement-rate-calculator/" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
+<script>live(() => {
+  const l = num('likes'), c = num('comments'), s0 = num('shares'), v0 = num('saves'), n = num('posts'), fol = num('followers'), r = num('reach');
+  if (!ok(l, c) || !ok(n) || n <= 0) return;
+  const tot = l + c + (ok(s0) ? s0 : 0) + (ok(v0) ? v0 : 0), per = tot / n;
+  set('o_avg', fnum(per, 0));
+  set('o_cr', l > 0 ? fnum(c / l * 100, 1) : '-');
+  if (ok(r) && r > 0) set('o_err', pct(tot / r * 100, 2));
+  if (ok(r, fol) && fol > 0 && r > 0) set('o_rf', pct(r / n / fol * 100, 1));
+  if (!ok(fol) || fol <= 0) return;
+  const er = per / fol * 100;
+  set('o_er', pct(er, 2));
+  set('o_v', er < 1 ? 'Under 1% is low for most accounts - posts are being seen but not acted on. Test stronger hooks and ask a question people can answer.' : er < 3 ? 'Between 1% and 3% is a solid, typical engagement rate for most accounts.' : er < 6 ? 'Above 3% is strong engagement - a good number to show brands.' : 'Above 6% is exceptional. Common for small or very niche accounts; check that a single viral post is not skewing the average.');
+});</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:"engagement-rate-calculator",h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>
