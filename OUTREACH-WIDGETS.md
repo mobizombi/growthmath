@@ -140,14 +140,14 @@ Checked 2026-10-20: none of these pages has its own calculator. Skipped: Trendtr
 ## Tracker
 | # | Site | Sent (date) | Reply | Embedded? | Link live |
 |---|---|---|---|---|---|
-| A1 | Relevant Audience | 2026-10-20 (email, Adam) | | | |
-| A2 | Newsfeed.org | 2026-10-20 (email, Adam) | | | |
-| A3 | Influee | 2026-10-20 (email, Adam) | | | |
-| A4 | Sedona Chamber | 2026-10-20 (email, Adam) | | | |
+| A1 | Relevant Audience | 2026-10-20 (email, Adam) | | NOT YET (checked 2026-10-27) | No (checked 2026-10-27) |
+| A2 | Newsfeed.org | 2026-10-20 (email, Adam) | | NOT YET (checked 2026-10-27) | No (checked 2026-10-27) |
+| A3 | Influee | 2026-10-20 (email, Adam) | | NOT YET (checked 2026-10-27) | No (checked 2026-10-27) |
+| A4 | Sedona Chamber | 2026-10-20 (email, Adam) | | NOT YET (checked 2026-10-27) | No (checked 2026-10-27) |
 | A5 | Racklify | SKIPPED - only contact is a 3PL sales funnel | | | |
-| A6 | Rooster | 2026-10-20 (contact form, Adam) | | | |
-| A7 | Jaywing | 2026-10-20 (contact form, Adam) | | | |
-| A8 | Adwave | 2026-10-20 (contact form, by Claude with Adam's OK) | | | |
+| A6 | Rooster | 2026-10-20 (contact form, Adam) | | NOT YET (checked 2026-10-27) | No (checked 2026-10-27) |
+| A7 | Jaywing | 2026-10-20 (contact form, Adam) | | NOT YET (checked 2026-10-27) | No (checked 2026-10-27) |
+| A8 | Adwave | 2026-10-20 (contact form, by Claude with Adam's OK) | | NOT YET (checked 2026-10-27) | No (checked 2026-10-27) |
 | B1 | Diggity Marketing | | | | |
 | B2 | Make Influence | | | | |
 | B3 | Recharge | | | | |
