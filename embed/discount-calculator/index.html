@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discount Profit Calculator - GrowthMath</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://growthmath.io/discount-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+</head><body class="embed">
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="price">Normal price</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="price" type="text" inputmode="decimal" value="100" autocomplete="off"></div>
+</div>
+<div class="field"><label for="cost">Cost per unit</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="cost" type="text" inputmode="decimal" value="60" autocomplete="off"></div>
+<div class="hint">Product + shipping + fees per unit.</div></div></div>
+<div class="row2">
+<div class="field"><label for="disc">Discount</label>
+<div class="inp has-suf"><input id="disc" type="text" inputmode="decimal" value="20" autocomplete="off"><span class="suf">%</span></div>
+</div>
+<div class="field"><label for="units">Units you normally sell</label>
+<div class="inp"><input id="units" type="text" inputmode="decimal" value="200" autocomplete="off"></div>
+<div class="hint">In the period the sale will run.</div></div></div>
+</div>
+<div class="out">
+<div class="big-label">Sales increase needed to break even</div><div class="big" id="o_need">-</div>
+<div class="stats"><div class="stat"><span>Sale price</span><strong id="o_np">-</strong></div><div class="stat"><span>Profit per unit on sale</span><strong id="o_pu">-</strong></div><div class="stat"><span>Margin on sale</span><strong id="o_m">-</strong></div><div class="stat"><span>Units needed on sale</span><strong id="o_units">-</strong></div><div class="stat"><span>Gross profit at normal price</span><strong id="o_gp">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+<div class="embed-foot"><a href="https://growthmath.io/discount-calculator/" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> Discount Profit Calculator</a><a href="https://growthmath.io/discount-calculator/" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
+<script>live(() => {
+  const p = num('price'), c = num('cost'), d = num('disc') / 100, u = num('units');
+  if (!ok(p, c, d) || p <= 0 || d >= 1) return;
+  const np = p * (1 - d), old = p - c, nw = np - c;
+  set('o_np', money(np)); set('o_pu', money(nw)); set('o_m', pct(nw / np * 100, 1));
+  if (ok(u)) set('o_gp', money(old * u, 0));
+  if (old <= 0) { set('o_v', 'You already lose money on each unit at the normal price.'); return; }
+  if (nw <= 0) { set('o_v', 'At this discount every unit sells at a loss - no amount of extra volume makes it profitable.'); $('o_need').classList.add('bad'); return; }
+  $('o_need').classList.remove('bad');
+  const inc = old / nw - 1;
+  set('o_need', pct(inc * 100, 1));
+  if (ok(u)) set('o_units', fnum(Math.ceil(u * old / nw - 1e-9), 0));
+  set('o_v', 'A ' + pct(d * 100, 0) + ' discount turns ' + money(old) + ' of profit per unit into ' + money(nw) + '. You must sell ' + fnum(old / nw, 2) + 'x as many units to earn the same gross profit.');
+});</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:"discount-calculator",h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>

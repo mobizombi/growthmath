@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROAS Calculator - GrowthMath</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://growthmath.io/roas-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+</head><body class="embed">
+<section class="tool"><div>
+
+<div class="field"><label for="spend">Ad spend</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="spend" type="text" inputmode="decimal" value="1000" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="rev">Revenue from ads</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="rev" type="text" inputmode="decimal" value="3500" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="margin">Gross margin</label>
+<div class="inp has-suf"><input id="margin" type="text" inputmode="decimal" value="40" autocomplete="off"><span class="suf">%</span></div>
+<div class="hint">Revenue left after product cost, shipping and fees - before ad spend.</div></div>
+</div>
+<div class="out">
+<div class="big-label">Your ROAS</div><div class="big" id="o_roas">-</div>
+<div class="stats"><div class="stat"><span>Break-even ROAS</span><strong id="o_be">-</strong></div><div class="stat"><span>Profit after ads</span><strong id="o_profit">-</strong></div><div class="stat"><span>ROAS as %</span><strong id="o_pct">-</strong></div><div class="stat"><span>Max ad spend at break-even</span><strong id="o_maxcpa">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+<div class="embed-foot"><a href="https://growthmath.io/roas-calculator/" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> ROAS Calculator</a><a href="https://growthmath.io/roas-calculator/" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
+<script>live(() => {
+  const s = num('spend'), r = num('rev'), m0 = num('margin') / 100, m = m0 > 0 && m0 <= 1 ? m0 : NaN;
+  if (!ok(s, r) || s <= 0) return;
+  const roas = r / s, be = m > 0 ? 1 / m : NaN, profit = r * m - s;
+  set('o_roas', fnum(roas) + 'x'); set('o_pct', pct(roas * 100, 0));
+  set('o_be', ok(be) ? fnum(be) + 'x' : '-'); set('o_profit', ok(profit) ? money(profit) : '-');
+  set('o_maxcpa', ok(m) ? money(r * m) : '-');
+  $('o_roas').classList.toggle('bad', ok(be) && roas < be);
+  set('o_v', !ok(be) ? 'Enter a gross margin between 1% and 100% to see if this campaign is profitable.' :
+    roas >= be ? 'Profitable: your ' + fnum(roas) + 'x ROAS beats the ' + fnum(be) + 'x you need to break even.' :
+    'Losing money: you need ' + fnum(be) + 'x ROAS at a ' + pct(m * 100, 0) + ' margin. Cut spend or raise margin.');
+});</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:"roas-calculator",h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>

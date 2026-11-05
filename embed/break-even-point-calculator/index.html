@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break-Even Point Calculator - GrowthMath</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://growthmath.io/break-even-point-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+</head><body class="embed">
+<section class="tool"><div>
+
+<div class="field"><label for="fixed">Fixed costs per month</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="fixed" type="text" inputmode="decimal" value="10000" autocomplete="off"></div>
+<div class="hint">Rent, salaries, software, insurance - costs that do not change with sales.</div></div>
+<div class="row2">
+<div class="field"><label for="price">Price per unit</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="price" type="text" inputmode="decimal" value="50" autocomplete="off"></div>
+</div>
+<div class="field"><label for="vc">Variable cost per unit</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="vc" type="text" inputmode="decimal" value="30" autocomplete="off"></div>
+<div class="hint">Product, packaging, shipping, payment fees.</div></div></div>
+<div class="row2">
+<div class="field"><label for="tp">Target profit per month</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="tp" type="text" inputmode="decimal" value="5000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="exp">Expected units per month (optional)</label>
+<div class="inp"><input id="exp" type="text" inputmode="decimal" value="600" autocomplete="off"></div>
+</div></div>
+</div>
+<div class="out">
+<div class="big-label">Break-even units per month</div><div class="big" id="o_units">-</div>
+<div class="stats"><div class="stat"><span>Break-even revenue</span><strong id="o_rev">-</strong></div><div class="stat"><span>Contribution per unit</span><strong id="o_cm">-</strong></div><div class="stat"><span>Contribution margin</span><strong id="o_cmr">-</strong></div><div class="stat"><span>Units for target profit</span><strong id="o_tu">-</strong></div><div class="stat"><span>Margin of safety</span><strong id="o_mos">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+<div class="embed-foot"><a href="https://growthmath.io/break-even-point-calculator/" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> Break-Even Point Calculator</a><a href="https://growthmath.io/break-even-point-calculator/" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
+<script>live(() => {
+  const F = num('fixed'), p = num('price'), v = num('vc'), tp = num('tp'), e = num('exp');
+  if (!ok(F, p, v) || p <= 0) return;
+  const cm = p - v;
+  set('o_cm', money(cm)); set('o_cmr', pct(cm / p * 100, 1));
+  if (cm <= 0) { set('o_v', 'Each unit costs as much as or more than it sells for, so you can never break even. Raise the price or cut variable costs.'); return; }
+  const be = F / cm, beu = Math.ceil(be);
+  set('o_units', fnum(beu, 0)); set('o_rev', money(F / (cm / p)));
+  if (ok(tp)) set('o_tu', fnum(Math.ceil((F + tp) / cm), 0));
+  if (ok(e) && e > 0) {
+    const mos = (e - be) / e;
+    set('o_mos', pct(mos * 100, 1));
+    set('o_v', e < be ? 'At ' + fnum(e, 0) + ' units you lose ' + money((be - e) * cm) + ' a month. You need ' + fnum(beu - e, 0) + ' more units, a higher price or lower costs.' : 'At ' + fnum(e, 0) + ' units you make ' + money((e - be) * cm) + ' a month, and sales could fall ' + pct(mos * 100, 1) + ' before you lose money.');
+  } else set('o_v', 'Every unit after number ' + fnum(beu, 0) + ' adds ' + money(cm) + ' of profit.');
+});</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:"break-even-point-calculator",h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>

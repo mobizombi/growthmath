@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break-Even CPA Calculator - GrowthMath</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://growthmath.io/break-even-cpa-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+</head><body class="embed">
+<section class="tool"><div>
+
+<div class="field"><label for="aov">Average order value</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="aov" type="text" inputmode="decimal" value="80" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="cogs">Cost per order (product + shipping + fees)</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="cogs" type="text" inputmode="decimal" value="35" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="orders">Orders per customer (lifetime)</label>
+<div class="inp"><input id="orders" type="text" inputmode="decimal" value="1" autocomplete="off"></div>
+<div class="hint">Leave at 1 to judge on the first purchase only.</div></div>
+<div class="row2">
+<div class="field"><label for="tprofit">Target profit (% of revenue)</label>
+<div class="inp has-suf"><input id="tprofit" type="text" inputmode="decimal" value="20" autocomplete="off"><span class="suf">%</span></div>
+</div>
+<div class="field"><label for="cvr">Landing page conv. rate</label>
+<div class="inp has-suf"><input id="cvr" type="text" inputmode="decimal" value="2.5" autocomplete="off"><span class="suf">%</span></div>
+</div></div>
+</div>
+<div class="out">
+<div class="big-label">Break-even CPA</div><div class="big" id="o_be">-</div>
+<div class="stats"><div class="stat"><span>Target CPA (with profit)</span><strong id="o_target">-</strong></div><div class="stat"><span>Max CPC at your conv. rate</span><strong id="o_cpc">-</strong></div><div class="stat"><span>Break-even ROAS</span><strong id="o_roas">-</strong></div><div class="stat"><span>Gross profit per customer</span><strong id="o_gp">-</strong></div></div>
+</div></section>
+<div class="embed-foot"><a href="https://growthmath.io/break-even-cpa-calculator/" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> Break-Even CPA Calculator</a><a href="https://growthmath.io/break-even-cpa-calculator/" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
+<script>live(() => {
+  const aov = num('aov'), cogs = num('cogs'), n = num('orders') || 1, tp = num('tprofit') / 100, cvr = num('cvr') / 100;
+  if (!ok(aov, cogs)) return;
+  const gp = (aov - cogs) * n, be = gp, target = gp - aov * n * (ok(tp) ? tp : 0);
+  set('o_be', money(be)); set('o_gp', money(gp));
+  set('o_target', money(target));
+  set('o_cpc', ok(cvr) ? money(target * cvr) : '-');
+  set('o_roas', gp > 0 ? fnum(aov * n / gp) + 'x' : '-');
+  $('o_be').classList.toggle('bad', be <= 0);
+});</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:"break-even-cpa-calculator",h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>

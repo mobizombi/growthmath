@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Affiliate Commission &amp; EPC Calculator - GrowthMath</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://growthmath.io/affiliate-commission-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+</head><body class="embed">
+<section class="tool"><div>
+
+<div class="field"><label for="clicks">Monthly clicks to the offer</label>
+<div class="inp"><input id="clicks" type="text" inputmode="decimal" value="2000" autocomplete="off"></div>
+</div>
+
+<div class="field"><label for="cvr">Conversion rate</label>
+<div class="inp has-suf"><input id="cvr" type="text" inputmode="decimal" value="3" autocomplete="off"><span class="suf">%</span></div>
+</div>
+<div class="row2">
+<div class="field"><label for="aov">Average sale value</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="aov" type="text" inputmode="decimal" value="60" autocomplete="off"></div>
+</div>
+<div class="field"><label for="com">Commission</label>
+<div class="inp has-suf"><input id="com" type="text" inputmode="decimal" value="30" autocomplete="off"><span class="suf">%</span></div>
+</div></div>
+
+<div class="field"><label for="flat">Or flat CPA payout per sale</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="flat" type="text" inputmode="decimal" value="" autocomplete="off"></div>
+<div class="hint">Fill this in instead of %, e.g. for CPA/CPL offers.</div></div>
+
+<div class="field"><label for="goal">Monthly income goal</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="goal" type="text" inputmode="decimal" value="3000" autocomplete="off"></div>
+</div>
+</div>
+<div class="out">
+<div class="big-label">Estimated monthly earnings</div><div class="big" id="o_earn">-</div>
+<div class="stats"><div class="stat"><span>EPC (earnings per click)</span><strong id="o_epc">-</strong></div><div class="stat"><span>Sales per month</span><strong id="o_sales">-</strong></div><div class="stat"><span>Payout per sale</span><strong id="o_per">-</strong></div><div class="stat"><span>Clicks needed for goal</span><strong id="o_need">-</strong></div></div>
+</div></section>
+<div class="embed-foot"><a href="https://growthmath.io/affiliate-commission-calculator/" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> Affiliate Commission &amp; EPC Calculator</a><a href="https://growthmath.io/affiliate-commission-calculator/" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
+<script>live(() => {
+  const c = num('clicks'), cvr = num('cvr') / 100, aov = num('aov'), com = num('com') / 100, flat = num('flat'), goal = num('goal');
+  const per = ok(flat) && flat > 0 ? flat : aov * com;
+  if (!ok(c, cvr, per)) return;
+  const sales = c * cvr, earn = sales * per, epc = cvr * per;
+  set('o_earn', money(earn)); set('o_epc', money(epc)); set('o_sales', fnum(sales, 1)); set('o_per', money(per));
+  set('o_need', ok(goal) && epc > 0 ? fnum(Math.ceil(goal / epc), 0) : '-');
+});</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:"affiliate-commission-calculator",h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>
