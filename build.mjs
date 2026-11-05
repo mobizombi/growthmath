@@ -59,7 +59,8 @@ ${TEMP ? '<meta name="robots" content="noindex">' : ''}
 ${GA4 && !TEMP ? `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:${JSON.stringify(EEA)},wait_for_update:500});
 gtag('js',new Date());gtag('config','${GA4}');</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=${GA4}"></script>` : ''}
+<script async src="https://www.googletagmanager.com/gtag/js?id=${GA4}"></script>
+<script src="/aff-track.js?v=1" defer></script>` : ''}
 ${ADSENSE ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE}" crossorigin="anonymous"></script>` : ''}
 ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
 </head><body>
@@ -67,7 +68,7 @@ ${schema.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</sc
 <nav><a href="/#tools">All tools</a><a href="/guides/">Guides</a><a class="nav-ext" href="/affiliate-link-checker-extension/">Extension</a><a href="/about/">About</a></nav></div></header>
 <main class="wrap">${body}</main>
 <footer class="site-foot"><div class="wrap"><div><b>${NAME}</b> - free calculators for marketers, affiliates and store owners. &copy; ${YEAR}</div>
-<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/embed/">Embed our calculators</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
+<div><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://www.youtube.com/@growthmath-io" rel="noopener">GrowthMath on YouTube</a><a href="/embed/">Embed our calculators</a><a href="/affiliate-link-checker-extension/">Chrome extension</a></div></div></footer>
 ${scripts}
 ${SIGNUP_TO ? `<script>document.querySelectorAll('.signup-form').forEach(function(f){var m=f.querySelector('.signup-msg'),b=f.querySelector('button');
 if(/[?&]subscribed=1/.test(location.search))m.textContent='Thanks - you are on the list.';
@@ -250,7 +251,7 @@ const pages = {
 <p>Spotted a bug or want a tool we do not have? <a href="/contact/">Get in touch</a>.</p>`),
   '/contact/': staticPage('/contact/', 'Contact', 'Contact the GrowthMath team.', `
 <p>Questions, bug reports, tool requests or partnership ideas - email us at <a href="mailto:${EMAIL}">${EMAIL}</a>. We read everything and usually reply within two business days.</p>`),
-  '/privacy/': staticPage('/privacy/', 'Privacy Policy', 'GrowthMath privacy policy: what data is collected, cookies, and Google AdSense advertising.', `
+  '/privacy/': staticPage('/privacy/', 'Privacy Policy', 'GrowthMath privacy policy: what data is collected, cookies, Google AdSense advertising and our use of YouTube API Services.', `
 <p><i>Last updated: ${new Date().toISOString().slice(0, 10)}</i></p>
 <h2>Calculations and uploaded files</h2>
 <p>All calculators run locally in your browser. The numbers you type and any files you upload (for example a CSV in the Dormant Affiliate Finder) are processed on your device and are never sent to or stored on our servers.</p>
@@ -264,6 +265,11 @@ const pages = {
 <p>If you subscribe to updates, we collect only your email address and the page you subscribed from. We use it solely to tell you about new tools and guides, and you can unsubscribe at any time by replying to any email or writing to us. Signups are delivered to us through FormSubmit (formsubmit.co), a form-forwarding service. We never sell or share your address.</p>
 <h2>Server logs</h2>
 <p>Our hosting provider may record standard technical logs (IP address, browser type, pages requested) for security and reliability. We do not use these to identify individuals.</p>
+<h2>YouTube API Services</h2>
+<p>We publish videos to our own YouTube channel (<a href="https://www.youtube.com/@growthmath-io" rel="noopener">GrowthMath on YouTube</a>) with an internal tool called <b>MoneyMath uploader</b>, which uses the <b>YouTube API Services</b>. By using any part of GrowthMath that relates to YouTube you are agreeing to be bound by the <a href="https://www.youtube.com/t/terms" rel="noopener">YouTube Terms of Service</a>, and Google's handling of data is described in the <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>.</p>
+<p><b>What the tool accesses:</b> only our own channel, with the permission to upload videos and set their thumbnails. It does not access, collect, store or share any data about other YouTube users or viewers, and nothing on this website uses YouTube API data about you.</p>
+<p><b>What is stored:</b> a single OAuth refresh token for our own channel, kept encrypted as a secret in our build system. No YouTube user data is stored, sold or shared with anyone.</p>
+<p><b>Revoking access and deletion:</b> the channel owner can revoke the tool's access at any time from the <a href="https://myaccount.google.com/connections" rel="noopener">Google security settings page</a> (Third-party connections). When access is revoked, or on request to <a href="mailto:${EMAIL}">${EMAIL}</a>, the stored token is deleted within 7 days.</p>
 <h2>Contact</h2>
 <p>Privacy questions: <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>`),
   '/affiliate-link-checker-extension/': layout({ title: 'Affiliate Link Checker - Free Chrome Extension to Audit Affiliate Links', desc: 'Free Chrome extension that finds every affiliate link on a page, names the network and tracking ID, flags links missing rel="sponsored" and checks for an FTC disclosure. Export to CSV.', path: '/affiliate-link-checker-extension/', schema: [
@@ -298,7 +304,12 @@ ${table(['You see', 'What it means', 'What to do'], [['Red "no rel" tag', 'The l
 ${signup('extension')}` }),
   '/terms/': staticPage('/terms/', 'Terms of Use', 'GrowthMath terms of use.', `
 <p>The tools on GrowthMath are provided free of charge, as-is, for general information and planning. Results are estimates based on the numbers you enter and standard formulas; they are not financial, legal or tax advice. Always verify important decisions with your own data and, where appropriate, a qualified professional.</p>
-<p>We may change or remove tools at any time. By using the site you agree not to misuse it, attempt to disrupt it, or scrape it at scale.</p>`),
+<p>We may change or remove tools at any time. By using the site you agree not to misuse it, attempt to disrupt it, or scrape it at scale.</p>
+<h2>Videos and YouTube</h2>
+<p>Our videos are published on YouTube using the YouTube API Services. By watching or interacting with them you agree to the <a href="https://www.youtube.com/t/terms" rel="noopener">YouTube Terms of Service</a>, and Google's processing of data is covered by the <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>. How we use the YouTube API is explained in our <a href="/privacy/">Privacy Policy</a>.</p>
+<p>Video content is math education based on stated assumptions. It is not financial advice, and returns are never guaranteed.</p>
+<h2>Contact</h2>
+<p>Questions about these terms: <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>`),
 };
 
 // ---- write
@@ -317,6 +328,7 @@ write('/404.html', staticPage('/404.html', 'Page not found', 'Page not found.', 
 
 copyFileSync('src/style.css', OUT + '/style.css');
 copyFileSync('src/app.js', OUT + '/app.js');
+copyFileSync('src/aff-track.js', OUT + '/aff-track.js');
 mkdirSync(OUT + '/img', { recursive: true }); copyFileSync('src/img/affiliate-link-checker.jpg', OUT + '/img/affiliate-link-checker.jpg');
 // Logo + screenshots at stable public URLs, for directory listings that upload images by URL.
 copyFileSync('brand/logo-400.png', OUT + '/img/logo-400.png');
