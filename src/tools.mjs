@@ -180,8 +180,8 @@ ${f('orders', 'Orders per customer (lifetime)', '1', { hint: 'Leave at 1 to judg
     cat: 'affiliate',
     name: 'Affiliate Commission & EPC Calculator',
     short: 'Estimate affiliate earnings, EPC and the traffic you need to hit a goal.',
-    title: 'Affiliate Commission & EPC Calculator - Earnings per Click',
-    desc: 'Estimate affiliate income. Enter clicks, conversion rate, order value and commission to get monthly earnings, EPC, and the clicks needed to reach your income goal.',
+    title: 'Affiliate EPC Calculator - What Is EPC & How to Calculate It',
+    desc: 'What is EPC in affiliate marketing? EPC = commissions / clicks. Free calculator for EPC, affiliate earnings and the clicks needed to hit your income goal.',
     h1: 'Affiliate Commission & EPC Calculator',
     lede: 'Compare affiliate offers by what they actually pay per click - and see how much traffic your income goal needs.',
     tool: `<div>
@@ -204,17 +204,33 @@ ${f('goal', 'Monthly income goal', '3000', { pre: '$' })}
   set('o_need', ok(goal) && epc > 0 ? fnum(Math.ceil(goal / epc), 0) : '-');
 });`,
     content: `
-<h2>What is EPC?</h2>
-<p>EPC (earnings per click) is the average amount you earn every time someone clicks your affiliate link. It is the single best number for comparing offers, because it combines commission size and conversion rate into one figure.</p>
-<div class="formula">EPC = Conversion rate x Payout per sale<br>Monthly earnings = Clicks x EPC</div>
+<h2>What is EPC in affiliate marketing?</h2>
+<p>EPC (earnings per click) is the average amount an affiliate earns for each click sent to an offer. Calculate it by dividing total commissions by total clicks for the same period: EPC = commissions / clicks. It combines payout size and conversion rate into one number, so it is the fairest way to compare affiliate offers.</p>
+<div class="formula">EPC = Total commissions / Total clicks<br>EPC = Conversion rate x Payout per sale<br>Monthly earnings = Clicks x EPC</div>
+<h2>How to calculate EPC</h2>
+<p>Take the clicks and commissions for the same offer and the same date range, then divide. Example: last month your links sent 1,500 clicks to a software offer, which produced 36 sales at a $25 commission each.</p>
+<ul><li>Total commissions: 36 x $25 = $900</li><li>EPC: $900 / 1,500 clicks = <b>$0.60 per click</b></li><li>Check: conversion rate is 36 / 1,500 = 2.4%, and 2.4% x $25 = $0.60</li><li>Per 100 clicks (the way some networks show it): $0.60 x 100 = $60</li></ul>
+<p>Use approved commissions, not pending ones, and make sure clicks and sales come from the same period and the same tracking link. The calculator above does the second version of the formula, so you can estimate EPC for an offer you have not run yet.</p>
+<h2>What is a good EPC?</h2>
+<p>There is no single benchmark, because EPC depends on the niche, the payout model and where your traffic comes from. As a rough orientation, low-percentage retail programs usually land in cents per click, while high-ticket software, finance and subscription offers can reach a dollar or more per click. Two tests matter more than any industry average:</p>
+<ul><li><b>Paid traffic:</b> EPC must be higher than your CPC, with room for profit. A $0.60 EPC is profitable at $0.25 clicks and a loss at $0.75 clicks.</li><li><b>Organic or content traffic:</b> a good EPC is one that beats the other offers you could put in the same placement. Your clicks are limited, so the higher-EPC offer earns more from the same page.</li></ul>
+<h2>EPC vs CPC vs conversion rate</h2>
+${table(['Metric', 'What it measures', 'Formula', 'Who looks at it'], [['EPC', 'What you earn per click', 'Commissions / clicks', 'Affiliates choosing offers; merchants comparing programs'], ['CPC', 'What you pay per click', 'Ad spend / clicks', 'Anyone buying traffic'], ['Conversion rate', 'Share of clicks that buy', 'Sales / clicks', 'Both sides, to diagnose a low EPC']])}
+<p>They connect in two lines: EPC = conversion rate x payout, and profit per click = EPC - CPC. If EPC drops while conversion rate holds, the payout or average order value fell. If conversion rate drops, look at the traffic source or the landing page. Use the <a href="/cpm-cpc-cpa-calculator/">CPC calculator</a> for the cost side.</p>
+<h2>How merchants and publishers use EPC</h2>
+<ul><li><b>Publishers (affiliates)</b> use EPC to pick offers, to decide which product goes first in a comparison table, and to drop placements that send clicks but no sales.</li><li><b>Merchants (advertisers)</b> watch the EPC their program shows on the network, because affiliates browse offers by it. A program with a weak EPC gets skipped even if its commission rate looks generous. Merchants also read EPC per partner to spot traffic that clicks but never buys.</li></ul>
+<h2>Why network-reported EPC can mislead you</h2>
+<ul><li><b>It is an average across every affiliate.</b> Coupon, cashback and loyalty sites catch buyers already at checkout, so they pull the network average up. A blog, video or social account usually sees less.</li><li><b>7-day EPC vs 3-month EPC.</b> Networks such as CJ show both. The 7-day number reacts to a sale event or one large order and swings a lot on small click counts. The 3-month number is steadier but lags behind recent changes in commission rates or landing pages. Read them together: a 7-day figure far above the 3-month figure is usually a short spike, not a new normal.</li><li><b>Per click or per 100 clicks.</b> Some networks show EPC per 100 clicks. A "100 EPC" of $45 is $0.45 per click.</li><li><b>Pending vs approved.</b> EPC built on pending commissions falls later when returns and cancelled trials are reversed.</li><li><b>Your site-wide EPC hides the detail.</b> Tag links with sub-IDs per page or placement. A strong comparison table and a weak sidebar link average into one middling number, and only sub-ID level EPC shows which one to fix.</li></ul>
 <h2>Why a 50% commission can lose to a 10% one</h2>
 <p>A 50% commission on a $20 product that converts at 1% earns $0.10 per click. A 10% commission on a $400 product that converts at 2% earns $0.80 per click - eight times more for the same traffic. Always compare EPC, not commission rate.</p>
 <h2>Working backwards from a goal</h2>
-<p>Divide your income goal by EPC to see the traffic you need. If $3,000/month needs 50,000 clicks, you know whether the plan is realistic - and whether to find a higher-EPC offer first.</p>
-<h2>Where to find real conversion rates</h2>
-<p>Most affiliate networks show network-wide EPC on the offer page. Use it as a starting estimate, then replace it with your own numbers after a few hundred clicks - your audience will convert differently.</p>`,
+<p>Divide your income goal by EPC to see the traffic you need. If $3,000/month needs 50,000 clicks, you know whether the plan is realistic - and whether to find a higher-EPC offer first.</p>`,
     faq: [
-      ['What is a good EPC?', 'It depends on the niche. $0.10 - $0.50 is common for retail, while finance, software and dating offers often pay $1 - $5+ per click.'],
+      ['What is EPC in affiliate marketing?', 'EPC stands for earnings per click. It is the average commission an affiliate earns for each click sent to an offer, calculated as total commissions divided by total clicks for the same period.'],
+      ['What does EPC mean in affiliate marketing?', 'EPC means earnings per click. On most dashboards it is shown per single click, but some networks show it per 100 clicks, so a 100 EPC of $45 equals $0.45 per click.'],
+      ['Is affiliate marketing EPC the same as CPC?', 'No. EPC is what an affiliate earns per click, while CPC is what an advertiser or media buyer pays per click. If you buy traffic to promote an offer, your profit per click is EPC minus CPC.'],
+      ['What is the difference between 7-day EPC and 3-month EPC?', 'Both are network averages over different windows. 7-day EPC reacts quickly to promotions and single large orders, so it is volatile. 3-month EPC is steadier but slower to reflect recent changes. Compare the two, then trust your own numbers once you have a few hundred clicks.'],
+      ['What is a good EPC?', 'It depends on the niche and the traffic source. Low-percentage retail programs often earn cents per click, while software, finance and subscription offers can reach a dollar or more. For paid traffic, a good EPC is one comfortably above your CPC.'],
       ['Is EPC shown per click or per 100 clicks?', 'Some networks (such as CJ) show EPC per 100 clicks. Divide by 100 to compare with this calculator.'],
     ],
     related: ['affiliate-revenue-leak-calculator', 'dormant-affiliate-finder', 'utm-builder'],
