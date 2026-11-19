@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Churn Rate &amp; MRR Calculator - GrowthMath</title>
+<meta name="robots" content="noindex,follow"><link rel="canonical" href="https://growthmath.io/churn-rate-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"],wait_for_update:500});
+gtag('js',new Date());gtag('config','G-NNNSG3D7ML',{embed_host:document.referrer?new URL(document.referrer).hostname:'direct'});</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNNSG3D7ML"></script>
+</head><body class="embed">
+<section class="tool"><div>
+<div class="row2">
+<div class="field"><label for="sc">Customers at start of month</label>
+<div class="inp"><input id="sc" type="text" inputmode="decimal" value="1000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="lost">Customers lost during month</label>
+<div class="inp"><input id="lost" type="text" inputmode="decimal" value="50" autocomplete="off"></div>
+</div></div>
+<div class="row2">
+<div class="field"><label for="smrr">MRR at start of month</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="smrr" type="text" inputmode="decimal" value="50000" autocomplete="off"></div>
+</div>
+<div class="field"><label for="cmrr">MRR lost (cancels + downgrades)</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="cmrr" type="text" inputmode="decimal" value="3000" autocomplete="off"></div>
+</div></div>
+
+<div class="field"><label for="emrr">Expansion MRR (upgrades + add-ons)</label>
+<div class="inp has-pre"><span class="pre">$</span><input id="emrr" type="text" inputmode="decimal" value="2000" autocomplete="off"></div>
+<div class="hint">From existing customers only - not new customers.</div></div>
+</div>
+<div class="out">
+<div class="big-label">Monthly customer churn</div><div class="big" id="o_churn">-</div>
+<div class="stats"><div class="stat"><span>Annual customer churn</span><strong id="o_annual">-</strong></div><div class="stat"><span>Average lifetime</span><strong id="o_life">-</strong></div><div class="stat"><span>Gross MRR churn</span><strong id="o_mrr">-</strong></div><div class="stat"><span>Net revenue retention</span><strong id="o_nrr">-</strong></div></div>
+<div class="verdict" id="o_v"></div></div></section>
+<div class="embed-foot"><a href="https://growthmath.io/churn-rate-calculator/" target="_blank" rel="noopener"><span class="logo-mark">g/m</span> Churn Rate &amp; MRR Calculator</a><a href="https://growthmath.io/churn-rate-calculator/" target="_blank" rel="noopener">Formula and guide</a></div>
+<script src="/app.js"></script>
+<script>new URLSearchParams(location.search).forEach(function(v,k){var el=document.getElementById(k);if(el&&/^(INPUT|SELECT)$/.test(el.tagName)&&el.type!=='file')el.value=String(v).slice(0,40);});</script>
+<script>live(() => {
+  const sc = num('sc'), lost = num('lost'), smrr = num('smrr'), cmrr = num('cmrr'), e0 = num('emrr');
+  if (ok(sc, lost) && sc > 0 && lost <= sc) {
+    const c = lost / sc;
+    set('o_churn', pct(c * 100, 2)); set('o_annual', pct((1 - Math.pow(1 - c, 12)) * 100, 1));
+    set('o_life', c > 0 ? fnum(1 / c, 1) + ' months' : 'No churn');
+  }
+  if (ok(smrr, cmrr) && smrr > 0 && cmrr <= smrr) {
+    const e = ok(e0) ? e0 : 0, g = cmrr / smrr, nrr = (smrr - cmrr + e) / smrr;
+    set('o_mrr', pct(g * 100, 2)); set('o_nrr', pct(nrr * 100, 1));
+    set('o_v', nrr >= 1 ? 'Net revenue retention is above 100% - expansion from existing customers outweighs what you lose.' : g > 0.05 ? 'Gross MRR churn above 5% a month is high for most subscription businesses - retention is your biggest lever.' : 'Revenue churn is under control, but expansion is not yet covering it.');
+  } else if (ok(sc, lost) && lost > sc) set('o_v', 'Customers lost cannot be higher than customers at the start.');
+});</script>
+<script>(function(){var last=0;function post(){var h=Math.ceil(document.documentElement.getBoundingClientRect().height);if(h!==last&&window.parent!==window){last=h;parent.postMessage({gm:'h',slug:"churn-rate-calculator",h:h},'*');}}
+if(window.ResizeObserver)new ResizeObserver(post).observe(document.body);window.addEventListener('load',post);post();})();</script>
+</body></html>
